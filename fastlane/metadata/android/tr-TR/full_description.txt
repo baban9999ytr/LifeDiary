@@ -1,0 +1,35 @@
+Günlük: Yazmanın Özgürlüğü
+
+Günlük, tek bir tavizsiz ilke üzerine kurulmuş yerel öncelikli (local-first) ve açık kaynaklı bir Android uygulamasıdır: Hiçbir özellik size zorla dayatılmaz. İster 20'den fazla özelliğin tamamını kullanın, isterseniz sadece yazmaya odaklanın; seçim her zaman sizin.
+
+Bursa'dan 16 yaşındaki bir geliştirici tarafından hazırlanan bu uygulama; gizliliğe, sadeliğe ve kişisel verileri üzerinde tam kontrole değer verenler için tasarlandı.
+
+Tam Gizlilik, Sıfır Taviz
+
+    Önce Çevrimdışı: Verileriniz cihazınızdan asla ayrılmaz. Asla.
+
+    Bulut Yok: Yazılarınızı hiçbir sunucuda saklamıyoruz.
+
+    Gözetleme Yok: Veri toplama, takipçi (tracker) ve reklam yok.
+
+    Açık Kaynak: Tasarımı gereği şeffaf. Kodu kendiniz inceleyin.
+
+İsterseniz Kullanabileceğiniz Özellikler:
+
+    Zengin Medya: Günlüklerinize fotoğraf, video ve ses kayıtları ekleyin.
+
+    Kişiselleştirme: Özel yazı tipleri, metin renkleri ve kapak fotoğrafları.
+
+    Yaratıcılık: Çizim ve eskiz yapmak için serbest çizim tuvali.
+
+    Bağlamsal Veriler: Otomatik konum, hava durumu ve Google Fit adım sayıları.
+
+    Güvenlik: Kişisel girişlerinizi sadece sizin görebilmeniz için kilitleyin ve gizleyin.
+
+    Organizasyon: İlerlemenizi takip etmek için çoklu hesap desteği ve haftalık istatistikler.
+
+    Motivasyon: Günlük yazma serilerini (streak) koruyun ve gelişiminizi görün.
+
+Sizin günlüğünüz, sizin kurallarınız.
+Kaynak Kodu: https://github.com/baban9999ytr/LifeDiary
+Geliştirici: https://github.com/baban9999ytr

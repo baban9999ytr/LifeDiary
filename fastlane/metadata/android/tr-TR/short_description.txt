@@ -1,0 +1,1 @@
+Sizi gözetlemeyen, tamamen yerel ve gizli bir günlük uygulaması.

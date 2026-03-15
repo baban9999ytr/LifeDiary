@@ -1,0 +1,35 @@
+Diary: The Freedom to Write
+
+Diary is a local-first, open source Android diary app built on a single, uncompromising principle: no feature is forced on you. Whether you want to leverage all 20+ features or just focus on pure writing, the choice is yours.
+
+Built by a 16-year-old developer from Bursa, Türkiye, this app is designed for those who value privacy, simplicity, and complete control over their personal data.
+Total Privacy, No Compromises
+
+    Offline-First: Your data never leaves your device. Ever.
+
+    No Cloud: We don't store your words on any server.
+
+    No Surveillance: No data collection, no trackers, and no ads.
+
+    Open Source: Transparent by design. Check the code yourself.
+
+Features You Can Use — If You Want:
+
+    Rich Media: Attach photos, videos, and voice recordings to your entries.
+
+    Personalization: Custom fonts, text colors, and cover photos.
+
+    Creativity: A freehand canvas for drawing and sketching.
+
+    Contextual Data: Automatic location, weather, and Google Fit step counts.
+
+    Security: Lock and hide specific entries for your eyes only.
+
+    Organization: Multi-account support and weekly statistics to track your progress.
+
+    Motivation: Maintain daily writing streaks and view your growth.
+
+Your diary, your rules.
+
+Source Code: https://github.com/baban9999ytr/LifeDiary
+Developer: https://github.com/baban9999ytr
