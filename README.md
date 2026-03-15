@@ -36,6 +36,13 @@ No ads. Just yours.
 - SharedPreferences
 - Google Fit API
 
+## On demand: Gamification
+- Daily writing streaks with longest streak tracking
+- Weekly word and character count tracking
+- Days written per year visualization
+- Location history of entries
+- Streak and gamification toggleable per user
+
 ## Installation
 Download the latest APK from the Releases section.
 
