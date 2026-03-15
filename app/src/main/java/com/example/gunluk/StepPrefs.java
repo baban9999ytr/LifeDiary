@@ -12,13 +12,13 @@ public class StepPrefs {
     private static final String KEY_BASELINE = "step_baseline";
     private static final String KEY_DATE = "step_date";
 
-    /** Returns the baseline for today, resetting it if the date changed. */
+
     public static int getDailyBaseline(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         String savedDate = prefs.getString(KEY_DATE, "");
         if (!today.equals(savedDate)) {
-            // New day — caller should set baseline to current totalSinceBoot
+
             return 0;
         }
         return prefs.getInt(KEY_BASELINE, 0);

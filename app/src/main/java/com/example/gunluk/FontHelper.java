@@ -12,8 +12,8 @@ public class FontHelper {
         DEFAULT("default"),
         SERIF("serif"),
         MONO("monospace"),
-        DANCING("dancing_script"),    // custom TTF in res/font/
-        PLAYFAIR("playfair_display"); // custom TTF in res/font/
+        DANCING("dancing_script"),
+        PLAYFAIR("playfair_display");
 
         public final String key;
         EntryFont(String key) { this.key = key; }
@@ -24,7 +24,7 @@ public class FontHelper {
         }
     }
 
-    /** Applies a font to any TextView (includes EditText). */
+
     public static void applyFont(Context ctx, TextView tv, String fontKey) {
         switch (EntryFont.fromKey(fontKey)) {
             case SERIF:
@@ -34,7 +34,7 @@ public class FontHelper {
                 tv.setTypeface(Typeface.MONOSPACE);
                 break;
             case DANCING:
-                // Place dancing_script.ttf in res/font/
+
                 tv.setTypeface(ResourcesCompat.getFont(ctx, com.example.gunluk.R.font.dancing_script));
                 break;
             case PLAYFAIR:

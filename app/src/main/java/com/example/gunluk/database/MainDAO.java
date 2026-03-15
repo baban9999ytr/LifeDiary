@@ -16,7 +16,7 @@ import java.util.List;
 @Dao
 public interface MainDAO {
 
-    // ─── DiaryEntry ─────────────────────────────────────────────
+
 
     @Insert(onConflict = REPLACE)
     void insertDiary(DiaryEntry diaryEntry);
@@ -39,7 +39,7 @@ public interface MainDAO {
     @Update
     void updateDiary(DiaryEntry diaryEntry);
 
-    // ─── Users ──────────────────────────────────────────────────
+
 
     @Insert(onConflict = REPLACE)
     void insertUser(Users users);

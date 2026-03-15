@@ -58,41 +58,40 @@ public class NewEntryActivity extends AppCompatActivity {
     private static final int REQ_ACTIVITY_RECOGNITION = 101;
     private static final int REQ_LOCATION = 102;
 
-    // ── Core UI ──────────────────────────────────────────────────
+
     private EditText etTitle;
     private RichEditor richEditor;
     private TextView tvDateFull;
     private Button btnSave;
     private Button btnHome;
 
-    // ── Cover photo ──────────────────────────────────────────────
     private ImageView ivCoverPhoto;
     private View coverEmptyState;
 
-    // ── More details panel ───────────────────────────────────────
+
     private Button btnMoreDetails;
     private LinearLayout panelMoreDetails;
     private boolean panelExpanded = false;
 
-    // ── Photos ───────────────────────────────────────────────────
+
     private Button btnAddPhotos;
     private RecyclerView recyclerPhotos;
     private PhotoAdapter photoAdapter;
 
-    // ── Videos ───────────────────────────────────────────────────
+
     private Button btnAddVideo;
     private RecyclerView recyclerVideos;
-    // fix: final so it can be safely captured in lambdas
+
     private final List<String> videoUris = new ArrayList<>();
 
-    // ── Voice ────────────────────────────────────────────────────
+
     private Button btnRecord;
     private Button btnPlayVoice;
     private String currentAudioPath = null;
     private MediaRecorder mediaRecorder;
     private MediaPlayer mediaPlayer;
 
-    // ── Links ────────────────────────────────────────────────────
+
     private EditText etLinkInput;
     private Button btnAddLink;
     private RecyclerView recyclerLinks;
@@ -100,32 +99,28 @@ public class NewEntryActivity extends AppCompatActivity {
     private final List<String> links = new ArrayList<>();
     private LinksAdapter linksAdapter;
 
-    // ── Context (steps / location / weather) ─────────────────────
+
     private CardView cardContext;
     private TextView tvSteps;
     private TextView tvLocation;
     private TextView tvWeather;
 
-    // ── Font ─────────────────────────────────────────────────────
+
     private Button btnChooseFont;
     private String selectedFontFamily = "default";
 
-    // ── Handwriting ─────────────────────────────────────────────
+
     private Button btnHandwriting;
     private ImageView ivHandwritingThumb;
     private String currentHandwritingPath = null;
 
-    // ── Entry lock ───────────────────────────────────────────────
+
     private EditText etEntryPassword;
     private TextView tvLockIndicator;
 
-    // ── Data ─────────────────────────────────────────────────────
     private RoomDB db;
     private DiaryEntry editingEntry = null;
 
-    // ════════════════════════════════════════════════════════════
-    // Activity result launchers
-    // ════════════════════════════════════════════════════════════
 
     private final ActivityResultLauncher<PickVisualMediaRequest> pickMultipleMedia =
             registerForActivityResult(
@@ -206,9 +201,6 @@ public class NewEntryActivity extends AppCompatActivity {
                     }
             );
 
-    // ════════════════════════════════════════════════════════════
-    // onCreate
-    // ════════════════════════════════════════════════════════════
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,9 +243,6 @@ public class NewEntryActivity extends AppCompatActivity {
         btnHome.setOnClickListener(v -> goHome());
     }
 
-    // ════════════════════════════════════════════════════════════
-    // View binding
-    // ════════════════════════════════════════════════════════════
 
     private void bindViews() {
         etTitle         = findViewById(R.id.et_entry_title);
@@ -295,10 +284,6 @@ public class NewEntryActivity extends AppCompatActivity {
         tvLockIndicator = findViewById(R.id.tv_lock_indicator);
     }
 
-    // ════════════════════════════════════════════════════════════
-    // Rich editor
-    // ════════════════════════════════════════════════════════════
-
     private void setupRichEditor() {
         richEditor.setEditorFontSize(16);
         richEditor.setEditorFontColor(getResources().getColor(R.color.ink_brown, getTheme()));
@@ -330,7 +315,7 @@ public class NewEntryActivity extends AppCompatActivity {
                     .show();
         });
 
-        // fix: setFontName doesn't exist in RichEditor — use execCommand via custom JS
+
         findViewById(R.id.btn_fmt_font).setOnClickListener(v -> {
             String[] fonts = {"Arial", "Georgia", "Courier New", "Times New Roman", "Verdana"};
             new AlertDialog.Builder(this)
@@ -349,10 +334,7 @@ public class NewEntryActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * fix: RichEditor has no setFontName().
-     * We inject it directly via execCommand through the underlying WebView.
-     */
+
     private void applyFontFamily(String fontName) {
         String js = "javascript:document.execCommand('fontName', false, '" + fontName + "');";
         richEditor.loadUrl(js);
@@ -771,17 +753,16 @@ public class NewEntryActivity extends AppCompatActivity {
         }
 
         richEditor.evaluateJavascript("RE.getHtml()", rawHtml -> {
-            // evaluateJavascript returns a JSON-encoded string — unescape it fully.
-            // Android encodes <, >, & as unicode escapes to prevent XSS in the bridge.
+
             String html = rawHtml
-                    .replaceAll("^\"|\"$", "")   // strip outer JSON quotes
+                    .replaceAll("^\"|\"$", "")
                     .replace("\\n", "\n")
                     .replace("\\'", "'")
                     .replace("\\\"", "\"")
-                    .replace("\\u003c", "<")     // < inside style/tag attributes
-                    .replace("\\u003e", ">")     // >
-                    .replace("\\u0026", "&")     // & in entities like &amp;
-                    .replace("\\u003C", "<")     // some devices capitalise the hex
+                    .replace("\\u003c", "<")
+                    .replace("\\u003e", ">")
+                    .replace("\\u0026", "&")
+                    .replace("\\u003C", "<")
                     .replace("\\u003E", ">")
                     .replace("\\u0026", "&");
 
@@ -857,9 +838,6 @@ public class NewEntryActivity extends AppCompatActivity {
         finish();
     }
 
-    // ════════════════════════════════════════════════════════════
-    // Permission results
-    // ════════════════════════════════════════════════════════════
 
     @Override
     public void onRequestPermissionsResult(int req, @NonNull String[] perms, @NonNull int[] results) {
@@ -870,14 +848,10 @@ public class NewEntryActivity extends AppCompatActivity {
         if (req == REQ_LOCATION && granted)             fetchLocationAndWeather();
     }
 
-    // ════════════════════════════════════════════════════════════
-    // Helpers
-    // ════════════════════════════════════════════════════════════
-
     private List<String> copyUrisToInternalStorage(List<Uri> uris) {
         List<String> paths = new ArrayList<>();
         File dir = new File(getFilesDir(), "entry_photos");
-        if (!dir.exists() && !dir.mkdirs()) return paths; // fix: handle mkdirs() result
+        if (!dir.exists() && !dir.mkdirs()) return paths;
         ContentResolver cr = getContentResolver();
         for (Uri uri : uris) {
             try {
@@ -924,10 +898,6 @@ public class NewEntryActivity extends AppCompatActivity {
             mediaPlayer = null;
         }
     }
-
-    // ════════════════════════════════════════════════════════════
-    // LinksAdapter (inner class)
-    // ════════════════════════════════════════════════════════════
 
     private static class LinksAdapter extends RecyclerView.Adapter<LinksAdapter.VH> {
         private final List<String> data;

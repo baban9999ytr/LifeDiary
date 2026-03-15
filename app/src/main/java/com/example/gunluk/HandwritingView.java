@@ -35,8 +35,10 @@ public class HandwritingView extends View {
     private float currentWidth = 8f;
     private boolean isEraser = false;
 
-    // Background color of the canvas (used when exporting)
-    private final int backgroundColor = Color.parseColor("#FDFBF7"); // Cream color to match app
+
+
+    private final int backgroundColor = Color.parseColor("#FDFBF7");
+
 
     private float lastX, lastY;
     private static final float TOUCH_TOLERANCE = 4f;
@@ -129,7 +131,7 @@ public class HandwritingView extends View {
         Path path = new Path();
         path.moveTo(x, y);
         int color = isEraser ? backgroundColor : currentColor;
-        float width = isEraser ? currentWidth * 4 : currentWidth; // Eraser is thicker
+        float width = isEraser ? currentWidth * 4 : currentWidth;
         currentStroke = new Stroke(path, color, width);
         lastX = x;
         lastY = y;
@@ -157,9 +159,7 @@ public class HandwritingView extends View {
         }
     }
 
-    /**
-     * Exports the current drawing to a Bitmap.
-     */
+
     public Bitmap exportBitmap() {
         if (getWidth() == 0 || getHeight() == 0) return null;
         

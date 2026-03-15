@@ -31,7 +31,7 @@ public abstract class RoomDB extends RoomDatabase {
     static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
         public void migrate(SupportSQLiteDatabase db) {
-            // Text fields now have no DEFAULT clause to match Room's 'undefined' expectation
+
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN richContent TEXT");
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN locationCity TEXT");
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN locationNeighbourhood TEXT");
@@ -42,7 +42,7 @@ public abstract class RoomDB extends RoomDatabase {
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN fontFamily TEXT");
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN entryPasswordHash TEXT");
 
-            // Numeric NOT NULL columns must retain defaults for the migration to succeed
+
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN stepCount INTEGER NOT NULL DEFAULT -1");
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN latitude REAL NOT NULL DEFAULT 0.0");
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN longitude REAL NOT NULL DEFAULT 0.0");

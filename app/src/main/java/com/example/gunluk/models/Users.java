@@ -24,7 +24,7 @@ public class Users implements Serializable {
     @ColumnInfo(name = "profile_photo_uri")
     String profilePhotoUri = "";
 
-    // ─── Getters & Setters ───────────────────────────────────────
+
 
     public int getUserID()                       { return userID; }
     public void setUserID(int userID)            { this.userID = userID; }

@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gunluk">
 
-        <!-- ── LAUNCHER ─────────────────────────────────── -->
+
         <activity
             android:name=".LoginActivity"
             android:exported="true"
@@ -27,44 +27,43 @@
             </intent-filter>
         </activity>
 
-        <!-- ── KAYIT OL ──────────────────────────────────── -->
+
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".LoginActivity" />
 
-        <!-- ── ANA SAYFA ──────────────────────────────────── -->
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
 
-        <!-- ── YENİ GÜNLÜK ───────────────────────────────── -->
+
         <activity
             android:name=".NewEntryActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".EntryListActivity" />
 
-        <!-- ── GÜNLÜK LİSTESİ ─────────────────────────────── -->
         <activity
             android:name=".EntryListActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 
-        <!-- ── GÜNLÜK DETAY ───────────────────────────────── -->
+
         <activity
             android:name=".EntryDetailActivity"
             android:exported="false"
             android:parentActivityName=".EntryListActivity" />
 
-        <!-- ── PROFİL ──────────────────────────────────────── -->
+
         <activity
             android:name=".ProfileActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 
-        <!-- ── HAKKINDA ────────────────────────────────────── -->
+
         <activity
             android:name=".AboutActivity"
             android:exported="false"

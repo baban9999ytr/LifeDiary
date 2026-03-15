@@ -20,13 +20,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-/**
- * EntryListActivity — activity_entry_list.xml
- *
- * Giriş yapmış kullanıcıya ait tüm günlükleri listeler.
- * Boş durum gösterimi (layout_empty) ve FAB ile yeni girdi ekleme desteği.
- * Bir öğeye tıklamak EntryDetailActivity'yi açar.
- */
 public class EntryListActivity extends AppCompatActivity
         implements EntryAdapter.OnEntryClickListener {
 
@@ -51,7 +44,7 @@ public class EntryListActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_entry_list);
 
-        // Toolbar
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -75,7 +68,7 @@ public class EntryListActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        loadEntries(); // Her dönüşte listeyi yenile (silme/ekleme sonrası)
+        loadEntries();
     }
 
     private void loadEntries() {
@@ -87,7 +80,7 @@ public class EntryListActivity extends AppCompatActivity
         String username = user.getUsername();
         List<DiaryEntry> entries = db.mainDAO().getEntriesByAuthor(username);
 
-        // Sayaç
+
         tvEntryCount.setText(getString(R.string.entry_count, entries.size()));
 
         if (entries.isEmpty()) {
@@ -101,7 +94,7 @@ public class EntryListActivity extends AppCompatActivity
         }
     }
 
-    /** RecyclerView öğe tıklaması → Detay sayfası */
+
     @Override
     public void onEntryClick(DiaryEntry entry) {
         Intent intent = new Intent(this, EntryDetailActivity.class);

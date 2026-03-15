@@ -2,10 +2,7 @@ package com.example.gunluk;
 
 import com.example.gunluk.models.Users;
 
-/**
- * Uygulama genelinde giriş yapmış kullanıcıyı tutan statik sınıf.
- * Activity'ler arası geçişte session bilgisini taşır.
- */
+
 public class CurrentUser {
 
     private static Users loggedInUser = null;

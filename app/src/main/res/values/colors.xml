@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Palette: Warm Parchment Journal Theme -->
+
     <color name="cream_bg">#FDF6EC</color>
     <color name="warm_white">#FFFCF5</color>
     <color name="parchment">#F5E6C8</color>
     <color name="parchment_dark">#E8D4A8</color>
 
-    <!-- Ink tones -->
+
     <color name="ink_black">#1C1410</color>
     <color name="ink_brown">#3D2B1F</color>
     <color name="ink_medium">#6B4C35</color>
     <color name="ink_light">#9B7355</color>
 
-    <!-- Accent -->
+
     <color name="accent_terracotta">#C85A3A</color>
     <color name="accent_terracotta_dark">#A3422A</color>
     <color name="accent_gold">#C8972A</color>
     <color name="accent_sage">#6B8C6B</color>
 
-    <!-- UI -->
     <color name="divider">#E0CCB0</color>
     <color name="card_bg">#FFFEF8</color>
     <color name="shadow">#40000000</color>

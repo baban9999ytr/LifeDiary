@@ -17,17 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.gunluk.database.RoomDB;
 import com.example.gunluk.models.Users;
 
-/**
- * RegisterActivity — activity_register.xml
- *
- * Yeni kullanıcı kaydı oluşturur.
- * - Kullanıcı adı: zorunlu, benzersiz olmalı
- * - E-posta: opsiyonel
- * - Şifre: opsiyonel (şifresiz hesap açılabilir)
- * - Şifre tekrar: şifre girilmişse eşleşmeli
- *
- * Başarılı kayıt sonrası LoginActivity'ye yönlendirir.
- */
 public class RegisterActivity extends AppCompatActivity {
 
     private ImageButton btnBack;
@@ -66,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(v -> attemptRegister());
 
         tvGoLogin.setOnClickListener(v -> {
-            // Giriş ekranına dön (back stack'ten açılmışsa finish yeterli)
+
             finish();
         });
     }
@@ -137,7 +126,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // ── Kaydet ───────────────────────────────────────────────
 
         Users newUser = new Users();
         newUser.setUsername(username);
@@ -149,7 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Toast.makeText(this, getString(R.string.toast_register_success), Toast.LENGTH_LONG).show();
 
-        // Login ekranına geri dön
+
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);

@@ -77,7 +77,7 @@ public class DiaryEntry implements Serializable {
     @ColumnInfo(name = "handwritingImagePath")
     String handwritingImagePath;
 
-    // ─── Getters & Setters ───────────────────────────────────────
+
 
     public long getID() { return ID; }
     public void setID(long ID) { this.ID = ID; }

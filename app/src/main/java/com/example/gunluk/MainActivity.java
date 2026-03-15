@@ -14,13 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * MainActivity — activity_main.xml
- *
- * Main hub of the application.
- * Displays the username and current date.
- * Navigates to different sections via CardView buttons.
- */
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView  tvUsername;
@@ -34,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Redirect to Login if not authenticated
+
         if (!CurrentUser.isLoggedIn()) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
@@ -54,17 +48,17 @@ public class MainActivity extends AppCompatActivity {
         cardProfile     = findViewById(R.id.card_profile);
         cardAbout       = findViewById(R.id.card_about);
 
-        // Display Username
+
         Users user = CurrentUser.getUser();
         if (user != null) {
             tvUsername.setText(user.getUsername());
         }
 
-        // Set localized date using the string resource placeholder
+
         String dateString = getFormattedDate();
         tvDateToday.setText(getString(R.string.main_date_today_placeholder, dateString));
 
-        // Navigation Click Listeners
+
         cardNewEntry.setOnClickListener(v ->
                 startActivity(new Intent(this, NewEntryActivity.class)));
 
@@ -78,9 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, AboutActivity.class)));
     }
 
-    /** * Returns the current date formatted in English (e.g., "March 14, 2026").
-     * Uses Locale.US to prevent location-based localization.
-     */
+
     private String getFormattedDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
         return sdf.format(new Date());

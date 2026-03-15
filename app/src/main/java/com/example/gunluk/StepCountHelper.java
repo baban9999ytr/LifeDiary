@@ -15,11 +15,11 @@ public class StepCountHelper implements SensorEventListener {
 
     private final SensorManager sensorManager;
     private final StepCallback callback;
-    private final Context context; // ← store it
+    private final Context context;
     private Sensor stepSensor;
 
     public StepCountHelper(Context context, StepCallback callback) {
-        this.context = context.getApplicationContext(); // ← use appContext to avoid leaks
+        this.context = context.getApplicationContext();
         this.callback = callback;
         sensorManager = (SensorManager) this.context.getSystemService(Context.SENSOR_SERVICE);
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
@@ -38,9 +38,9 @@ public class StepCountHelper implements SensorEventListener {
         int totalSinceBoot = (int) event.values[0];
         sensorManager.unregisterListener(this);
 
-        int baseline = com.example.gunluk.StepPrefs.getDailyBaseline(context); // ← fixed: pass context
+        int baseline = com.example.gunluk.StepPrefs.getDailyBaseline(context);
 
-        // If it's a new day, save this reading as the new baseline
+
         if (baseline == 0) {
             com.example.gunluk.StepPrefs.setBaseline(context, totalSinceBoot);
         }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="Eraser">Silgi</string>
     <string name="about_app_1">Uygulama Hakkında</string>
     <string name="about_app_name">Günlük — Dijital Defteriniz</string>
     <string name="about_description">Günlük, günlük deneyimlerinizi, düşüncelerinizi ve anılarınızı kolayca kaydetmenizi sağlayan kişisel bir not uygulamasıdır.\n\nHer gün yaşadıklarınızı yazıya dökmek, kendinizi daha iyi tanımanıza ve geçmişe bakmanıza olanak tanır.\n\nHikâyeniz sizin elinizde.</string>
@@ -13,11 +14,11 @@
     <string name="btn_add_photos">Fotoğraf Ekle</string>
     <string name="btn_delete">Sil</string>
     <string name="btn_edit">Düzenle</string>
-    <string name="btn_font_chosen">Font: %1$s</string>
+    <string name="btn_font_chosen">Yazı tipi: %1$s</string>
     <string name="btn_home">Ana Sayfa</string>
-    <string name="btn_less_details">－  Less details</string>
+    <string name="btn_less_details">－  Daha az detay</string>
     <string name="btn_logout">Çıkış Yap</string>
-    <string name="btn_more_details">＋  More details</string>
+    <string name="btn_more_details">＋  Daha fazla detay</string>
     <string name="btn_new_entry">Yeni Yazı</string>
     <string name="btn_play">Dinle</string>
     <string name="btn_profile">Profil</string>
@@ -25,6 +26,7 @@
     <string name="btn_save">Kaydet</string>
     <string name="btn_stop_play">Durdur</string>
     <string name="btn_stop_record">Durdur</string>
+    <string name="btn_unlock">Kilidi Aç</string>
     <string name="btn_view_entries">Yazıları Gör</string>
     <string name="cover_photo">Kapak fotoğrafı</string>
     <string name="delete_confirm_cancel">İptal</string>
@@ -35,6 +37,7 @@
     <string name="desc_add_new_entry">Yeni Günlük Ekle</string>
     <string name="desc_back">Geri</string>
     <string name="desc_calendar_icon">Tarih</string>
+    <string name="desc_cover_photo">Kapak fotoğrafı</string>
     <string name="desc_detail">Detay</string>
     <string name="desc_empty">Boş</string>
     <string name="desc_entries">Günlükler</string>
@@ -44,11 +47,12 @@
     <string name="desc_toggle_password">Şifreyi Göster</string>
     <string name="detail_title">Günlük Detayı</string>
     <string name="developer_1">Geliştirici</string>
-    <string name="dialog_entry_font">Entry Font</string>
-    <string name="dialog_font">Font</string>
-    <string name="dialog_highlight">Highlight</string>
-    <string name="dialog_size">Size</string>
-    <string name="dialog_text_color">Text Color</string>
+    <string name="dialog_entry_font">Günlük Yazı Tipi</string>
+    <string name="dialog_entry_locked">🔒 Günlük Kilitli</string>
+    <string name="dialog_font">Yazı Tipi</string>
+    <string name="dialog_highlight">Vurgu</string>
+    <string name="dialog_size">Boyut</string>
+    <string name="dialog_text_color">Yazı Rengi</string>
     <string name="edit_entry_title">Günlüğü Düzenle</string>
     <string name="entry_count">%d günlük</string>
     <string name="entry_count_zero">0 günlük</string>
@@ -63,24 +67,25 @@
     <string name="hint_content_preview">İçerik önizlemesi…</string>
     <string name="hint_email">ornek@eposta.com</string>
     <string name="hint_empty_content">Günlük içeriği burada görüntülenecek…</string>
+    <string name="hint_entry_password">Şifre girin</string>
     <string name="hint_password">Şifre oluşturun…</string>
     <string name="hint_password_confirm">Şifreyi tekrar girin…</string>
     <string name="hint_title">Başlık…</string>
-    <string name="history">History</string>
+    <string name="history">Geçmiş</string>
     <string name="icon_locked">🔒</string>
     <string name="icon_unlocked">🔓</string>
     <string name="label_content">İçerik</string>
     <string name="label_email">E-POSTA (opsiyonel)</string>
-    <string name="label_location_found">Location found</string>
-    <string name="label_location_unavailable">Location unavailable</string>
+    <string name="label_location_found">Konum bulundu</string>
+    <string name="label_location_unavailable">Konum alınamadı</string>
     <string name="label_password">ŞİFRE (opsiyonel)</string>
     <string name="label_password_confirm">ŞİFRE TEKRAR</string>
     <string name="label_photos">Fotoğraflar</string>
-    <string name="label_steps_count">%1$d steps today</string>
-    <string name="label_steps_unavailable">Steps unavailable</string>
+    <string name="label_steps_count">Bugün %1$d adım</string>
+    <string name="label_steps_unavailable">Adım sayısı alınamadı</string>
     <string name="label_title">Başlık</string>
     <string name="label_voice">Ses kaydı</string>
-    <string name="label_weather_unavailable">Weather unavailable</string>
+    <string name="label_weather_unavailable">Hava durumu alınamadı</string>
     <string name="login_already_have_account">Zaten hesabın var mı? </string>
     <string name="login_bottom_note">Kendi hikâyenin yazarı sensin.</string>
     <string name="login_button">Giriş Yap</string>
@@ -113,7 +118,7 @@
     <string name="profile_tagline">Hikâyemi yazan ben.</string>
     <string name="profile_title">Profil</string>
     <string name="quote_start">\u201C</string>
-    <string name="register_already_have_account">Zaten hesabın varmı? </string>
+    <string name="register_already_have_account">Zaten hesabın var mı? </string>
     <string name="register_button">Hesabı Oluştur</string>
     <string name="register_error_email_invalid">Geçerli bir e-posta adresi girin.</string>
     <string name="register_error_password_mismatch">Şifreler eşleşmiyor.</string>
@@ -135,14 +140,15 @@
     <string name="those_were_days">Her yazı, bir iz bırakır.</string>
     <string name="toast_entry_saved">Günlük kaydedildi.</string>
     <string name="toast_entry_updated">Günlük güncellendi.</string>
-    <string name="toast_max_links">Max 100 links</string>
+    <string name="toast_max_links">En fazla 100 bağlantı</string>
     <string name="toast_max_photos">En fazla %d fotoğraf ekleyebilirsiniz.</string>
-    <string name="toast_max_videos">Max %1$d videos</string>
+    <string name="toast_max_videos">En fazla %1$d video</string>
     <string name="toast_no_audio">Ses kaydı yok.</string>
     <string name="toast_photo_copy_failed">Fotoğraflar kopyalanamadı.</string>
     <string name="toast_play_failed">Ses oynatılamadı.</string>
     <string name="toast_record_failed">Ses kaydı başlatılamadı.</string>
     <string name="toast_register_success">Hesabın oluşturuldu! Şimdi giriş yapabilirsin.</string>
-    <string name="toast_video_added">Video added (%1$d/%2$d)</string>
+    <string name="toast_video_added">Video eklendi (%1$d/%2$d)</string>
     <string name="toast_welcome">Hoş geldin, %1$s!</string>
+    <string name="toast_wrong_password">Yanlış şifre</string>
 </resources>

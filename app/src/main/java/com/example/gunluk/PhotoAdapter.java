@@ -14,9 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Adapter for selected photos in NewEntryActivity. Supports "Set as Cover" selection.
- */
+
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder> {
 
     public interface OnCoverSelectedListener {

@@ -16,16 +16,7 @@ import com.example.gunluk.models.DiaryEntry;
 
 import java.util.List;
 
-/**
- * EntryAdapter — item_entry.xml
- *
- * RecyclerView adaptörü. Her satırda:
- *  - Gün numarası + ay kısaltması (kırmızı blok)
- *  - Başlık
- *  - İçerik önizlemesi (ilk 80 karakter)
- *
- * Tıklamalar OnEntryClickListener arayüzü üzerinden iletilir.
- */
+
 public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.EntryViewHolder> {
 
     public interface OnEntryClickListener {
@@ -35,10 +26,14 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.EntryViewHol
     private final List<DiaryEntry>      entries;
     private final OnEntryClickListener  listener;
 
-    // Türkçe ay kısaltmaları
+
     private static final String[] MONTHS_TR = {
         "OCA","ŞUB","MAR","NİS","MAY","HAZ",
         "TEM","AĞU","EYL","EKİ","KAS","ARA"
+    };
+    private static final String[] MONTHS_EN = {
+            "JAN","FEB","MAR","APR","MAY","JUN",
+            "JUL","AUG","SEP","OCT","NOV","DEC"
     };
 
     public EntryAdapter(List<DiaryEntry> entries, OnEntryClickListener listener) {
@@ -65,7 +60,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.EntryViewHol
         return entries.size();
     }
 
-    // -------------------------------------------------------
 
     class EntryViewHolder extends RecyclerView.ViewHolder {
 
@@ -100,22 +94,18 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.EntryViewHol
             }
             tvEntryTitle.setText(entry.getTitle());
 
-            // İçerik önizlemesi — ilk 80 karakter
+
             String content = entry.getDiaryEntry() != null ? entry.getDiaryEntry() : "";
             tvEntryPreview.setText(content.length() > 80 ? content.substring(0, 80) + "…" : content);
 
-            // Tarihi parse et (örn: "5 Ocak 2025, Çarşamba")
+
             parseDateIntoBlock(entry.getDate());
 
             // Tıklama
             itemView.setOnClickListener(v -> listener.onEntryClick(entry));
         }
 
-        /**
-         * Tarih string'inden gün numarasını ve ay kısaltmasını çıkar.
-         * Format: "d MMMM yyyy, EEEE"  →  "5 Ocak 2025, Çarşamba"
-         * Bozuk format durumunda tüm date string'ini göster.
-         */
+
         private void parseDateIntoBlock(String date) {
             if (date == null || date.isEmpty()) {
                 tvDayNumber.setText("—");
@@ -123,7 +113,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.EntryViewHol
                 return;
             }
             try {
-                // "5 Ocak 2025, Çarşamba" → split by space → [5, Ocak, 2025,, Çarşamba]
+
                 String[] parts = date.trim().split("\\s+");
                 tvDayNumber.setText(parts.length > 0 ? parts[0] : "—");
 

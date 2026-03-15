@@ -25,12 +25,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    // Room schema export directory (optional but good practice)
-    // Disabled here (exportSchema = false in RoomDB) — no extra config needed.
+
 }
 
 dependencies {
-    // AndroidX core - Hardcoded modern versions for 2026
+
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'org.mindrot:jbcrypt:0.4'
     implementation 'com.google.code.gson:gson:2.10.1'

@@ -15,12 +15,7 @@ import com.example.gunluk.models.Users;
 
 import java.util.Calendar;
 
-/**
- * ProfileActivity — activity_profile.xml
- *
- * Giriş yapmış kullanıcının adını ve toplam günlük sayısını gösterir.
- * "Çıkış Yap" butonu CurrentUser.logout() çağırır ve LoginActivity'ye döner.
- */
+
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView tvAvatarInitial;
@@ -69,17 +64,16 @@ public class ProfileActivity extends AppCompatActivity {
 
         String username = user.getUsername();
 
-        // Kullanıcı adı ve avatar baş harfi
         tvProfileUsername.setText(username);
         if (!username.isEmpty()) {
             tvAvatarInitial.setText(String.valueOf(Character.toUpperCase(username.charAt(0))));
         }
 
-        // Günlük sayısı — bu kullanıcıya ait olanlar
+
         int count = db.mainDAO().getEntriesByAuthor(username).size();
         tvEntryCount.setText(String.valueOf(count));
 
-        // Üyelik yılı — şimdilik mevcut yıl gösterilir
+
         int year = Calendar.getInstance().get(Calendar.YEAR);
         tvMemberSinceDate.setText(String.valueOf(year));
     }
