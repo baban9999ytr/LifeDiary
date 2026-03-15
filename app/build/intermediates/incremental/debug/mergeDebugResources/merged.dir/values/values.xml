@@ -637,6 +637,7 @@
     <color name="accent_material_dark">@color/material_deep_teal_200</color>
     <color name="accent_material_light">@color/material_deep_teal_500</color>
     <color name="accent_sage">#6B8C6B</color>
+    <color name="accent_teal">#008080</color>
     <color name="accent_terracotta">#C85A3A</color>
     <color name="accent_terracotta_dark">#A3422A</color>
     <color name="androidx_core_ripple_material_light">#1f000000</color>
@@ -2140,7 +2141,9 @@
     <string name="login_already_have_account">Already have an account? </string>
     <string name="login_bottom_note">You are the author of your own story.</string>
     <string name="login_button">Log In</string>
-    <string name="login_error_empty_username">Please enter your username.</string>
+    <string name="login_error_empty_password">Please enter your password.</string>
+    <string name="login_error_empty_username">Please enter your username or email.</string>
+    <string name="login_error_invalid_credentials">Incorrect username/email or password.</string>
     <string name="login_error_user_not_found">This username is not registered. Please sign up.</string>
     <string name="login_no_account">Don\'t have an account? </string>
     <string name="login_register_link">Sign Up</string>
@@ -2275,10 +2278,12 @@
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
     <string name="photo_cover_desc">Photo</string>
+    <string name="profile_chars_week">Characters this week</string>
     <string name="profile_entry_count_label">Total Entries</string>
     <string name="profile_member_since">Member Since</string>
     <string name="profile_tagline">The one writing my story.</string>
     <string name="profile_title">Profile</string>
+    <string name="profile_words_week">Words this week</string>
     <string name="quote_start">\u201C</string>
     <string name="register_already_have_account">Already have an account? </string>
     <string name="register_button">Create Account</string>
@@ -2294,9 +2299,11 @@
     <string name="register_title">Create Account</string>
     <string name="sample_avatar_initial">A</string>
     <string name="sample_count_zero">0</string>
+    <string name="sample_count_zero_2">0</string>
     <string name="sample_day_number">01</string>
     <string name="sample_full_date">January 1, 2025, Wednesday</string>
     <string name="sample_month_short">JAN</string>
+    <string name="sample_streak_number">0 🔥</string>
     <string name="sample_year">2025</string>
     <string name="search_menu_title">Search</string>
     <string name="searchbar_scrolling_view_behavior" translatable="false">
@@ -2305,6 +2312,14 @@
     <string description="Content description for the X button to clear text [CHAR_LIMIT=NONE]" name="searchview_clear_text_content_description">Clear text</string>
     <string description="Content description for the navigation button to return to the previous screen [CHAR_LIMIT=NONE]" name="searchview_navigation_content_description">Back</string>
     <string name="set_as_cover">Set as Cover</string>
+    <string name="settings_btn_english">🇬🇧 English</string>
+    <string name="settings_btn_turkish">🇹🇷 Türkçe</string>
+    <string name="settings_enable_gamification">Enable Gamification</string>
+    <string name="settings_gamification_header">GAMIFICATION</string>
+    <string name="settings_language_header">LANGUAGE</string>
+    <string name="settings_locations">Locations 📍</string>
+    <string name="settings_streaks">Streaks 🔥</string>
+    <string name="settings_title">Settings</string>
     <string description="Title of the side sheet&apos;s accessibility pane that is spoken by TalkBack when the side sheet appears on screen. [CHAR_LIMIT=NONE]" name="side_sheet_accessibility_pane_title">Side Sheet</string>
     <string name="side_sheet_behavior" translatable="false">com.google.android.material.sidesheet.SideSheetBehavior</string>
     <string name="status_bar_notification_info_overflow">999+</string>

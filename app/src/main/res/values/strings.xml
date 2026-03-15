@@ -11,7 +11,9 @@
     <string name="login_username_hint">What is your name?</string>
     <string name="login_username_label">USERNAME</string>
     <string name="login_button">Log In</string>
-    <string name="login_error_empty_username">Please enter your username.</string>
+    <string name="login_error_empty_username">Please enter your username or email.</string>
+    <string name="login_error_empty_password">Please enter your password.</string>
+    <string name="login_error_invalid_credentials">Incorrect username/email or password.</string>
     <string name="login_error_user_not_found">This username is not registered. Please sign up.</string>
     <string name="toast_welcome">Welcome, %1$s!</string>
     <string name="login_bottom_note">You are the author of your own story.</string>

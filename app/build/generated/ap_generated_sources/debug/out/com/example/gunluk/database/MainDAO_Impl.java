@@ -188,7 +188,7 @@ public final class MainDAO_Impl implements MainDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `users` (`userID`,`username`,`email`,`password`,`profile_photo_uri`) VALUES (nullif(?, 0),?,?,?,?)";
+        return "INSERT OR REPLACE INTO `users` (`userID`,`username`,`email`,`password`,`profile_photo_uri`,`verificationCode`) VALUES (nullif(?, 0),?,?,?,?,?)";
       }
 
       @Override
@@ -213,6 +213,11 @@ public final class MainDAO_Impl implements MainDAO {
           statement.bindNull(5);
         } else {
           statement.bindString(5, entity.getProfilePhotoUri());
+        }
+        if (entity.getVerificationCode() == null) {
+          statement.bindNull(6);
+        } else {
+          statement.bindString(6, entity.getVerificationCode());
         }
       }
     };
@@ -992,6 +997,7 @@ public final class MainDAO_Impl implements MainDAO {
       final int _cursorIndexOfEmail = CursorUtil.getColumnIndexOrThrow(_cursor, "email");
       final int _cursorIndexOfPassword = CursorUtil.getColumnIndexOrThrow(_cursor, "password");
       final int _cursorIndexOfProfilePhotoUri = CursorUtil.getColumnIndexOrThrow(_cursor, "profile_photo_uri");
+      final int _cursorIndexOfVerificationCode = CursorUtil.getColumnIndexOrThrow(_cursor, "verificationCode");
       final List<Users> _result = new ArrayList<Users>(_cursor.getCount());
       while (_cursor.moveToNext()) {
         final Users _item;
@@ -1027,6 +1033,13 @@ public final class MainDAO_Impl implements MainDAO {
           _tmpProfilePhotoUri = _cursor.getString(_cursorIndexOfProfilePhotoUri);
         }
         _item.setProfilePhotoUri(_tmpProfilePhotoUri);
+        final String _tmpVerificationCode;
+        if (_cursor.isNull(_cursorIndexOfVerificationCode)) {
+          _tmpVerificationCode = null;
+        } else {
+          _tmpVerificationCode = _cursor.getString(_cursorIndexOfVerificationCode);
+        }
+        _item.setVerificationCode(_tmpVerificationCode);
         _result.add(_item);
       }
       return _result;
@@ -1054,6 +1067,7 @@ public final class MainDAO_Impl implements MainDAO {
       final int _cursorIndexOfEmail = CursorUtil.getColumnIndexOrThrow(_cursor, "email");
       final int _cursorIndexOfPassword = CursorUtil.getColumnIndexOrThrow(_cursor, "password");
       final int _cursorIndexOfProfilePhotoUri = CursorUtil.getColumnIndexOrThrow(_cursor, "profile_photo_uri");
+      final int _cursorIndexOfVerificationCode = CursorUtil.getColumnIndexOrThrow(_cursor, "verificationCode");
       final Users _result;
       if (_cursor.moveToFirst()) {
         _result = new Users();
@@ -1088,6 +1102,13 @@ public final class MainDAO_Impl implements MainDAO {
           _tmpProfilePhotoUri = _cursor.getString(_cursorIndexOfProfilePhotoUri);
         }
         _result.setProfilePhotoUri(_tmpProfilePhotoUri);
+        final String _tmpVerificationCode;
+        if (_cursor.isNull(_cursorIndexOfVerificationCode)) {
+          _tmpVerificationCode = null;
+        } else {
+          _tmpVerificationCode = _cursor.getString(_cursorIndexOfVerificationCode);
+        }
+        _result.setVerificationCode(_tmpVerificationCode);
       } else {
         _result = null;
       }
@@ -1122,6 +1143,7 @@ public final class MainDAO_Impl implements MainDAO {
       final int _cursorIndexOfEmail = CursorUtil.getColumnIndexOrThrow(_cursor, "email");
       final int _cursorIndexOfPassword = CursorUtil.getColumnIndexOrThrow(_cursor, "password");
       final int _cursorIndexOfProfilePhotoUri = CursorUtil.getColumnIndexOrThrow(_cursor, "profile_photo_uri");
+      final int _cursorIndexOfVerificationCode = CursorUtil.getColumnIndexOrThrow(_cursor, "verificationCode");
       final Users _result;
       if (_cursor.moveToFirst()) {
         _result = new Users();
@@ -1156,6 +1178,95 @@ public final class MainDAO_Impl implements MainDAO {
           _tmpProfilePhotoUri = _cursor.getString(_cursorIndexOfProfilePhotoUri);
         }
         _result.setProfilePhotoUri(_tmpProfilePhotoUri);
+        final String _tmpVerificationCode;
+        if (_cursor.isNull(_cursorIndexOfVerificationCode)) {
+          _tmpVerificationCode = null;
+        } else {
+          _tmpVerificationCode = _cursor.getString(_cursorIndexOfVerificationCode);
+        }
+        _result.setVerificationCode(_tmpVerificationCode);
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public Users loginByUsernameOrEmail(final String identifier, final String password) {
+    final String _sql = "SELECT * FROM users WHERE (username = ? OR email = ?) AND password = ? LIMIT 1";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 3);
+    int _argIndex = 1;
+    if (identifier == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, identifier);
+    }
+    _argIndex = 2;
+    if (identifier == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, identifier);
+    }
+    _argIndex = 3;
+    if (password == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, password);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfUserID = CursorUtil.getColumnIndexOrThrow(_cursor, "userID");
+      final int _cursorIndexOfUsername = CursorUtil.getColumnIndexOrThrow(_cursor, "username");
+      final int _cursorIndexOfEmail = CursorUtil.getColumnIndexOrThrow(_cursor, "email");
+      final int _cursorIndexOfPassword = CursorUtil.getColumnIndexOrThrow(_cursor, "password");
+      final int _cursorIndexOfProfilePhotoUri = CursorUtil.getColumnIndexOrThrow(_cursor, "profile_photo_uri");
+      final int _cursorIndexOfVerificationCode = CursorUtil.getColumnIndexOrThrow(_cursor, "verificationCode");
+      final Users _result;
+      if (_cursor.moveToFirst()) {
+        _result = new Users();
+        final int _tmpUserID;
+        _tmpUserID = _cursor.getInt(_cursorIndexOfUserID);
+        _result.setUserID(_tmpUserID);
+        final String _tmpUsername;
+        if (_cursor.isNull(_cursorIndexOfUsername)) {
+          _tmpUsername = null;
+        } else {
+          _tmpUsername = _cursor.getString(_cursorIndexOfUsername);
+        }
+        _result.setUsername(_tmpUsername);
+        final String _tmpEmail;
+        if (_cursor.isNull(_cursorIndexOfEmail)) {
+          _tmpEmail = null;
+        } else {
+          _tmpEmail = _cursor.getString(_cursorIndexOfEmail);
+        }
+        _result.setEmail(_tmpEmail);
+        final String _tmpPassword;
+        if (_cursor.isNull(_cursorIndexOfPassword)) {
+          _tmpPassword = null;
+        } else {
+          _tmpPassword = _cursor.getString(_cursorIndexOfPassword);
+        }
+        _result.setPassword(_tmpPassword);
+        final String _tmpProfilePhotoUri;
+        if (_cursor.isNull(_cursorIndexOfProfilePhotoUri)) {
+          _tmpProfilePhotoUri = null;
+        } else {
+          _tmpProfilePhotoUri = _cursor.getString(_cursorIndexOfProfilePhotoUri);
+        }
+        _result.setProfilePhotoUri(_tmpProfilePhotoUri);
+        final String _tmpVerificationCode;
+        if (_cursor.isNull(_cursorIndexOfVerificationCode)) {
+          _tmpVerificationCode = null;
+        } else {
+          _tmpVerificationCode = _cursor.getString(_cursorIndexOfVerificationCode);
+        }
+        _result.setVerificationCode(_tmpVerificationCode);
       } else {
         _result = null;
       }

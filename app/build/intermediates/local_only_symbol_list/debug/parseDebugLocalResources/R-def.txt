@@ -2,6 +2,7 @@ R_DEF: Internal format may change without notice
 local
 color accent_gold
 color accent_sage
+color accent_teal
 color accent_terracotta
 color accent_terracotta_dark
 color card_bg
@@ -42,6 +43,7 @@ id btn_cover_photo
 id btn_delete
 id btn_done
 id btn_edit
+id btn_english
 id btn_eraser
 id btn_fetch_context
 id btn_fmt_bg_color
@@ -67,7 +69,9 @@ id btn_play_voice_detail
 id btn_record
 id btn_register
 id btn_save
+id btn_settings
 id btn_toggle_password
+id btn_turkish
 id btn_undo
 id card_about
 id card_content
@@ -86,6 +90,7 @@ id divider
 id et_entry_password
 id et_entry_title
 id et_link_input
+id et_password
 id et_reg_email
 id et_reg_password
 id et_reg_password_confirm
@@ -103,6 +108,8 @@ id iv_handwriting_thumb
 id iv_logo
 id iv_photo
 id layout_empty
+id layout_gamification_options
+id layout_gamification_panel
 id layout_login_link
 id layout_register_link
 id ornament_dot
@@ -121,14 +128,20 @@ id row_context
 id section_handwriting
 id section_links
 id section_videos
+id settings_toolbar
+id switch_gamification
+id switch_locations
+id switch_streaks
 id toolbar
 id top_band
 id tv_about_description
 id tv_app_title
 id tv_avatar_initial
 id tv_bottom_note
+id tv_chars_this_week
 id tv_date_today
 id tv_day_number
+id tv_days_this_year
 id tv_detail_date
 id tv_detail_title
 id tv_developer
@@ -141,6 +154,7 @@ id tv_entry_title
 id tv_go_login
 id tv_go_register
 id tv_location
+id tv_locations
 id tv_lock_indicator
 id tv_member_since_date
 id tv_month_short
@@ -151,10 +165,12 @@ id tv_register_subtitle
 id tv_register_title
 id tv_set_cover
 id tv_steps
+id tv_streak
 id tv_subtitle
 id tv_username_display
 id tv_weather
 id tv_welcome
+id tv_words_this_week
 id video_view
 id wv_detail_content
 layout activity_about
@@ -165,6 +181,7 @@ layout activity_login
 layout activity_main
 layout activity_new_entry
 layout activity_profile
+layout activity_profile_settings
 layout activity_register
 layout item_entry
 layout item_photo
@@ -257,7 +274,9 @@ string label_weather_unavailable
 string login_already_have_account
 string login_bottom_note
 string login_button
+string login_error_empty_password
 string login_error_empty_username
+string login_error_invalid_credentials
 string login_error_user_not_found
 string login_no_account
 string login_register_link
@@ -281,10 +300,12 @@ string main_view_entries_subtitle
 string main_welcome
 string new_entry_title
 string photo_cover_desc
+string profile_chars_week
 string profile_entry_count_label
 string profile_member_since
 string profile_tagline
 string profile_title
+string profile_words_week
 string quote_start
 string register_already_have_account
 string register_button
@@ -300,11 +321,21 @@ string register_subtitle
 string register_title
 string sample_avatar_initial
 string sample_count_zero
+string sample_count_zero_2
 string sample_day_number
 string sample_full_date
 string sample_month_short
+string sample_streak_number
 string sample_year
 string set_as_cover
+string settings_btn_english
+string settings_btn_turkish
+string settings_enable_gamification
+string settings_gamification_header
+string settings_language_header
+string settings_locations
+string settings_streaks
+string settings_title
 string those_were_days
 string toast_entry_saved
 string toast_entry_updated

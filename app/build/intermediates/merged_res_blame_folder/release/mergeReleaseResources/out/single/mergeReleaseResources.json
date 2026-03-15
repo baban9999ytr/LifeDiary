@@ -72,6 +72,10 @@
         "source": "com.example.gunluk.app-main-5:/layout/activity_entry_detail.xml"
     },
     {
+        "merged": "com.example.gunluk.app-release-4:/layout_activity_profile_settings.xml.flat",
+        "source": "com.example.gunluk.app-main-5:/layout/activity_profile_settings.xml"
+    },
+    {
         "merged": "com.example.gunluk.app-release-4:/layout_activity_entry_list.xml.flat",
         "source": "com.example.gunluk.app-main-5:/layout/activity_entry_list.xml"
     },

@@ -24,6 +24,10 @@ public class Users implements Serializable {
     @ColumnInfo(name = "profile_photo_uri")
     String profilePhotoUri = "";
 
+    @ColumnInfo(name = "verificationCode")
+    String verificationCode = "";
+
+
 
 
     public int getUserID()                       { return userID; }
@@ -40,4 +44,7 @@ public class Users implements Serializable {
 
     public String getProfilePhotoUri()                           { return profilePhotoUri; }
     public void setProfilePhotoUri(String profilePhotoUri)       { this.profilePhotoUri = profilePhotoUri; }
+
+    public String getVerificationCode()                          { return verificationCode; }
+    public void setVerificationCode(String verificationCode)     { this.verificationCode = verificationCode; }
 }

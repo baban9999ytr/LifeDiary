@@ -2,6 +2,7 @@
 <resources>
     <color name="accent_gold">#C8972A</color>
     <color name="accent_sage">#6B8C6B</color>
+    <color name="accent_teal">#008080</color>
     <color name="accent_terracotta">#C85A3A</color>
     <color name="accent_terracotta_dark">#A3422A</color>
     <color name="card_bg">#FFFEF8</color>
@@ -131,10 +132,12 @@
     <string name="main_welcome">Welcome,</string>
     <string name="new_entry_title">New Entry</string>
     <string name="photo_cover_desc">Photo</string>
+    <string name="profile_chars_week">Characters this week</string>
     <string name="profile_entry_count_label">Total Entries</string>
     <string name="profile_member_since">Member Since</string>
     <string name="profile_tagline">The one writing my story.</string>
     <string name="profile_title">Profile</string>
+    <string name="profile_words_week">Words this week</string>
     <string name="quote_start">\u201C</string>
     <string name="register_already_have_account">Already have an account? </string>
     <string name="register_button">Create Account</string>
@@ -150,11 +153,21 @@
     <string name="register_title">Create Account</string>
     <string name="sample_avatar_initial">A</string>
     <string name="sample_count_zero">0</string>
+    <string name="sample_count_zero_2">0</string>
     <string name="sample_day_number">01</string>
     <string name="sample_full_date">January 1, 2025, Wednesday</string>
     <string name="sample_month_short">JAN</string>
+    <string name="sample_streak_number">0 🔥</string>
     <string name="sample_year">2025</string>
     <string name="set_as_cover">Set as Cover</string>
+    <string name="settings_btn_english">🇬🇧 English</string>
+    <string name="settings_btn_turkish">🇹🇷 Türkçe</string>
+    <string name="settings_enable_gamification">Enable Gamification</string>
+    <string name="settings_gamification_header">GAMIFICATION</string>
+    <string name="settings_language_header">LANGUAGE</string>
+    <string name="settings_locations">Locations 📍</string>
+    <string name="settings_streaks">Streaks 🔥</string>
+    <string name="settings_title">Settings</string>
     <string name="those_were_days">Every entry leaves a mark.</string>
     <string name="toast_entry_saved">Entry saved.</string>
     <string name="toast_entry_updated">Entry updated.</string>

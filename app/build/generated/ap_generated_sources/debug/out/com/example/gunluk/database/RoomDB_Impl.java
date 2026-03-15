@@ -29,14 +29,14 @@ public final class RoomDB_Impl extends RoomDB {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(6) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(7) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `diaryEntry` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `diaryEntry` TEXT, `richContent` TEXT, `date` TEXT, `pinned` INTEGER NOT NULL, `author` TEXT, `imageUris` TEXT, `coverPhotoUri` TEXT, `audioPath` TEXT, `stepCount` INTEGER NOT NULL, `locationCity` TEXT, `locationNeighbourhood` TEXT, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `weatherDescription` TEXT, `weatherIconCode` TEXT, `links` TEXT, `videoUris` TEXT, `fontFamily` TEXT, `entryPasswordHash` TEXT, `handwritingImagePath` TEXT)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `users` (`userID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `username` TEXT, `email` TEXT, `password` TEXT, `profile_photo_uri` TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `users` (`userID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `username` TEXT, `email` TEXT, `password` TEXT, `profile_photo_uri` TEXT, `verificationCode` TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `user_stats` (`username` TEXT NOT NULL, `currentStreak` INTEGER NOT NULL, `longestStreak` INTEGER NOT NULL, `daysWrittenThisYear` INTEGER NOT NULL, `lastEntryDate` TEXT, `gamificationEnabled` INTEGER NOT NULL, `locationsEnabled` INTEGER NOT NULL, `streaksEnabled` INTEGER NOT NULL, `wordsThisWeek` INTEGER NOT NULL, `charsThisWeek` INTEGER NOT NULL, `currentWeek` TEXT, PRIMARY KEY(`username`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '501a25156d4e1645094c748d693f55f0')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1f47c24f30f804acd9b38f929fd9e300')");
       }
 
       @Override
@@ -119,12 +119,13 @@ public final class RoomDB_Impl extends RoomDB {
                   + " Expected:\n" + _infoDiaryEntry + "\n"
                   + " Found:\n" + _existingDiaryEntry);
         }
-        final HashMap<String, TableInfo.Column> _columnsUsers = new HashMap<String, TableInfo.Column>(5);
+        final HashMap<String, TableInfo.Column> _columnsUsers = new HashMap<String, TableInfo.Column>(6);
         _columnsUsers.put("userID", new TableInfo.Column("userID", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUsers.put("username", new TableInfo.Column("username", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUsers.put("email", new TableInfo.Column("email", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUsers.put("password", new TableInfo.Column("password", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUsers.put("profile_photo_uri", new TableInfo.Column("profile_photo_uri", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUsers.put("verificationCode", new TableInfo.Column("verificationCode", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysUsers = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesUsers = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoUsers = new TableInfo("users", _columnsUsers, _foreignKeysUsers, _indicesUsers);
@@ -157,7 +158,7 @@ public final class RoomDB_Impl extends RoomDB {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "501a25156d4e1645094c748d693f55f0", "8a1bafe7e18fcb6f5756299b7a2b6d2e");
+    }, "1f47c24f30f804acd9b38f929fd9e300", "854d9c41398e32422b7a3b11ae512139");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

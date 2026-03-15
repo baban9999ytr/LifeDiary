@@ -14,7 +14,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.gunluk.models.DiaryEntry;
 import com.example.gunluk.models.Users;
 
-@Database(entities = {DiaryEntry.class, Users.class, RoomDB.UserStats.class}, version = 6, exportSchema = false)
+@Database(entities = {DiaryEntry.class, Users.class, RoomDB.UserStats.class}, version = 7, exportSchema = false)
 @TypeConverters(Converters.class)
 public abstract class RoomDB extends RoomDatabase {
 
@@ -97,6 +97,13 @@ public abstract class RoomDB extends RoomDatabase {
         }
     };
 
+    static final Migration MIGRATION_6_7 = new Migration(6, 7) {
+        @Override
+        public void migrate(SupportSQLiteDatabase db) {
+            db.execSQL("ALTER TABLE users ADD COLUMN verificationCode TEXT DEFAULT ''");
+        }
+    };
+
     public abstract MainDAO mainDAO();
 
     public static synchronized RoomDB getInstance(Context context) {
@@ -107,7 +114,7 @@ public abstract class RoomDB extends RoomDatabase {
                             DATABASE_NAME
                     )
                     .allowMainThreadQueries()
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
                     .build();
         }
         return instance;

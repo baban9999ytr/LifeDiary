@@ -11,7 +11,9 @@
     <string name="login_username_hint">Adınız nedir?</string>
     <string name="login_username_label">KULLANICI ADI</string>
     <string name="login_button">Giriş Yap</string>
-    <string name="login_error_empty_username">Lütfen kullanıcı adınızı girin.</string>
+    <string name="login_error_empty_username">Lütfen kullanıcı adınızı veya e-postanızı girin.</string>
+    <string name="login_error_empty_password">Lütfen şifrenizi girin.</string>
+    <string name="login_error_invalid_credentials">Hatalı kullanıcı adı/e-posta veya şifre.</string>
     <string name="login_error_user_not_found">Bu kullanıcı adı kayıtlı değil. Lütfen kayıt olun.</string>
     <string name="toast_welcome">Hoş geldin, %1$s!</string>
     <string name="login_bottom_note">Kendi hikâyenin yazarı sensin.</string>

@@ -63,6 +63,9 @@ public interface MainDAO {
     @Query("SELECT * FROM users WHERE username = :username AND password = :password LIMIT 1")
     Users login(String username, String password);
 
+    @Query("SELECT * FROM users WHERE (username = :identifier OR email = :identifier) AND password = :password LIMIT 1")
+    Users loginByUsernameOrEmail(String identifier, String password);
+
     @Query("SELECT COUNT(*) FROM users WHERE username = :username")
     int usernameExists(String username);
 }

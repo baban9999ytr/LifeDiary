@@ -29,19 +29,21 @@ public final class RoomDB_Impl extends RoomDB {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(4) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(6) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `diaryEntry` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `diaryEntry` TEXT, `richContent` TEXT, `date` TEXT, `pinned` INTEGER NOT NULL, `author` TEXT, `imageUris` TEXT, `coverPhotoUri` TEXT, `audioPath` TEXT, `stepCount` INTEGER NOT NULL, `locationCity` TEXT, `locationNeighbourhood` TEXT, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `weatherDescription` TEXT, `weatherIconCode` TEXT, `links` TEXT, `videoUris` TEXT, `fontFamily` TEXT, `entryPasswordHash` TEXT, `handwritingImagePath` TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `users` (`userID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `username` TEXT, `email` TEXT, `password` TEXT, `profile_photo_uri` TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `user_stats` (`username` TEXT NOT NULL, `currentStreak` INTEGER NOT NULL, `longestStreak` INTEGER NOT NULL, `daysWrittenThisYear` INTEGER NOT NULL, `lastEntryDate` TEXT, `gamificationEnabled` INTEGER NOT NULL, `locationsEnabled` INTEGER NOT NULL, `streaksEnabled` INTEGER NOT NULL, `wordsThisWeek` INTEGER NOT NULL, `charsThisWeek` INTEGER NOT NULL, `currentWeek` TEXT, PRIMARY KEY(`username`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b0e4b43300caf0645533b0acfb862f16')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '501a25156d4e1645094c748d693f55f0')");
       }
 
       @Override
       public void dropAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS `diaryEntry`");
         db.execSQL("DROP TABLE IF EXISTS `users`");
+        db.execSQL("DROP TABLE IF EXISTS `user_stats`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
         if (_callbacks != null) {
           for (RoomDatabase.Callback _callback : _callbacks) {
@@ -132,9 +134,30 @@ public final class RoomDB_Impl extends RoomDB {
                   + " Expected:\n" + _infoUsers + "\n"
                   + " Found:\n" + _existingUsers);
         }
+        final HashMap<String, TableInfo.Column> _columnsUserStats = new HashMap<String, TableInfo.Column>(11);
+        _columnsUserStats.put("username", new TableInfo.Column("username", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUserStats.put("currentStreak", new TableInfo.Column("currentStreak", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUserStats.put("longestStreak", new TableInfo.Column("longestStreak", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUserStats.put("daysWrittenThisYear", new TableInfo.Column("daysWrittenThisYear", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUserStats.put("lastEntryDate", new TableInfo.Column("lastEntryDate", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUserStats.put("gamificationEnabled", new TableInfo.Column("gamificationEnabled", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUserStats.put("locationsEnabled", new TableInfo.Column("locationsEnabled", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUserStats.put("streaksEnabled", new TableInfo.Column("streaksEnabled", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUserStats.put("wordsThisWeek", new TableInfo.Column("wordsThisWeek", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUserStats.put("charsThisWeek", new TableInfo.Column("charsThisWeek", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUserStats.put("currentWeek", new TableInfo.Column("currentWeek", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysUserStats = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesUserStats = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoUserStats = new TableInfo("user_stats", _columnsUserStats, _foreignKeysUserStats, _indicesUserStats);
+        final TableInfo _existingUserStats = TableInfo.read(db, "user_stats");
+        if (!_infoUserStats.equals(_existingUserStats)) {
+          return new RoomOpenHelper.ValidationResult(false, "user_stats(com.example.gunluk.database.RoomDB.UserStats).\n"
+                  + " Expected:\n" + _infoUserStats + "\n"
+                  + " Found:\n" + _existingUserStats);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "b0e4b43300caf0645533b0acfb862f16", "2aa32bfb12915421cf38e28d072b69e8");
+    }, "501a25156d4e1645094c748d693f55f0", "8a1bafe7e18fcb6f5756299b7a2b6d2e");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -145,7 +168,7 @@ public final class RoomDB_Impl extends RoomDB {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "diaryEntry","users");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "diaryEntry","users","user_stats");
   }
 
   @Override
@@ -156,6 +179,7 @@ public final class RoomDB_Impl extends RoomDB {
       super.beginTransaction();
       _db.execSQL("DELETE FROM `diaryEntry`");
       _db.execSQL("DELETE FROM `users`");
+      _db.execSQL("DELETE FROM `user_stats`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();

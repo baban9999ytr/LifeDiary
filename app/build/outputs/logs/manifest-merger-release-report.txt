@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:2:1-80:12
-INJECTED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:2:1-80:12
-INJECTED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:2:1-80:12
-INJECTED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:2:1-80:12
+ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:2:1-85:12
 MERGED from [com.google.android.material:material:1.12.0] E:\JDF\caches\8.13\transforms\375bd453e1a715ef45c568d4b0b46521\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] E:\JDF\caches\8.13\transforms\9bba4c75be12dfe131dd13849fc926c0\transformed\constraintlayout-2.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] E:\JDF\caches\8.13\transforms\1109ab0add79c8ea9fe4023fff9b8f0f\transformed\jetified-appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
@@ -95,8 +95,8 @@ ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:10:5-67
 	android:name
 		ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:10:22-64
 application
-ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:11:5-78:19
-INJECTED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:11:5-78:19
+ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:11:5-83:19
+INJECTED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:11:5-83:19
 MERGED from [com.google.android.material:material:1.12.0] E:\JDF\caches\8.13\transforms\375bd453e1a715ef45c568d4b0b46521\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] E:\JDF\caches\8.13\transforms\375bd453e1a715ef45c568d4b0b46521\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] E:\JDF\caches\8.13\transforms\9bba4c75be12dfe131dd13849fc926c0\transformed\constraintlayout-2.2.0\AndroidManifest.xml:7:5-20
@@ -225,6 +225,14 @@ ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:72:9-76:63
 		ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:75:13-48
 	android:name
 		ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:73:13-48
+activity#com.example.gunluk.ProfileSettingsActivity
+ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:78:9-81:61
+	android:parentActivityName
+		ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:81:13-58
+	android:exported
+		ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:80:13-37
+	android:name
+		ADDED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:79:13-52
 uses-sdk
 INJECTED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml

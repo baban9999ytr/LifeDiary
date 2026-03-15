@@ -80,6 +80,10 @@
             android:theme="@style/Theme.Gunluk"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
+            android:name="com.example.gunluk.ProfileSettingsActivity"
+            android:exported="false"
+            android:parentActivityName="com.example.gunluk.ProfileActivity" />
+        <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
