@@ -24,6 +24,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
@@ -48,7 +49,6 @@
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:background="@drawable/shape_about_icon_bg">
-
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
@@ -88,13 +88,7 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:layout_marginBottom="24dp">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/parchment_dark" />
-
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="@color/parchment_dark" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,12 +97,7 @@
                     android:textSize="11sp"
                     android:textColor="@color/accent_gold"
                     android:letterSpacing="0.15" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/parchment_dark" />
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="@color/parchment_dark" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -118,13 +107,11 @@
                 app:cardBackgroundColor="@color/card_bg"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="3dp">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="20dp">
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -132,10 +119,8 @@
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
                         android:textColor="@color/accent_terracotta"
-                        android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="12dp" />
-
                     <TextView
                         android:id="@+id/tv_about_description"
                         android:layout_width="match_parent"
@@ -155,39 +140,30 @@
                 app:cardBackgroundColor="@color/card_bg"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="3dp">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:padding="18dp">
-
                     <ImageView
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:src="@android:drawable/ic_menu_info_details"
                         app:tint="@color/ink_medium"
-                        android:layout_marginEnd="14dp"
-                        android:contentDescription="@string/about_developer" />
-
+                        android:layout_marginEnd="14dp" />
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/developer_1"
                             android:textSize="11sp"
-                            android:fontFamily="sans-serif-medium"
                             android:textColor="@color/ink_light"
-                            android:letterSpacing="0.1"
-                            android:textAllCaps="true"
-                            android:layout_marginBottom="2dp" />
-
+                            android:textAllCaps="true" />
                         <TextView
                             android:id="@+id/tv_developer"
                             android:layout_width="wrap_content"
@@ -200,6 +176,35 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="32dp">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_github"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_github"
+                    android:textColor="@color/accent_terracotta" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_linkedin"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_linkedin"
+                    android:textColor="@color/accent_terracotta" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_kreosus"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_kreosus"
+                    android:textColor="@color/accent_terracotta" />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -209,7 +214,6 @@
                 android:fontFamily="serif"
                 android:textStyle="italic"
                 android:textColor="@color/hint_text"
-                android:gravity="center"
                 android:layout_marginBottom="24dp" />
 
             <Button
@@ -223,5 +227,16 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/Mapstobottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        app:srcCompat="@android:drawable/arrow_down_float"
+        app:tint="@color/warm_white"
+        app:backgroundTint="@color/accent_terracotta"
+        android:contentDescription="@string/btn_navigate_to_bottom"
+        android:visibility="visible" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

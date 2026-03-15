@@ -3,9 +3,9 @@
 # in SDK_HOME/tools/proguard/proguard-android.txt.
 
 # Keep Room entities and DAOs (no obfuscation of DB layer)
--keep class com.example.gunluk.models.** { *; }
--keep class com.example.gunluk.database.** { *; }
+-keep class com.mustafagoksal.diary.models.** { *; }
+-keep class com.mustafagoksal.diary.database.** { *; }
 
 # Keep Serializable models if used with Intents
--keepnames class com.example.gunluk.models.Users
--keepnames class com.example.gunluk.models.DiaryEntry
+-keepnames class com.mustafagoksal.diary.models.Users
+-keepnames class com.mustafagoksal.diary.models.DiaryEntry

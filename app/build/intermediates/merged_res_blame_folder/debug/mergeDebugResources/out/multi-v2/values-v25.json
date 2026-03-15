@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.gunluk.app-mergeDebugResources-2:/values-v25/values-v25.xml",
+            "outputFile": "com.mustafagoksal.diary.app-mergeDebugResources-2:/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "E:\\JDF\\caches\\8.13\\transforms\\b53fdde436f23ce080f349958593ad2a\\transformed\\appcompat-1.7.0\\res\\values-v25\\values-v25.xml",
+                    "source": "E:\\JDF\\caches\\8.13\\transforms\\5fb030aafe02535a0827aa16b3bbe1b1\\transformed\\appcompat-1.7.1\\res\\values-v25\\values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",

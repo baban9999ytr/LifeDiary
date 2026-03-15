@@ -1,102 +1,106 @@
 [
     {
-        "merged": "com.example.gunluk.app-release-4:/drawable_shape_version_badge.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/drawable/shape_version_badge.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\drawable_shape_tag_bg.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\drawable\\shape_tag_bg.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/drawable_shape_icon_bg_brown.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/drawable/shape_icon_bg_brown.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\drawable_shape_version_badge.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\drawable\\shape_version_badge.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/font_dancing_script.ttf.flat",
-        "source": "com.example.gunluk.app-main-5:/font/dancing_script.ttf"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_activity_handwriting.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\activity_handwriting.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/drawable_shape_icon_bg_terracotta.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/drawable/shape_icon_bg_terracotta.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_activity_about.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\activity_about.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_item_entry.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/item_entry.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_activity_main.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_activity_profile.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/activity_profile.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\drawable_ic_launcher.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\drawable\\ic_launcher.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/font_playfair_display.ttf.flat",
-        "source": "com.example.gunluk.app-main-5:/font/playfair_display.ttf"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_item_entry.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\item_entry.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/drawable_shape_dot.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/drawable/shape_dot.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_activity_profile_settings.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\activity_profile_settings.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/drawable_ic_launcher.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/drawable/ic_launcher.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\drawable_shape_about_icon_bg.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\drawable\\shape_about_icon_bg.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/drawable_shape_date_block.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/drawable/shape_date_block.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_activity_register.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\activity_register.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_activity_new_entry.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/activity_new_entry.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\drawable_shape_icon_bg_terracotta.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\drawable\\shape_icon_bg_terracotta.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_activity_register.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/activity_register.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\font_playfair_display.ttf.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\font\\playfair_display.ttf"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_activity_handwriting.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/activity_handwriting.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_activity_login.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\activity_login.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_activity_about.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/activity_about.xml"
+        "merged": "com.mustafagoksal.diary.app-release-4:/layout_activity_about.xml.flat",
+        "source": "com.mustafagoksal.diary.app-main-5:/layout/activity_about.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_activity_login.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/activity_login.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\drawable_shape_icon_bg_brown.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\drawable\\shape_icon_bg_brown.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/drawable_shape_icon_bg_gold.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/drawable/shape_icon_bg_gold.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_activity_entry_detail.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\activity_entry_detail.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_item_photo.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/item_photo.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\font_dancing_script.ttf.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\font\\dancing_script.ttf"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_activity_entry_detail.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/activity_entry_detail.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\drawable_shape_date_block.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\drawable\\shape_date_block.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_activity_profile_settings.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/activity_profile_settings.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_activity_new_entry.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\activity_new_entry.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_activity_entry_list.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/activity_entry_list.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\drawable_shape_dot.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\drawable\\shape_dot.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/layout_activity_main.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/layout/activity_main.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_item_photo.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\item_photo.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/drawable_shape_tag_bg.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/drawable/shape_tag_bg.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\drawable_shape_icon_bg_gold.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\drawable\\shape_icon_bg_gold.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/drawable_shape_icon_bg_sage.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/drawable/shape_icon_bg_sage.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_activity_entry_list.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\activity_entry_list.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/drawable_shape_avatar_bg.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/drawable/shape_avatar_bg.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\drawable_shape_avatar_bg.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\drawable\\shape_avatar_bg.xml"
     },
     {
-        "merged": "com.example.gunluk.app-release-4:/drawable_shape_about_icon_bg.xml.flat",
-        "source": "com.example.gunluk.app-main-5:/drawable/shape_about_icon_bg.xml"
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\layout_activity_profile.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\layout\\activity_profile.xml"
+    },
+    {
+        "merged": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-release-4:\\drawable_shape_icon_bg_sage.xml.flat",
+        "source": "E:\\JDF\\daemon\\8.13\\com.mustafagoksal.diary.app-main-5:\\drawable\\shape_icon_bg_sage.xml"
     }
 ]

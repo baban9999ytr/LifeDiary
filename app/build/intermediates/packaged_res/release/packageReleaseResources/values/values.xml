@@ -38,6 +38,7 @@
     <string name="btn_less_details">－  Less details</string>
     <string name="btn_logout">Log Out</string>
     <string name="btn_more_details">＋  More details</string>
+    <string name="btn_navigate_to_bottom">Navigate to Bottom</string>
     <string name="btn_new_entry">New Entry</string>
     <string name="btn_play">Play</string>
     <string name="btn_profile">Profile</string>
@@ -95,6 +96,9 @@
     <string name="icon_unlocked">🔓</string>
     <string name="label_content">Content</string>
     <string name="label_email">EMAIL (optional)</string>
+    <string name="label_github">GitHub</string>
+    <string name="label_kreosus">Kreosus(Support Me)</string>
+    <string name="label_linkedin">LinkedIn</string>
     <string name="label_location_found">Location found</string>
     <string name="label_location_unavailable">Location unavailable</string>
     <string name="label_password">PASSWORD (optional)</string>
@@ -108,7 +112,9 @@
     <string name="login_already_have_account">Already have an account? </string>
     <string name="login_bottom_note">You are the author of your own story.</string>
     <string name="login_button">Log In</string>
-    <string name="login_error_empty_username">Please enter your username.</string>
+    <string name="login_error_empty_password">Please enter your password.</string>
+    <string name="login_error_empty_username">Please enter your username or email.</string>
+    <string name="login_error_invalid_credentials">Incorrect username/email or password.</string>
     <string name="login_error_user_not_found">This username is not registered. Please sign up.</string>
     <string name="login_no_account">Don\'t have an account? </string>
     <string name="login_register_link">Sign Up</string>

@@ -4,13 +4,13 @@ plugins {
 
 android {
 
-    compileSdk = 34
-    namespace 'com.example.gunluk'
+    compileSdk = 36
+    namespace 'com.mustafagoksal.diary'
 
     defaultConfig {
-        applicationId "com.example.gunluk"
+        applicationId "com.mustafagoksal.diary"
         minSdk 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode 1
         versionName "1.0"
     }
@@ -29,19 +29,19 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'org.mindrot:jbcrypt:0.4'
-    implementation 'com.google.code.gson:gson:2.10.1'
-    implementation 'androidx.activity:activity:1.9.3'
-    implementation 'com.google.android.gms:play-services-location:21.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'com.google.code.gson:gson:2.13.2'
+    implementation 'androidx.activity:activity:1.13.0'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.android.material:material:1.13.0'
     implementation 'jp.wasabeef:richeditor-android:2.0.0'
 
 
-    def room_version = "2.6.1"
+    def room_version = "2.8.4"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 }

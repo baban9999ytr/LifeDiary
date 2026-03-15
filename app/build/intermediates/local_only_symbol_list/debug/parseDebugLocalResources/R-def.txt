@@ -32,6 +32,7 @@ drawable shape_tag_bg
 drawable shape_version_badge
 font dancing_script
 font playfair_display
+id Mapstobottom
 id appbar
 id btn_add_link
 id btn_add_photos
@@ -55,8 +56,11 @@ id btn_fmt_italic
 id btn_fmt_quote
 id btn_fmt_size
 id btn_fmt_underline
+id btn_github
 id btn_handwriting
 id btn_home
+id btn_kreosus
+id btn_linkedin
 id btn_login
 id btn_logout
 id btn_more_details
@@ -112,6 +116,7 @@ id layout_gamification_options
 id layout_gamification_panel
 id layout_login_link
 id layout_register_link
+id nested_scroll_view
 id ornament_dot
 id ornament_line_left
 id ornament_line_right
@@ -204,6 +209,7 @@ string btn_home
 string btn_less_details
 string btn_logout
 string btn_more_details
+string btn_navigate_to_bottom
 string btn_new_entry
 string btn_play
 string btn_profile
@@ -261,6 +267,9 @@ string icon_locked
 string icon_unlocked
 string label_content
 string label_email
+string label_github
+string label_kreosus
+string label_linkedin
 string label_location_found
 string label_location_unavailable
 string label_password

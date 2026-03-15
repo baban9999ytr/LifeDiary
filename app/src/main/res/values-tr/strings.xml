@@ -21,6 +21,12 @@
     <string name="login_register_link">Kayıt Ol</string>
     <string name="login_already_have_account">Zaten hesabın var mı? </string>
 
+        <string name="btn_navigate_to_bottom">En Alta Git</string>
+        <string name="label_kreosus">Kreosus(Beni Destekle)</string>
+        <string name="label_linkedin">LinkedIn</string>
+        <string name="label_github">GitHub</string>
+    <string name="sample_streak_number">0 🔥</string>
+
     <string name="register_title">Hesap Oluştur</string>
     <string name="register_subtitle">Günlüğüne adını yaz.</string>
     <string name="register_button">Hesabı Oluştur</string>

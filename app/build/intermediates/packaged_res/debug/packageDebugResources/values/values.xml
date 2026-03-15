@@ -38,6 +38,7 @@
     <string name="btn_less_details">－  Less details</string>
     <string name="btn_logout">Log Out</string>
     <string name="btn_more_details">＋  More details</string>
+    <string name="btn_navigate_to_bottom">Navigate to Bottom</string>
     <string name="btn_new_entry">New Entry</string>
     <string name="btn_play">Play</string>
     <string name="btn_profile">Profile</string>
@@ -95,6 +96,9 @@
     <string name="icon_unlocked">🔓</string>
     <string name="label_content">Content</string>
     <string name="label_email">EMAIL (optional)</string>
+    <string name="label_github">GitHub</string>
+    <string name="label_kreosus">Kreosus(Support Me)</string>
+    <string name="label_linkedin">LinkedIn</string>
     <string name="label_location_found">Location found</string>
     <string name="label_location_unavailable">Location unavailable</string>
     <string name="label_password">PASSWORD (optional)</string>

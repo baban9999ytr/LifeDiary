@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.gunluk.app-mergeReleaseResources-2:/values-hdpi-v4/values-hdpi-v4.xml",
+            "outputFile": "com.mustafagoksal.diary.app-mergeReleaseResources-2:/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "E:\\JDF\\caches\\8.13\\transforms\\b53fdde436f23ce080f349958593ad2a\\transformed\\appcompat-1.7.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "E:\\JDF\\caches\\8.13\\transforms\\5fb030aafe02535a0827aa16b3bbe1b1\\transformed\\appcompat-1.7.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

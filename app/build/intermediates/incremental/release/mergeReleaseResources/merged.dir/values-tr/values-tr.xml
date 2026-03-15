@@ -44,7 +44,6 @@
     <string name="bottomsheet_action_collapse">Alt sayfayı daralt</string>
     <string name="bottomsheet_action_expand">Alt sayfayı genişlet</string>
     <string name="bottomsheet_action_expand_halfway">Yarım genişlet</string>
-    <string name="bottomsheet_drag_handle_clicked">Sürükleme tutamacına iki kez dokunuldu</string>
     <string name="bottomsheet_drag_handle_content_description">Sürükleme tutamacı</string>
     <string name="btn_about">Hakkında</string>
     <string name="btn_add_photos">Fotoğraf Ekle</string>
@@ -55,6 +54,7 @@
     <string name="btn_less_details">－  Daha az detay</string>
     <string name="btn_logout">Çıkış Yap</string>
     <string name="btn_more_details">＋  Daha fazla detay</string>
+    <string name="btn_navigate_to_bottom">En Alta Git</string>
     <string name="btn_new_entry">Yeni Yazı</string>
     <string name="btn_play">Dinle</string>
     <string name="btn_profile">Profil</string>
@@ -145,6 +145,9 @@
     <string name="item_view_role_description">Sekme</string>
     <string name="label_content">İçerik</string>
     <string name="label_email">E-POSTA (opsiyonel)</string>
+    <string name="label_github">GitHub</string>
+    <string name="label_kreosus">Kreosus(Beni Destekle)</string>
+    <string name="label_linkedin">LinkedIn</string>
     <string name="label_location_found">Konum bulundu</string>
     <string name="label_location_unavailable">Konum alınamadı</string>
     <string name="label_password">ŞİFRE (opsiyonel)</string>
@@ -158,7 +161,9 @@
     <string name="login_already_have_account">Zaten hesabın var mı? </string>
     <string name="login_bottom_note">Kendi hikâyenin yazarı sensin.</string>
     <string name="login_button">Giriş Yap</string>
-    <string name="login_error_empty_username">Lütfen kullanıcı adınızı girin.</string>
+    <string name="login_error_empty_password">Lütfen şifrenizi girin.</string>
+    <string name="login_error_empty_username">Lütfen kullanıcı adınızı veya e-postanızı girin.</string>
+    <string name="login_error_invalid_credentials">Hatalı kullanıcı adı/e-posta veya şifre.</string>
     <string name="login_error_user_not_found">Bu kullanıcı adı kayıtlı değil. Lütfen kayıt olun.</string>
     <string name="login_no_account">Hesabın yok mu? </string>
     <string name="login_register_link">Kayıt Ol</string>
@@ -170,6 +175,7 @@
     <string name="logout_confirm_no">Hayır</string>
     <string name="logout_confirm_title">Çıkış Yap</string>
     <string name="logout_confirm_yes">Evet</string>
+    <string name="m3_loading_indicator_content_description">Yükleniyor</string>
     <string name="main_all_entries">Tüm Yazılar</string>
     <string name="main_date_today">Bugün</string>
     <string name="main_date_today_placeholder">Bugün, %1$s</string>
@@ -186,6 +192,9 @@
     <string name="material_hour_suffix">Saat %1$s</string>
     <string name="material_minute_selection">Dakikayı seçin</string>
     <string name="material_minute_suffix">%1$s dakika</string>
+    <string name="material_slider_range_end">Aralık sonu</string>
+    <string name="material_slider_range_start">Aralık başlangıcı</string>
+    <string name="material_slider_value">Değer</string>
     <string name="material_timepicker_am">AM</string>
     <string name="material_timepicker_clock_mode_description">Zaman girişi için saat moduna geçin.</string>
     <string name="material_timepicker_hour">Saat</string>
@@ -233,9 +242,11 @@
     <string name="mtrl_picker_text_input_year_abbr">y</string>
     <string name="mtrl_picker_today_description">Bugün, %1$s</string>
     <string name="mtrl_picker_toggle_to_calendar_input_mode">Takvim giriş moduna geç</string>
-    <string name="mtrl_picker_toggle_to_day_selection">Takvim görünümüne geçmek için dokunun</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Takvim görünümüne geç</string>
     <string name="mtrl_picker_toggle_to_text_input_mode">Metin giriş moduna geç</string>
-    <string name="mtrl_picker_toggle_to_year_selection">Yıl görünümüne geçmek için dokunun</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Yıl görünümüne geç</string>
+    <string name="mtrl_picker_toggled_to_day_selection">Takvim görünümüne geçildi</string>
+    <string name="mtrl_picker_toggled_to_year_selection">Yıl görünümüne geçildi</string>
     <string name="mtrl_timepicker_cancel">İptal</string>
     <string name="mtrl_timepicker_confirm">Tamam</string>
     <string name="new_entry_title">Yeni Günlük</string>
@@ -266,6 +277,7 @@
     <string name="sample_day_number">01</string>
     <string name="sample_full_date">1 Ocak 2025, Çarşamba</string>
     <string name="sample_month_short">OCA</string>
+    <string name="sample_streak_number">0 🔥</string>
     <string name="sample_year">2025</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Ara"</string>
     <string name="searchview_clear_text_content_description">Metni temizle</string>

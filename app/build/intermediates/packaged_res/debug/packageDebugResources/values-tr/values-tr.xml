@@ -19,6 +19,7 @@
     <string name="btn_less_details">－  Daha az detay</string>
     <string name="btn_logout">Çıkış Yap</string>
     <string name="btn_more_details">＋  Daha fazla detay</string>
+    <string name="btn_navigate_to_bottom">En Alta Git</string>
     <string name="btn_new_entry">Yeni Yazı</string>
     <string name="btn_play">Dinle</string>
     <string name="btn_profile">Profil</string>
@@ -76,6 +77,9 @@
     <string name="icon_unlocked">🔓</string>
     <string name="label_content">İçerik</string>
     <string name="label_email">E-POSTA (opsiyonel)</string>
+    <string name="label_github">GitHub</string>
+    <string name="label_kreosus">Kreosus(Beni Destekle)</string>
+    <string name="label_linkedin">LinkedIn</string>
     <string name="label_location_found">Konum bulundu</string>
     <string name="label_location_unavailable">Konum alınamadı</string>
     <string name="label_password">ŞİFRE (opsiyonel)</string>
@@ -140,6 +144,7 @@
     <string name="sample_day_number">01</string>
     <string name="sample_full_date">1 Ocak 2025, Çarşamba</string>
     <string name="sample_month_short">OCA</string>
+    <string name="sample_streak_number">0 🔥</string>
     <string name="sample_year">2025</string>
     <string name="set_as_cover">Kapak Yap</string>
     <string name="settings_btn_english">🇬🇧 English</string>

@@ -20,7 +20,12 @@
     <string name="login_no_account">Don\'t have an account? </string>
     <string name="login_register_link">Sign Up</string>
     <string name="login_already_have_account">Already have an account? </string>
+    <string name="btn_navigate_to_bottom">Navigate to Bottom</string>
 
+
+    <string name="label_kreosus">Kreosus(Support Me)</string>
+    <string name="label_linkedin">LinkedIn</string>
+    <string name="label_github">GitHub</string>
     <string name="register_title">Create Account</string>
     <string name="register_subtitle">Write your name in your diary.</string>
     <string name="register_button">Create Account</string>

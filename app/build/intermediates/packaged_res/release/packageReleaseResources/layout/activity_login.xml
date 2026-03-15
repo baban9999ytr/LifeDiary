@@ -165,6 +165,57 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/divider"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="18dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_password"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/ink_light"
+                        android:letterSpacing="0.12"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="6dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/et_password"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:autofillHints="@string/hint_password"
+                            android:hint="@string/hint_password"
+                            android:textColorHint="@color/hint_text"
+                            android:textColor="@color/ink_brown"
+                            android:textSize="18sp"
+                            android:fontFamily="serif"
+                            android:background="@null"
+                            android:inputType="textPassword"
+                            android:imeOptions="actionDone"
+                            android:maxLines="1"
+                            android:paddingVertical="4dp" />
+
+                        <ImageButton
+                            android:id="@+id/btn_toggle_password"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@android:drawable/ic_menu_view"
+                            app:tint="@color/ink_light"
+                            android:contentDescription="@string/desc_toggle_password" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider"
                         android:layout_marginTop="4dp" />
 
                 </LinearLayout>
