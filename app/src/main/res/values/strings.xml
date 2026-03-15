@@ -143,6 +143,10 @@
     <string name="developer_1">Developer</string>
     <string name="those_were_days">Every entry leaves a mark.</string>
 
+    <string name="profile_words_week">Words this week</string>
+    <string name="profile_chars_week">Characters this week</string>
+    <string name="sample_count_zero_2">0</string>
+
     <string name="desc_logo">App Logo</string>
     <string name="desc_calendar_icon">Date</string>
     <string name="desc_next">Next</string>
@@ -155,10 +159,21 @@
     <string name="desc_detail">Detail</string>
     <string name="desc_empty">Empty</string>
 
+    <string name="sample_streak_number">0 🔥</string>
+
     <string name="main_date_today">Today</string>
     <string name="sample_avatar_initial">A</string>
     <string name="sample_count_zero">0</string>
     <string name="sample_full_date">January 1, 2025, Wednesday</string>
     <string name="photo_cover_desc">Photo</string>
     <string name="cover_photo">Cover photo</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_gamification_header">GAMIFICATION</string>
+    <string name="settings_enable_gamification">Enable Gamification</string>
+    <string name="settings_streaks">Streaks 🔥</string>
+    <string name="settings_locations">Locations 📍</string>
+    <string name="settings_language_header">LANGUAGE</string>
+    <string name="settings_btn_english">🇬🇧 English</string>
+    <string name="settings_btn_turkish">🇹🇷 Türkçe</string>
 </resources>

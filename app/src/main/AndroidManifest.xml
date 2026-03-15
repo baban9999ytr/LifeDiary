@@ -74,6 +74,11 @@
             android:exported="false"
             android:theme="@style/Theme.Gunluk"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".ProfileSettingsActivity"
+            android:exported="false"
+            android:parentActivityName=".ProfileActivity" />
             
     </application>
 

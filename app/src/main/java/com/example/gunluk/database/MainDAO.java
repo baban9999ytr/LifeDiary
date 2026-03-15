@@ -33,6 +33,17 @@ public interface MainDAO {
     @Query("DELETE FROM diaryEntry WHERE ID = :id")
     void deleteById(long id);
 
+    @Insert(onConflict = REPLACE)
+    void insertOrUpdateStats(RoomDB.UserStats stats);
+
+    @Query("SELECT * FROM user_stats WHERE username = :username LIMIT 1")
+    RoomDB.UserStats getStatsByUsername(String username);
+
+    @Query("SELECT DISTINCT date FROM diaryEntry WHERE author = :username AND date LIKE '%' || :year || '%'")
+    List<String> getDistinctDaysForYear(String username, String year);
+
+    @Query("SELECT DISTINCT locationCity FROM diaryEntry WHERE author = :username AND locationCity IS NOT NULL")
+    List<String> getDistinctLocations(String username);
     @Query("UPDATE diaryEntry SET title = :title, diaryEntry = :content, date = :date, pinned = :pinned WHERE ID = :id")
     void update(long id, String title, String content, String date, boolean pinned);
 

@@ -26,6 +26,8 @@ public final class MainDAO_Impl implements MainDAO {
 
   private final EntityInsertionAdapter<DiaryEntry> __insertionAdapterOfDiaryEntry;
 
+  private final EntityInsertionAdapter<RoomDB.UserStats> __insertionAdapterOfUserStats;
+
   private final EntityInsertionAdapter<Users> __insertionAdapterOfUsers;
 
   private final EntityDeletionOrUpdateAdapter<DiaryEntry> __deletionAdapterOfDiaryEntry;
@@ -141,6 +143,44 @@ public final class MainDAO_Impl implements MainDAO {
           statement.bindNull(22);
         } else {
           statement.bindString(22, entity.getHandwritingImagePath());
+        }
+      }
+    };
+    this.__insertionAdapterOfUserStats = new EntityInsertionAdapter<RoomDB.UserStats>(__db) {
+      @Override
+      @NonNull
+      protected String createQuery() {
+        return "INSERT OR REPLACE INTO `user_stats` (`username`,`currentStreak`,`longestStreak`,`daysWrittenThisYear`,`lastEntryDate`,`gamificationEnabled`,`locationsEnabled`,`streaksEnabled`,`wordsThisWeek`,`charsThisWeek`,`currentWeek`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+      }
+
+      @Override
+      protected void bind(@NonNull final SupportSQLiteStatement statement,
+          final RoomDB.UserStats entity) {
+        if (entity.username == null) {
+          statement.bindNull(1);
+        } else {
+          statement.bindString(1, entity.username);
+        }
+        statement.bindLong(2, entity.currentStreak);
+        statement.bindLong(3, entity.longestStreak);
+        statement.bindLong(4, entity.daysWrittenThisYear);
+        if (entity.lastEntryDate == null) {
+          statement.bindNull(5);
+        } else {
+          statement.bindString(5, entity.lastEntryDate);
+        }
+        final int _tmp = entity.gamificationEnabled ? 1 : 0;
+        statement.bindLong(6, _tmp);
+        final int _tmp_1 = entity.locationsEnabled ? 1 : 0;
+        statement.bindLong(7, _tmp_1);
+        final int _tmp_2 = entity.streaksEnabled ? 1 : 0;
+        statement.bindLong(8, _tmp_2);
+        statement.bindLong(9, entity.wordsThisWeek);
+        statement.bindLong(10, entity.charsThisWeek);
+        if (entity.currentWeek == null) {
+          statement.bindNull(11);
+        } else {
+          statement.bindString(11, entity.currentWeek);
         }
       }
     };
@@ -320,6 +360,18 @@ public final class MainDAO_Impl implements MainDAO {
     __db.beginTransaction();
     try {
       __insertionAdapterOfDiaryEntry.insert(diaryEntry);
+      __db.setTransactionSuccessful();
+    } finally {
+      __db.endTransaction();
+    }
+  }
+
+  @Override
+  public void insertOrUpdateStats(final RoomDB.UserStats stats) {
+    __db.assertNotSuspendingTransaction();
+    __db.beginTransaction();
+    try {
+      __insertionAdapterOfUserStats.insert(stats);
       __db.setTransactionSuccessful();
     } finally {
       __db.endTransaction();
@@ -787,6 +839,138 @@ public final class MainDAO_Impl implements MainDAO {
           _tmpHandwritingImagePath = _cursor.getString(_cursorIndexOfHandwritingImagePath);
         }
         _item.setHandwritingImagePath(_tmpHandwritingImagePath);
+        _result.add(_item);
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public RoomDB.UserStats getStatsByUsername(final String username) {
+    final String _sql = "SELECT * FROM user_stats WHERE username = ? LIMIT 1";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    if (username == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, username);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfUsername = CursorUtil.getColumnIndexOrThrow(_cursor, "username");
+      final int _cursorIndexOfCurrentStreak = CursorUtil.getColumnIndexOrThrow(_cursor, "currentStreak");
+      final int _cursorIndexOfLongestStreak = CursorUtil.getColumnIndexOrThrow(_cursor, "longestStreak");
+      final int _cursorIndexOfDaysWrittenThisYear = CursorUtil.getColumnIndexOrThrow(_cursor, "daysWrittenThisYear");
+      final int _cursorIndexOfLastEntryDate = CursorUtil.getColumnIndexOrThrow(_cursor, "lastEntryDate");
+      final int _cursorIndexOfGamificationEnabled = CursorUtil.getColumnIndexOrThrow(_cursor, "gamificationEnabled");
+      final int _cursorIndexOfLocationsEnabled = CursorUtil.getColumnIndexOrThrow(_cursor, "locationsEnabled");
+      final int _cursorIndexOfStreaksEnabled = CursorUtil.getColumnIndexOrThrow(_cursor, "streaksEnabled");
+      final int _cursorIndexOfWordsThisWeek = CursorUtil.getColumnIndexOrThrow(_cursor, "wordsThisWeek");
+      final int _cursorIndexOfCharsThisWeek = CursorUtil.getColumnIndexOrThrow(_cursor, "charsThisWeek");
+      final int _cursorIndexOfCurrentWeek = CursorUtil.getColumnIndexOrThrow(_cursor, "currentWeek");
+      final RoomDB.UserStats _result;
+      if (_cursor.moveToFirst()) {
+        _result = new RoomDB.UserStats();
+        if (_cursor.isNull(_cursorIndexOfUsername)) {
+          _result.username = null;
+        } else {
+          _result.username = _cursor.getString(_cursorIndexOfUsername);
+        }
+        _result.currentStreak = _cursor.getInt(_cursorIndexOfCurrentStreak);
+        _result.longestStreak = _cursor.getInt(_cursorIndexOfLongestStreak);
+        _result.daysWrittenThisYear = _cursor.getInt(_cursorIndexOfDaysWrittenThisYear);
+        if (_cursor.isNull(_cursorIndexOfLastEntryDate)) {
+          _result.lastEntryDate = null;
+        } else {
+          _result.lastEntryDate = _cursor.getString(_cursorIndexOfLastEntryDate);
+        }
+        final int _tmp;
+        _tmp = _cursor.getInt(_cursorIndexOfGamificationEnabled);
+        _result.gamificationEnabled = _tmp != 0;
+        final int _tmp_1;
+        _tmp_1 = _cursor.getInt(_cursorIndexOfLocationsEnabled);
+        _result.locationsEnabled = _tmp_1 != 0;
+        final int _tmp_2;
+        _tmp_2 = _cursor.getInt(_cursorIndexOfStreaksEnabled);
+        _result.streaksEnabled = _tmp_2 != 0;
+        _result.wordsThisWeek = _cursor.getInt(_cursorIndexOfWordsThisWeek);
+        _result.charsThisWeek = _cursor.getInt(_cursorIndexOfCharsThisWeek);
+        if (_cursor.isNull(_cursorIndexOfCurrentWeek)) {
+          _result.currentWeek = null;
+        } else {
+          _result.currentWeek = _cursor.getString(_cursorIndexOfCurrentWeek);
+        }
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public List<String> getDistinctDaysForYear(final String username, final String year) {
+    final String _sql = "SELECT DISTINCT date FROM diaryEntry WHERE author = ? AND date LIKE '%' || ? || '%'";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
+    int _argIndex = 1;
+    if (username == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, username);
+    }
+    _argIndex = 2;
+    if (year == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, year);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final List<String> _result = new ArrayList<String>(_cursor.getCount());
+      while (_cursor.moveToNext()) {
+        final String _item;
+        if (_cursor.isNull(0)) {
+          _item = null;
+        } else {
+          _item = _cursor.getString(0);
+        }
+        _result.add(_item);
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public List<String> getDistinctLocations(final String username) {
+    final String _sql = "SELECT DISTINCT locationCity FROM diaryEntry WHERE author = ? AND locationCity IS NOT NULL";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    if (username == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, username);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final List<String> _result = new ArrayList<String>(_cursor.getCount());
+      while (_cursor.moveToNext()) {
+        final String _item;
+        if (_cursor.isNull(0)) {
+          _item = null;
+        } else {
+          _item = _cursor.getString(0);
+        }
         _result.add(_item);
       }
       return _result;

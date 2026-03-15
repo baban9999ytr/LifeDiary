@@ -18,6 +18,7 @@
     <color name="accent_gold">#C8972A</color>
     <color name="accent_sage">#6B8C6B</color>
 
+    <color name="accent_teal">#008080</color>
     <color name="divider">#E0CCB0</color>
     <color name="card_bg">#FFFEF8</color>
     <color name="shadow">#40000000</color>

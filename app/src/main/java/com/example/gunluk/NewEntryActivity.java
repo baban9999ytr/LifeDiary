@@ -828,6 +828,9 @@ public class NewEntryActivity extends AppCompatActivity {
             entry.setWeatherDescription(pendingWeatherDesc);
             entry.setWeatherIconCode(pendingWeatherIcon);
             db.mainDAO().insertDiary(entry);
+            // Gamification hook
+            GamificationManager gm = new GamificationManager(this, user.getUsername());
+            gm.onEntryAddedWithStats(plainText);
             Toast.makeText(this, R.string.toast_entry_saved, Toast.LENGTH_SHORT).show();
         } else {
             editingEntry.setTitle(title);
