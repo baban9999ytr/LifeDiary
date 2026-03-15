@@ -1,0 +1,43 @@
+# Build artifacts
+/build
+/app/build
+build/
+
+# Gradle
+/.gradle
+.gradle/
+
+# Local config
+local.properties
+
+# Log files
+*.log
+
+# Android Studio / IntelliJ
+/.idea
+.idea/
+*.iml
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Output files
+*.aab
+*.apk
+output-metadata.json
+
+# Keystore
+*.jks
+*.keystore
+
+# Google Services
+google-services.json
+
+# Profiling
+*.hprof
+
+# OS
+.DS_Store
