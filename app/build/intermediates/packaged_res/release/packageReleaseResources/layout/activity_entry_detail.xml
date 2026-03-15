@@ -36,7 +36,7 @@
             android:orientation="vertical"
             android:paddingBottom="40dp">
 
-            <!-- ── Cover photo ─────────────────────────────── -->
+
             <ImageView
                 android:id="@+id/iv_detail_cover"
                 android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                 android:paddingHorizontal="24dp"
                 android:paddingTop="24dp">
 
-                <!-- ── Date tag ────────────────────────────── -->
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                         android:textColor="@color/ink_medium" />
                 </LinearLayout>
 
-                <!-- ── Title ──────────────────────────────── -->
+
                 <TextView
                     android:id="@+id/tv_detail_title"
                     android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
                     android:lineSpacingMultiplier="1.2"
                     android:layout_marginBottom="16dp" />
 
-                <!-- ── Context chip row (steps / location / weather) ── -->
+
                 <LinearLayout
                     android:id="@+id/row_context"
                     android:layout_width="match_parent"
@@ -140,7 +140,7 @@
 
                 </LinearLayout>
 
-                <!-- ── Photos strip ───────────────────────── -->
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_detail_photos"
                     android:layout_width="match_parent"
@@ -149,7 +149,7 @@
                     android:visibility="gone"
                     android:layout_marginBottom="16dp" />
 
-                <!-- ── Voice button ───────────────────────── -->
+
                 <Button
                     android:id="@+id/btn_play_voice_detail"
                     style="@style/Gunluk.Button.Secondary"
@@ -159,7 +159,7 @@
                     android:visibility="gone"
                     android:layout_marginBottom="16dp" />
 
-                <!-- divider line -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
                         android:background="@color/divider" />
                 </LinearLayout>
 
-                <!-- ── Rich content (WebView) ─────────────── -->
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_content"
                     style="@style/Gunluk.Card"
@@ -204,10 +204,7 @@
                             android:lineSpacingMultiplier="0.5"
                             android:layout_marginBottom="-8dp" />
 
-                        <!--
-                            WebView renders the saved HTML with all
-                            inline formatting (bold, color, font, etc.)
-                        -->
+
                         <WebView
                             android:id="@+id/wv_detail_content"
                             android:layout_width="match_parent"
@@ -217,7 +214,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- ── Handwriting ──────────────────────────── -->
+
                 <LinearLayout
                     android:id="@+id/section_handwriting"
                     android:layout_width="match_parent"
@@ -246,7 +243,7 @@
                         android:background="@color/divider" />
                 </LinearLayout>
 
-                <!-- ── Links ──────────────────────────────── -->
+
                 <LinearLayout
                     android:id="@+id/section_links"
                     android:layout_width="match_parent"
@@ -274,7 +271,6 @@
 
                 </LinearLayout>
 
-                <!-- ── Videos ─────────────────────────────── -->
                 <LinearLayout
                     android:id="@+id/section_videos"
                     android:layout_width="match_parent"
@@ -299,7 +295,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp" />
 
-                    <!-- Thumbnail strip for multiple videos -->
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_detail_videos"
                         android:layout_width="match_parent"
@@ -310,7 +305,7 @@
 
                 </LinearLayout>
 
-                <!-- ── Action buttons ─────────────────────── -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
@@ -58,7 +57,6 @@ public class NewEntryActivity extends AppCompatActivity {
     private static final int REQ_ACTIVITY_RECOGNITION = 101;
     private static final int REQ_LOCATION = 102;
 
-
     private EditText etTitle;
     private RichEditor richEditor;
     private TextView tvDateFull;
@@ -68,22 +66,17 @@ public class NewEntryActivity extends AppCompatActivity {
     private ImageView ivCoverPhoto;
     private View coverEmptyState;
 
-
     private Button btnMoreDetails;
     private LinearLayout panelMoreDetails;
     private boolean panelExpanded = false;
-
 
     private Button btnAddPhotos;
     private RecyclerView recyclerPhotos;
     private PhotoAdapter photoAdapter;
 
-
     private Button btnAddVideo;
     private RecyclerView recyclerVideos;
-
     private final List<String> videoUris = new ArrayList<>();
-
 
     private Button btnRecord;
     private Button btnPlayVoice;
@@ -91,36 +84,41 @@ public class NewEntryActivity extends AppCompatActivity {
     private MediaRecorder mediaRecorder;
     private MediaPlayer mediaPlayer;
 
-
     private EditText etLinkInput;
     private Button btnAddLink;
     private RecyclerView recyclerLinks;
-    // fix: final so it can be safely captured in lambdas
     private final List<String> links = new ArrayList<>();
     private LinksAdapter linksAdapter;
-
 
     private CardView cardContext;
     private TextView tvSteps;
     private TextView tvLocation;
     private TextView tvWeather;
 
-
     private Button btnChooseFont;
     private String selectedFontFamily = "default";
-
 
     private Button btnHandwriting;
     private ImageView ivHandwritingThumb;
     private String currentHandwritingPath = null;
 
-
     private EditText etEntryPassword;
     private TextView tvLockIndicator;
 
     private RoomDB db;
+
+
     private DiaryEntry editingEntry = null;
 
+
+    private String pendingCoverPhotoUri = null;
+    private int    pendingStepCount     = -1;
+    private double pendingLatitude      = 0.0;
+    private double pendingLongitude     = 0.0;
+    private String pendingLocationCity  = null;
+    private String pendingLocationNeigh = null;
+    private String pendingWeatherDesc   = null;
+    private String pendingWeatherIcon   = null;
 
     private final ActivityResultLauncher<PickVisualMediaRequest> pickMultipleMedia =
             registerForActivityResult(
@@ -154,9 +152,8 @@ public class NewEntryActivity extends AppCompatActivity {
                         single.add(uri);
                         List<String> paths = copyUrisToInternalStorage(single);
                         if (!paths.isEmpty()) {
-                            if (editingEntry == null) editingEntry = new DiaryEntry();
-                            editingEntry.setCoverPhotoUri(paths.get(0));
-                            ivCoverPhoto.setImageURI(Uri.parse(paths.get(0)));
+                            pendingCoverPhotoUri = paths.get(0);
+                            ivCoverPhoto.setImageURI(Uri.parse(pendingCoverPhotoUri));
                             ivCoverPhoto.setVisibility(View.VISIBLE);
                             coverEmptyState.setVisibility(View.GONE);
                         }
@@ -201,7 +198,6 @@ public class NewEntryActivity extends AppCompatActivity {
                     }
             );
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -242,7 +238,6 @@ public class NewEntryActivity extends AppCompatActivity {
         btnSave.setOnClickListener(v -> saveEntry());
         btnHome.setOnClickListener(v -> goHome());
     }
-
 
     private void bindViews() {
         etTitle         = findViewById(R.id.et_entry_title);
@@ -315,7 +310,6 @@ public class NewEntryActivity extends AppCompatActivity {
                     .show();
         });
 
-
         findViewById(R.id.btn_fmt_font).setOnClickListener(v -> {
             String[] fonts = {"Arial", "Georgia", "Courier New", "Times New Roman", "Verdana"};
             new AlertDialog.Builder(this)
@@ -334,19 +328,16 @@ public class NewEntryActivity extends AppCompatActivity {
         });
     }
 
-
     private void applyFontFamily(String fontName) {
         String js = "javascript:document.execCommand('fontName', false, '" + fontName + "');";
         richEditor.loadUrl(js);
     }
-
 
     private void setupCoverPhoto() {
         findViewById(R.id.btn_cover_photo).setOnClickListener(v ->
                 pickCoverPhoto.launch("image/*")
         );
     }
-
 
     private void setupMoreDetailsPanel() {
         panelMoreDetails.setVisibility(View.GONE);
@@ -358,7 +349,6 @@ public class NewEntryActivity extends AppCompatActivity {
                     : R.string.btn_more_details);
         });
     }
-
 
     private void setupPhotos() {
         photoAdapter = new PhotoAdapter();
@@ -383,7 +373,6 @@ public class NewEntryActivity extends AppCompatActivity {
         });
     }
 
-
     private void setupVideos() {
         recyclerVideos.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -398,7 +387,6 @@ public class NewEntryActivity extends AppCompatActivity {
             pickVideo.launch("video/*");
         });
     }
-
 
     private void setupVoice() {
         btnRecord.setOnClickListener(v -> toggleRecord());
@@ -418,7 +406,7 @@ public class NewEntryActivity extends AppCompatActivity {
             return;
         }
         File dir = new File(getFilesDir(), "entry_audio");
-        if (!dir.exists() && !dir.mkdirs()) {  // fix: handle mkdirs() result
+        if (!dir.exists() && !dir.mkdirs()) {
             Toast.makeText(this, R.string.toast_record_failed, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -467,7 +455,6 @@ public class NewEntryActivity extends AppCompatActivity {
         }
     }
 
-
     private void setupLinks() {
         linksAdapter = new LinksAdapter(links);
         recyclerLinks.setLayoutManager(new LinearLayoutManager(this));
@@ -489,13 +476,12 @@ public class NewEntryActivity extends AppCompatActivity {
         });
     }
 
-
     private void setupContextFetch() {
         findViewById(R.id.btn_fetch_context).setOnClickListener(v -> fetchContext());
     }
 
     private void fetchContext() {
-         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
                     != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(
@@ -506,7 +492,7 @@ public class NewEntryActivity extends AppCompatActivity {
                 readSteps();
             }
         } else {
-                   readSteps();
+            readSteps();
         }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -524,9 +510,7 @@ public class NewEntryActivity extends AppCompatActivity {
         new StepCountHelper(this, new StepCountHelper.StepCallback() {
             @Override
             public void onSteps(int steps) {
-                if (editingEntry == null) editingEntry = new DiaryEntry();
-                editingEntry.setStepCount(steps);
-                // fix: use string resource with placeholder instead of concatenation
+                pendingStepCount = steps;
                 tvSteps.setText(getString(R.string.label_steps_count, steps));
                 tvSteps.setVisibility(View.VISIBLE);
                 cardContext.setVisibility(View.VISIBLE);
@@ -540,7 +524,7 @@ public class NewEntryActivity extends AppCompatActivity {
     }
 
     private void fetchLocationAndWeather() {
-             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) return;
 
         com.google.android.gms.location.FusedLocationProviderClient fusedClient =
@@ -554,20 +538,15 @@ public class NewEntryActivity extends AppCompatActivity {
                 return;
             }
 
-            double lat = location.getLatitude();
-            double lng = location.getLongitude();
+            pendingLatitude  = location.getLatitude();
+            pendingLongitude = location.getLongitude();
 
-            if (editingEntry == null) editingEntry = new DiaryEntry();
-            editingEntry.setLatitude(lat);
-            editingEntry.setLongitude(lng);
-
-            // Reverse geocode on background thread
             new Thread(() -> {
                 try {
                     android.location.Geocoder geocoder =
                             new android.location.Geocoder(this, Locale.getDefault());
                     List<android.location.Address> addresses =
-                            geocoder.getFromLocation(lat, lng, 1);
+                            geocoder.getFromLocation(pendingLatitude, pendingLongitude, 1);
 
                     String city = null;
                     String neighbourhood = null;
@@ -582,8 +561,8 @@ public class NewEntryActivity extends AppCompatActivity {
                     final String finalNeigh = neighbourhood;
 
                     runOnUiThread(() -> {
-                        editingEntry.setLocationCity(finalCity);
-                        editingEntry.setLocationNeighbourhood(finalNeigh);
+                        pendingLocationCity  = finalCity;
+                        pendingLocationNeigh = finalNeigh;
 
                         String loc = (finalNeigh != null ? finalNeigh + ", " : "")
                                 + (finalCity != null ? finalCity : "");
@@ -592,22 +571,20 @@ public class NewEntryActivity extends AppCompatActivity {
                                 : loc);
                         cardContext.setVisibility(View.VISIBLE);
 
-                        // Now fetch weather with the coords we have
-                        WeatherHelper.fetch(lat, lng, new WeatherHelper.WeatherCallback() {
-                            @Override
-                            public void onWeather(String description, String iconCode) {
-                                editingEntry.setWeatherDescription(description);
-                                editingEntry.setWeatherIconCode(iconCode);
-                                tvWeather.setText(description);
-                                cardContext.setVisibility(View.VISIBLE);
-                            }
-                            @Override
-                            // fix: method is used — it was only "unused" because the interface
-                            // was never called when LocationHelper was unresolved
-                            public void onFailed(String reason) {
-                                tvWeather.setText(R.string.label_weather_unavailable);
-                            }
-                        });
+                        WeatherHelper.fetch(pendingLatitude, pendingLongitude,
+                                new WeatherHelper.WeatherCallback() {
+                                    @Override
+                                    public void onWeather(String description, String iconCode) {
+                                        pendingWeatherDesc = description;
+                                        pendingWeatherIcon = iconCode;
+                                        tvWeather.setText(description);
+                                        cardContext.setVisibility(View.VISIBLE);
+                                    }
+                                    @Override
+                                    public void onFailed(String reason) {
+                                        tvWeather.setText(R.string.label_weather_unavailable);
+                                    }
+                                });
                     });
                 } catch (Exception e) {
                     runOnUiThread(() -> {
@@ -623,7 +600,6 @@ public class NewEntryActivity extends AppCompatActivity {
         });
     }
 
-
     private void setupFontPicker() {
         btnChooseFont.setOnClickListener(v -> {
             String[] labels = FontHelper.getFontLabels();
@@ -632,7 +608,6 @@ public class NewEntryActivity extends AppCompatActivity {
                     .setTitle(R.string.dialog_entry_font)
                     .setItems(labels, (d, i) -> {
                         selectedFontFamily = keys[i];
-                        // fix: use string resource with placeholder
                         btnChooseFont.setText(getString(R.string.btn_font_chosen, labels[i]));
                         applyFontFamily(labels[i]);
                     })
@@ -640,14 +615,12 @@ public class NewEntryActivity extends AppCompatActivity {
         });
     }
 
-
     private void setupHandwriting() {
         btnHandwriting.setOnClickListener(v -> {
             Intent intent = new Intent(this, HandwritingActivity.class);
             launchHandwriting.launch(intent);
         });
     }
-
 
     private void setupEntryLock() {
         etEntryPassword.addTextChangedListener(new TextWatcher() {
@@ -658,7 +631,6 @@ public class NewEntryActivity extends AppCompatActivity {
             @Override public void afterTextChanged(Editable s) {}
         });
     }
-
 
     private void loadEntryForEditing(long id) {
         for (DiaryEntry e : db.mainDAO().getAllDiaryEntries()) {
@@ -689,6 +661,7 @@ public class NewEntryActivity extends AppCompatActivity {
 
         String coverUri = editingEntry.getCoverPhotoUri();
         if (coverUri != null) {
+            pendingCoverPhotoUri = coverUri;
             ivCoverPhoto.setImageURI(Uri.parse(coverUri));
             ivCoverPhoto.setVisibility(View.VISIBLE);
             coverEmptyState.setVisibility(View.GONE);
@@ -719,18 +692,23 @@ public class NewEntryActivity extends AppCompatActivity {
             tvLockIndicator.setText(R.string.icon_locked);
         }
 
-        if (editingEntry.getStepCount() >= 0
-                || editingEntry.getLocationCity() != null
-                || editingEntry.getWeatherDescription() != null) {
+        // Load existing context data into pending fields
+        pendingStepCount     = editingEntry.getStepCount();
+        pendingLatitude      = editingEntry.getLatitude();
+        pendingLongitude     = editingEntry.getLongitude();
+        pendingLocationCity  = editingEntry.getLocationCity();
+        pendingLocationNeigh = editingEntry.getLocationNeighbourhood();
+        pendingWeatherDesc   = editingEntry.getWeatherDescription();
+        pendingWeatherIcon   = editingEntry.getWeatherIconCode();
+
+        if (pendingStepCount >= 0 || pendingLocationCity != null || pendingWeatherDesc != null) {
             cardContext.setVisibility(View.VISIBLE);
-            if (editingEntry.getStepCount() >= 0)
-                tvSteps.setText(getString(R.string.label_steps_count, editingEntry.getStepCount()));
-            String loc = (editingEntry.getLocationNeighbourhood() != null
-                    ? editingEntry.getLocationNeighbourhood() + ", " : "")
-                    + (editingEntry.getLocationCity() != null ? editingEntry.getLocationCity() : "");
+            if (pendingStepCount >= 0)
+                tvSteps.setText(getString(R.string.label_steps_count, pendingStepCount));
+            String loc = (pendingLocationNeigh != null ? pendingLocationNeigh + ", " : "")
+                    + (pendingLocationCity != null ? pendingLocationCity : "");
             if (!loc.isEmpty()) tvLocation.setText(loc);
-            if (editingEntry.getWeatherDescription() != null)
-                tvWeather.setText(editingEntry.getWeatherDescription());
+            if (pendingWeatherDesc != null) tvWeather.setText(pendingWeatherDesc);
         }
 
         currentHandwritingPath = editingEntry.getHandwritingImagePath();
@@ -739,10 +717,6 @@ public class NewEntryActivity extends AppCompatActivity {
             ivHandwritingThumb.setVisibility(View.VISIBLE);
         }
     }
-
-    // ════════════════════════════════════════════════════════════
-    // Save
-    // ════════════════════════════════════════════════════════════
 
     private void saveEntry() {
         String title = etTitle.getText().toString().trim();
@@ -754,28 +728,52 @@ public class NewEntryActivity extends AppCompatActivity {
 
         richEditor.evaluateJavascript("RE.getHtml()", rawHtml -> {
 
-            String html = rawHtml
-                    .replaceAll("^\"|\"$", "")
-                    .replace("\\n", "\n")
-                    .replace("\\'", "'")
+            String html = rawHtml;
+            if (html == null) html = "";
+
+            if (html.startsWith("\"") && html.endsWith("\"")) {
+                html = html.substring(1, html.length() - 1);
+            }
+
+            html = html
                     .replace("\\\"", "\"")
-                    .replace("\\u003c", "<")
-                    .replace("\\u003e", ">")
+                    .replace("\\'",  "'")
+                    .replace("\\n",  "\n")
+                    .replace("\\r",  "\r")
+                    .replace("\\t",  "\t")
+                    .replace("\\\\", "\\");
+
+            html = html
+                    .replace("\\u003c", "<").replace("\\u003C", "<")
+                    .replace("\\u003e", ">").replace("\\u003E", ">")
                     .replace("\\u0026", "&")
-                    .replace("\\u003C", "<")
-                    .replace("\\u003E", ">")
-                    .replace("\\u0026", "&");
+                    .replace("\\u0022", "\"").replace("\\u0027", "'");
 
-            String plainText = Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY).toString().trim();
+            String stripped = html
+                    .replaceAll("<br\\s*/?>", " ")
+                    .replaceAll("<[^>]+>", "")
+                    .replace("&nbsp;", " ")
+                    .replace("&amp;",  "&")
+                    .replace("&lt;",   "<")
+                    .replace("&gt;",   ">")
+                    .replace("&quot;", "\"")
+                    .trim();
 
-            if (TextUtils.isEmpty(plainText)) {
+            boolean hasText  = !TextUtils.isEmpty(stripped);
+            boolean hasMedia = html.contains("<img") || html.contains("<video");
+
+            if (!hasText && !hasMedia) {
                 runOnUiThread(() ->
-                        Toast.makeText(this, R.string.error_content_empty, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, R.string.error_content_empty,
+                                Toast.LENGTH_SHORT).show()
                 );
                 return;
             }
 
-            runOnUiThread(() -> persistEntry(title, html, plainText));
+            final String plainText = stripped;
+            final String finalHtml = html;
+
+            runOnUiThread(() -> persistEntry(title, finalHtml, plainText));
         });
     }
 
@@ -789,7 +787,12 @@ public class NewEntryActivity extends AppCompatActivity {
 
         String date          = getFormattedDate();
         List<String> imgUris = photoAdapter.getPaths();
-        String coverUri      = photoAdapter.getCoverPath();
+
+
+        String coverUri = photoAdapter.getCoverPath();
+        if (coverUri == null || coverUri.isEmpty()) {
+            coverUri = pendingCoverPhotoUri;
+        }
 
         String passwordInput = etEntryPassword.getText().toString();
         String passwordHash;
@@ -817,6 +820,13 @@ public class NewEntryActivity extends AppCompatActivity {
             entry.setFontFamily(selectedFontFamily);
             entry.setEntryPasswordHash(passwordHash);
             entry.setHandwritingImagePath(currentHandwritingPath);
+            entry.setStepCount(pendingStepCount);
+            entry.setLatitude(pendingLatitude);
+            entry.setLongitude(pendingLongitude);
+            entry.setLocationCity(pendingLocationCity);
+            entry.setLocationNeighbourhood(pendingLocationNeigh);
+            entry.setWeatherDescription(pendingWeatherDesc);
+            entry.setWeatherIconCode(pendingWeatherIcon);
             db.mainDAO().insertDiary(entry);
             Toast.makeText(this, R.string.toast_entry_saved, Toast.LENGTH_SHORT).show();
         } else {
@@ -832,12 +842,18 @@ public class NewEntryActivity extends AppCompatActivity {
             editingEntry.setFontFamily(selectedFontFamily);
             editingEntry.setEntryPasswordHash(passwordHash);
             editingEntry.setHandwritingImagePath(currentHandwritingPath);
+            editingEntry.setStepCount(pendingStepCount);
+            editingEntry.setLatitude(pendingLatitude);
+            editingEntry.setLongitude(pendingLongitude);
+            editingEntry.setLocationCity(pendingLocationCity);
+            editingEntry.setLocationNeighbourhood(pendingLocationNeigh);
+            editingEntry.setWeatherDescription(pendingWeatherDesc);
+            editingEntry.setWeatherIconCode(pendingWeatherIcon);
             db.mainDAO().updateDiary(editingEntry);
             Toast.makeText(this, R.string.toast_entry_updated, Toast.LENGTH_SHORT).show();
         }
         finish();
     }
-
 
     @Override
     public void onRequestPermissionsResult(int req, @NonNull String[] perms, @NonNull int[] results) {
@@ -871,7 +887,7 @@ public class NewEntryActivity extends AppCompatActivity {
     }
 
     private String getFormattedDate() {
-        return new SimpleDateFormat("d MMMM yyyy, EEEE").format(new Date());
+        return new SimpleDateFormat("d MMMM yyyy, EEEE", Locale.getDefault()).format(new Date());
     }
 
     private void goHome() {

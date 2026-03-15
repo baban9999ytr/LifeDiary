@@ -37,22 +37,22 @@
 21-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:10:22-64
 22
 23    <permission
-23-->[androidx.core:core:1.13.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+23-->[androidx.core:core:1.13.0] E:\JDF\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
 24        android:name="com.example.gunluk.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-24-->[androidx.core:core:1.13.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+24-->[androidx.core:core:1.13.0] E:\JDF\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
 25        android:protectionLevel="signature" />
-25-->[androidx.core:core:1.13.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+25-->[androidx.core:core:1.13.0] E:\JDF\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
 26
 27    <uses-permission android:name="com.example.gunluk.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-27-->[androidx.core:core:1.13.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
-27-->[androidx.core:core:1.13.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+27-->[androidx.core:core:1.13.0] E:\JDF\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+27-->[androidx.core:core:1.13.0] E:\JDF\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
 28
 29    <application
-29-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:11:5-79:19
+29-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:11:5-78:19
 30        android:allowBackup="true"
 30-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:12:9-35
 31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-31-->[androidx.core:core:1.13.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+31-->[androidx.core:core:1.13.0] E:\JDF\caches\8.13\transforms\0a442df3b823586b7b45366d3f7198cf\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
 32        android:extractNativeLibs="false"
 33        android:icon="@drawable/ic_launcher"
 33-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:13:9-45
@@ -64,199 +64,183 @@
 36-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:16:9-35
 37        android:theme="@style/Theme.Gunluk" >
 37-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:17:9-44
-38
-39        <!-- ── LAUNCHER ─────────────────────────────────── -->
-40        <activity
-40-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:20:9-28:20
-41            android:name="com.example.gunluk.LoginActivity"
-41-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:21:13-42
-42            android:exported="true"
-42-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:22:13-36
-43            android:windowSoftInputMode="adjustResize" >
-43-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:23:13-55
-44            <intent-filter>
-44-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:24:13-27:29
-45                <action android:name="android.intent.action.MAIN" />
-45-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:25:17-69
-45-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:25:25-66
-46
-47                <category android:name="android.intent.category.LAUNCHER" />
-47-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:26:17-77
-47-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:26:27-74
-48            </intent-filter>
-49        </activity>
-50
-51        <!-- ── KAYIT OL ──────────────────────────────────── -->
-52        <activity
-52-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:31:9-35:59
-53            android:name="com.example.gunluk.RegisterActivity"
-53-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:32:13-45
-54            android:exported="false"
-54-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:33:13-37
-55            android:parentActivityName="com.example.gunluk.LoginActivity"
-55-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:35:13-56
-56            android:windowSoftInputMode="adjustResize" />
-56-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:34:13-55
-57
-58        <!-- ── ANA SAYFA ──────────────────────────────────── -->
-59        <activity
-59-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:38:9-40:40
-60            android:name="com.example.gunluk.MainActivity"
-60-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:39:13-41
-61            android:exported="false" />
-61-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:40:13-37
-62
-63        <!-- ── YENİ GÜNLÜK ───────────────────────────────── -->
-64        <activity
-64-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:43:9-47:63
-65            android:name="com.example.gunluk.NewEntryActivity"
-65-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:44:13-45
-66            android:exported="false"
-66-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:45:13-37
-67            android:parentActivityName="com.example.gunluk.EntryListActivity"
-67-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:47:13-60
-68            android:windowSoftInputMode="adjustResize" />
-68-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:46:13-55
-69
-70        <!-- ── GÜNLÜK LİSTESİ ─────────────────────────────── -->
-71        <activity
-71-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:50:9-53:58
-72            android:name="com.example.gunluk.EntryListActivity"
-72-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:51:13-46
-73            android:exported="false"
-73-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:52:13-37
-74            android:parentActivityName="com.example.gunluk.MainActivity" />
-74-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:53:13-55
-75
-76        <!-- ── GÜNLÜK DETAY ───────────────────────────────── -->
+38        <activity
+38-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:20:9-28:20
+39            android:name="com.example.gunluk.LoginActivity"
+39-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:21:13-42
+40            android:exported="true"
+40-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:22:13-36
+41            android:windowSoftInputMode="adjustResize" >
+41-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:23:13-55
+42            <intent-filter>
+42-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:24:13-27:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:25:17-69
+43-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:25:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:26:17-77
+45-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:26:27-74
+46            </intent-filter>
+47        </activity>
+48        <activity
+48-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:31:9-35:59
+49            android:name="com.example.gunluk.RegisterActivity"
+49-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:32:13-45
+50            android:exported="false"
+50-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:33:13-37
+51            android:parentActivityName="com.example.gunluk.LoginActivity"
+51-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:35:13-56
+52            android:windowSoftInputMode="adjustResize" />
+52-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:34:13-55
+53        <activity
+53-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:38:9-40:40
+54            android:name="com.example.gunluk.MainActivity"
+54-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:39:13-41
+55            android:exported="false" />
+55-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:40:13-37
+56        <activity
+56-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:43:9-47:63
+57            android:name="com.example.gunluk.NewEntryActivity"
+57-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:44:13-45
+58            android:exported="false"
+58-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:45:13-37
+59            android:parentActivityName="com.example.gunluk.EntryListActivity"
+59-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:47:13-60
+60            android:windowSoftInputMode="adjustResize" />
+60-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:46:13-55
+61        <activity
+61-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:49:9-52:58
+62            android:name="com.example.gunluk.EntryListActivity"
+62-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:50:13-46
+63            android:exported="false"
+63-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:51:13-37
+64            android:parentActivityName="com.example.gunluk.MainActivity" />
+64-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:52:13-55
+65        <activity
+65-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:55:9-58:63
+66            android:name="com.example.gunluk.EntryDetailActivity"
+66-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:56:13-48
+67            android:exported="false"
+67-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:57:13-37
+68            android:parentActivityName="com.example.gunluk.EntryListActivity" />
+68-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:58:13-60
+69        <activity
+69-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:61:9-64:58
+70            android:name="com.example.gunluk.ProfileActivity"
+70-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:62:13-44
+71            android:exported="false"
+71-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:63:13-37
+72            android:parentActivityName="com.example.gunluk.MainActivity" />
+72-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:64:13-55
+73        <activity
+73-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:67:9-70:58
+74            android:name="com.example.gunluk.AboutActivity"
+74-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:68:13-42
+75            android:exported="false"
+75-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:69:13-37
+76            android:parentActivityName="com.example.gunluk.MainActivity" />
+76-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:70:13-55
 77        <activity
-77-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:56:9-59:63
-78            android:name="com.example.gunluk.EntryDetailActivity"
-78-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:57:13-48
+77-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:72:9-76:63
+78            android:name="com.example.gunluk.HandwritingActivity"
+78-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:73:13-48
 79            android:exported="false"
-79-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:58:13-37
-80            android:parentActivityName="com.example.gunluk.EntryListActivity" />
-80-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:59:13-60
-81
-82        <!-- ── PROFİL ──────────────────────────────────────── -->
-83        <activity
-83-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:62:9-65:58
-84            android:name="com.example.gunluk.ProfileActivity"
-84-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:63:13-44
-85            android:exported="false"
-85-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:64:13-37
-86            android:parentActivityName="com.example.gunluk.MainActivity" />
-86-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:65:13-55
-87
-88        <!-- ── HAKKINDA ────────────────────────────────────── -->
-89        <activity
-89-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:68:9-71:58
-90            android:name="com.example.gunluk.AboutActivity"
-90-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:69:13-42
-91            android:exported="false"
-91-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:70:13-37
-92            android:parentActivityName="com.example.gunluk.MainActivity" />
-92-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:71:13-55
-93        <activity
-93-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:73:9-77:63
-94            android:name="com.example.gunluk.HandwritingActivity"
-94-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:74:13-48
-95            android:exported="false"
-95-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:75:13-37
-96            android:theme="@style/Theme.Gunluk"
-96-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:76:13-48
-97            android:windowSoftInputMode="stateAlwaysHidden" />
-97-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:77:13-60
-98        <activity
-98-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\361230e580eaaab1637ad190e8d221d2\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:20:9-22:45
-99            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-99-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\361230e580eaaab1637ad190e8d221d2\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:20:19-85
-100            android:exported="false"
-100-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\361230e580eaaab1637ad190e8d221d2\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:22:19-43
-101            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-101-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\361230e580eaaab1637ad190e8d221d2\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:21:19-78
-102
-103        <meta-data
-103-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\fd9a3b44864de303ed9ba8eb746cd807\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
-104            android:name="com.google.android.gms.version"
-104-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\fd9a3b44864de303ed9ba8eb746cd807\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:22:13-58
-105            android:value="@integer/google_play_services_version" />
-105-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\fd9a3b44864de303ed9ba8eb746cd807\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
-106
-107        <service
-107-->[androidx.room:room-runtime:2.6.1] C:\Users\kagan\.gradle\caches\8.13\transforms\fb16c9c2735d47120834c0f771e9c004\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
-108            android:name="androidx.room.MultiInstanceInvalidationService"
-108-->[androidx.room:room-runtime:2.6.1] C:\Users\kagan\.gradle\caches\8.13\transforms\fb16c9c2735d47120834c0f771e9c004\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
-109            android:directBootAware="true"
-109-->[androidx.room:room-runtime:2.6.1] C:\Users\kagan\.gradle\caches\8.13\transforms\fb16c9c2735d47120834c0f771e9c004\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
-110            android:exported="false" />
-110-->[androidx.room:room-runtime:2.6.1] C:\Users\kagan\.gradle\caches\8.13\transforms\fb16c9c2735d47120834c0f771e9c004\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
-111
-112        <provider
-112-->[androidx.emoji2:emoji2:1.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-113            android:name="androidx.startup.InitializationProvider"
-113-->[androidx.emoji2:emoji2:1.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:25:13-67
-114            android:authorities="com.example.gunluk.androidx-startup"
-114-->[androidx.emoji2:emoji2:1.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:26:13-68
-115            android:exported="false" >
-115-->[androidx.emoji2:emoji2:1.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:27:13-37
-116            <meta-data
-116-->[androidx.emoji2:emoji2:1.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-117                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-117-->[androidx.emoji2:emoji2:1.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:30:17-75
-118                android:value="androidx.startup" />
-118-->[androidx.emoji2:emoji2:1.3.0] C:\Users\kagan\.gradle\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:31:17-49
-119            <meta-data
-119-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\kagan\.gradle\caches\8.13\transforms\7f422d072582d65d4bebf07b8951c54d\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
-120                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-120-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\kagan\.gradle\caches\8.13\transforms\7f422d072582d65d4bebf07b8951c54d\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
-121                android:value="androidx.startup" />
-121-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\kagan\.gradle\caches\8.13\transforms\7f422d072582d65d4bebf07b8951c54d\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
-122            <meta-data
-122-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
-123                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-123-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
-124                android:value="androidx.startup" />
-124-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
-125        </provider>
-126
-127        <receiver
-127-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
-128            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-128-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
-129            android:directBootAware="false"
-129-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
-130            android:enabled="true"
-130-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
-131            android:exported="true"
-131-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
-132            android:permission="android.permission.DUMP" >
-132-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
-133            <intent-filter>
-133-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
-134                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-134-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-134-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
-135            </intent-filter>
-136            <intent-filter>
-136-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
-137                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-137-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-137-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
-138            </intent-filter>
-139            <intent-filter>
-139-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
-140                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-140-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-140-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
-141            </intent-filter>
-142            <intent-filter>
-142-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
-143                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-143-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-143-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\kagan\.gradle\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
-144            </intent-filter>
-145        </receiver>
-146    </application>
-147
-148</manifest>
+79-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:74:13-37
+80            android:theme="@style/Theme.Gunluk"
+80-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:75:13-48
+81            android:windowSoftInputMode="stateAlwaysHidden" />
+81-->E:\Gunluk_Project\Gunluk\app\src\main\AndroidManifest.xml:76:13-60
+82        <activity
+82-->[com.google.android.gms:play-services-base:18.3.0] E:\JDF\caches\8.13\transforms\361230e580eaaab1637ad190e8d221d2\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:20:9-22:45
+83            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+83-->[com.google.android.gms:play-services-base:18.3.0] E:\JDF\caches\8.13\transforms\361230e580eaaab1637ad190e8d221d2\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:20:19-85
+84            android:exported="false"
+84-->[com.google.android.gms:play-services-base:18.3.0] E:\JDF\caches\8.13\transforms\361230e580eaaab1637ad190e8d221d2\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:22:19-43
+85            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+85-->[com.google.android.gms:play-services-base:18.3.0] E:\JDF\caches\8.13\transforms\361230e580eaaab1637ad190e8d221d2\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:21:19-78
+86
+87        <meta-data
+87-->[com.google.android.gms:play-services-basement:18.3.0] E:\JDF\caches\8.13\transforms\fd9a3b44864de303ed9ba8eb746cd807\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
+88            android:name="com.google.android.gms.version"
+88-->[com.google.android.gms:play-services-basement:18.3.0] E:\JDF\caches\8.13\transforms\fd9a3b44864de303ed9ba8eb746cd807\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:22:13-58
+89            android:value="@integer/google_play_services_version" />
+89-->[com.google.android.gms:play-services-basement:18.3.0] E:\JDF\caches\8.13\transforms\fd9a3b44864de303ed9ba8eb746cd807\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
+90
+91        <service
+91-->[androidx.room:room-runtime:2.6.1] E:\JDF\caches\8.13\transforms\fb16c9c2735d47120834c0f771e9c004\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+92            android:name="androidx.room.MultiInstanceInvalidationService"
+92-->[androidx.room:room-runtime:2.6.1] E:\JDF\caches\8.13\transforms\fb16c9c2735d47120834c0f771e9c004\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+93            android:directBootAware="true"
+93-->[androidx.room:room-runtime:2.6.1] E:\JDF\caches\8.13\transforms\fb16c9c2735d47120834c0f771e9c004\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+94            android:exported="false" />
+94-->[androidx.room:room-runtime:2.6.1] E:\JDF\caches\8.13\transforms\fb16c9c2735d47120834c0f771e9c004\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+95
+96        <provider
+96-->[androidx.emoji2:emoji2:1.3.0] E:\JDF\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+97            android:name="androidx.startup.InitializationProvider"
+97-->[androidx.emoji2:emoji2:1.3.0] E:\JDF\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:25:13-67
+98            android:authorities="com.example.gunluk.androidx-startup"
+98-->[androidx.emoji2:emoji2:1.3.0] E:\JDF\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:26:13-68
+99            android:exported="false" >
+99-->[androidx.emoji2:emoji2:1.3.0] E:\JDF\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:27:13-37
+100            <meta-data
+100-->[androidx.emoji2:emoji2:1.3.0] E:\JDF\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+101                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+101-->[androidx.emoji2:emoji2:1.3.0] E:\JDF\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:30:17-75
+102                android:value="androidx.startup" />
+102-->[androidx.emoji2:emoji2:1.3.0] E:\JDF\caches\8.13\transforms\0cbe343614403bb23b063726add83b65\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:31:17-49
+103            <meta-data
+103-->[androidx.lifecycle:lifecycle-process:2.6.2] E:\JDF\caches\8.13\transforms\7f422d072582d65d4bebf07b8951c54d\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+104                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+104-->[androidx.lifecycle:lifecycle-process:2.6.2] E:\JDF\caches\8.13\transforms\7f422d072582d65d4bebf07b8951c54d\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+105                android:value="androidx.startup" />
+105-->[androidx.lifecycle:lifecycle-process:2.6.2] E:\JDF\caches\8.13\transforms\7f422d072582d65d4bebf07b8951c54d\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+106            <meta-data
+106-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+107                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+107-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+108                android:value="androidx.startup" />
+108-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+109        </provider>
+110
+111        <receiver
+111-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+112            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+112-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+113            android:directBootAware="false"
+113-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+114            android:enabled="true"
+114-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+115            android:exported="true"
+115-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+116            android:permission="android.permission.DUMP" >
+116-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+117            <intent-filter>
+117-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+118                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+118-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+118-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+119            </intent-filter>
+120            <intent-filter>
+120-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+121                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+121-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+121-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+122            </intent-filter>
+123            <intent-filter>
+123-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+124                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+124-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+124-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+125            </intent-filter>
+126            <intent-filter>
+126-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+127                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+127-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+127-->[androidx.profileinstaller:profileinstaller:1.4.0] E:\JDF\caches\8.13\transforms\cf640ddd6686081319112a8f57a52f07\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+128            </intent-filter>
+129        </receiver>
+130    </application>
+131
+132</manifest>

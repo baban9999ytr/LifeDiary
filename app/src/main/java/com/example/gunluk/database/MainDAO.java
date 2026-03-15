@@ -40,7 +40,6 @@ public interface MainDAO {
     void updateDiary(DiaryEntry diaryEntry);
 
 
-
     @Insert(onConflict = REPLACE)
     void insertUser(Users users);
 

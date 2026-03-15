@@ -37,8 +37,6 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.Gunluk" >
-
-        <!-- ── LAUNCHER ─────────────────────────────────── -->
         <activity
             android:name="com.example.gunluk.LoginActivity"
             android:exported="true"
@@ -49,45 +47,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- ── KAYIT OL ──────────────────────────────────── -->
         <activity
             android:name="com.example.gunluk.RegisterActivity"
             android:exported="false"
             android:parentActivityName="com.example.gunluk.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
-
-        <!-- ── ANA SAYFA ──────────────────────────────────── -->
         <activity
             android:name="com.example.gunluk.MainActivity"
             android:exported="false" />
-
-        <!-- ── YENİ GÜNLÜK ───────────────────────────────── -->
         <activity
             android:name="com.example.gunluk.NewEntryActivity"
             android:exported="false"
             android:parentActivityName="com.example.gunluk.EntryListActivity"
             android:windowSoftInputMode="adjustResize" />
-
-        <!-- ── GÜNLÜK LİSTESİ ─────────────────────────────── -->
         <activity
             android:name="com.example.gunluk.EntryListActivity"
             android:exported="false"
             android:parentActivityName="com.example.gunluk.MainActivity" />
-
-        <!-- ── GÜNLÜK DETAY ───────────────────────────────── -->
         <activity
             android:name="com.example.gunluk.EntryDetailActivity"
             android:exported="false"
             android:parentActivityName="com.example.gunluk.EntryListActivity" />
-
-        <!-- ── PROFİL ──────────────────────────────────────── -->
         <activity
             android:name="com.example.gunluk.ProfileActivity"
             android:exported="false"
             android:parentActivityName="com.example.gunluk.MainActivity" />
-
-        <!-- ── HAKKINDA ────────────────────────────────────── -->
         <activity
             android:name="com.example.gunluk.AboutActivity"
             android:exported="false"

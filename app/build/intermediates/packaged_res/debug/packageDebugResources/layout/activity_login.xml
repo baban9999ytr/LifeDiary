@@ -8,7 +8,7 @@
     android:background="@color/cream_bg"
     android:fitsSystemWindows="true">
 
-    <!-- Decorative top band -->
+
     <View
         android:id="@+id/top_band"
         android:layout_width="0dp"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Scroll container for keyboard compatibility -->
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -36,7 +36,7 @@
             android:paddingHorizontal="36dp"
             android:paddingBottom="40dp">
 
-            <!-- Decorative quill icon area -->
+
             <ImageView
                 android:id="@+id/iv_logo"
                 android:layout_width="72dp"
@@ -49,7 +49,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- App Title -->
+
             <TextView
                 android:id="@+id/tv_app_title"
                 android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_logo" />
 
-            <!-- Subtitle -->
+
             <TextView
                 android:id="@+id/tv_subtitle"
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_app_title" />
 
-            <!-- Divider ornament -->
+
             <View
                 android:id="@+id/ornament_line_left"
                 android:layout_width="60dp"
@@ -115,7 +115,7 @@
                 app:layout_constraintStart_toEndOf="@id/ornament_dot"
                 app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
 
-            <!-- Username card -->
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_username"
                 android:layout_width="0dp"
@@ -170,7 +170,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Login Button -->
+
             <Button
                 android:id="@+id/btn_login"
                 style="@style/Gunluk.Button.Primary"
@@ -183,7 +183,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_username" />
 
-            <!-- Bottom note -->
+
             <TextView
                 android:id="@+id/tv_bottom_note"
                 android:layout_width="wrap_content"
@@ -198,7 +198,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
-            <!-- Register link -->
+
             <LinearLayout
                 android:id="@+id/layout_register_link"
                 android:layout_width="wrap_content"

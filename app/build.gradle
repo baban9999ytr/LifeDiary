@@ -3,12 +3,14 @@ plugins {
 }
 
 android {
-    compileSdk 34
+
+    compileSdk = 34
     namespace 'com.example.gunluk'
+
     defaultConfig {
         applicationId "com.example.gunluk"
         minSdk 24
-        targetSdk 34
+        targetSdk = 34
         versionCode 1
         versionName "1.0"
     }
@@ -24,12 +26,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'org.mindrot:jbcrypt:0.4'
     implementation 'com.google.code.gson:gson:2.10.1'
@@ -40,9 +39,9 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'jp.wasabeef:richeditor-android:2.0.0'
-    // Room database
+
+
     def room_version = "2.6.1"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 }
-
