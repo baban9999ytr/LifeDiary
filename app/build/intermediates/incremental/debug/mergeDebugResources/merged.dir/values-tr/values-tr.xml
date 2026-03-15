@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d yeni bildirim</item>
+    <item quantity="other">%d yeni bildirim</item>
+  </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Eve gidiş yolunu göster"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Yukarı git"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Diğer seçenekler"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"Bitti"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Tümünü göster"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Bir uygulama seçin"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"KAPAT"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"AÇ"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"sil"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Üst Karakter+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"boşluk"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menü+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Ara…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Sorguyu temizle"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Arama sorgusu"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Ara"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Sorguyu gönder"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Sesli arama"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Şununla paylaş:"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"<ns1:g id="APPLICATION_NAME">%s</ns1:g> ile paylaş"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Daralt"</string>
+    <string name="about_app_1">Uygulama Hakkında</string>
+    <string name="about_app_name">Günlük — Dijital Defteriniz</string>
+    <string name="about_description">Günlük, günlük deneyimlerinizi, düşüncelerinizi ve anılarınızı kolayca kaydetmenizi sağlayan kişisel bir not uygulamasıdır.\n\nHer gün yaşadıklarınızı yazıya dökmek, kendinizi daha iyi tanımanıza ve geçmişe bakmanıza olanak tanır.\n\nHikâyeniz sizin elinizde.</string>
+    <string name="about_developer">Geliştirici: Mustafa Göksal</string>
+    <string name="about_ornament_stars">✦ ✦ ✦</string>
+    <string name="about_title">Hakkında</string>
+    <string name="about_version">Versiyon 1.0</string>
+    <string name="app_name">Günlük</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="bottomsheet_action_collapse">Alt sayfayı daralt</string>
+    <string name="bottomsheet_action_expand">Alt sayfayı genişlet</string>
+    <string name="bottomsheet_action_expand_halfway">Yarım genişlet</string>
+    <string name="bottomsheet_drag_handle_clicked">Sürükleme tutamacına iki kez dokunuldu</string>
+    <string name="bottomsheet_drag_handle_content_description">Sürükleme tutamacı</string>
+    <string name="btn_about">Hakkında</string>
+    <string name="btn_add_photos">Fotoğraf Ekle</string>
+    <string name="btn_delete">Sil</string>
+    <string name="btn_edit">Düzenle</string>
+    <string name="btn_font_chosen">Font: %1$s</string>
+    <string name="btn_home">Ana Sayfa</string>
+    <string name="btn_less_details">－  Less details</string>
+    <string name="btn_logout">Çıkış Yap</string>
+    <string name="btn_more_details">＋  More details</string>
+    <string name="btn_new_entry">Yeni Yazı</string>
+    <string name="btn_play">Dinle</string>
+    <string name="btn_profile">Profil</string>
+    <string name="btn_record">Kaydet</string>
+    <string name="btn_save">Kaydet</string>
+    <string name="btn_stop_play">Durdur</string>
+    <string name="btn_stop_record">Durdur</string>
+    <string name="btn_view_entries">Yazıları Gör</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Yanıtla"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Video"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Reddet"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Kapat"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Gelen arama"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Devam eden arama"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Gelen arama süzülüyor"</string>
+    <string name="character_counter_content_description">Girilen karakter: %1$d / %2$d</string>
+    <string name="character_counter_overflowed_content_description">Karakter sınırı aşıldı %1$d / %2$d</string>
+    <string name="clear_text_end_icon_content_description">Metni temizle</string>
+    <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Etkinleştir</string>
+    <string msgid="227660514972886228" name="common_google_play_services_enable_text">Google Play hizmetlerini etkinleştirmezseniz %1$s çalışmaz.</string>
+    <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Google Play hizmetlerini etkinleştirin</string>
+    <string msgid="7153882981874058840" name="common_google_play_services_install_button">Yükle</string>
+    <string name="common_google_play_services_install_text">%1$s, şu anda cihazınızda bulunmayan Google Play hizmetleri olmadan çalışmaz.</string>
+    <string msgid="7215213145546190223" name="common_google_play_services_install_title">Google Play hizmetlerini edinin</string>
+    <string name="common_google_play_services_notification_channel_name">Google Play hizmetlerinin kullanılabilirliği</string>
+    <string name="common_google_play_services_notification_ticker">Google Play Hizmetleri hatası</string>
+    <string name="common_google_play_services_unknown_issue">%1$s, Google Play hizmetleriyle ilgili sorun yaşıyor. Lütfen tekrar deneyin.</string>
+    <string name="common_google_play_services_unsupported_text">%1$s, Google Play hizmetleri olmadan çalışmaz ve bu hizmetler cihazınız tarafından desteklenmiyor.</string>
+    <string msgid="6556509956452265614" name="common_google_play_services_update_button">Güncelle</string>
+    <string msgid="9053896323427875356" name="common_google_play_services_update_text">Google Play hizmetlerini güncellemezseniz %1$s çalışmayacak.</string>
+    <string msgid="6006316683626838685" name="common_google_play_services_update_title">Google Play hizmetlerini güncelleyin</string>
+    <string name="common_google_play_services_updating_text">%1$s, şu anda güncellenmekte olan Google Play hizmetleri olmadan çalışmaz.</string>
+    <string name="common_google_play_services_wear_update_text">Google Play hizmetlerinin yeni sürümü gerekiyor. Kendisini kısa süre içinde güncelleyecektir.</string>
+    <string name="common_open_on_phone">Telefonda aç</string>
+    <string name="common_signin_button_text">Oturum aç</string>
+    <string name="common_signin_button_text_long">Google\'da oturum aç</string>
+    <string name="cover_photo">Kapak fotoğrafı</string>
+    <string name="delete_confirm_cancel">İptal</string>
+    <string name="delete_confirm_message">\"%1$s\" başlıklı günlük kalıcı olarak silinecek. Emin misiniz?</string>
+    <string name="delete_confirm_title">Günlüğü Sil</string>
+    <string name="delete_confirm_yes">Evet, Sil</string>
+    <string name="desc_about">Hakkında</string>
+    <string name="desc_add_new_entry">Yeni Günlük Ekle</string>
+    <string name="desc_back">Geri</string>
+    <string name="desc_calendar_icon">Tarih</string>
+    <string name="desc_detail">Detay</string>
+    <string name="desc_empty">Boş</string>
+    <string name="desc_entries">Günlükler</string>
+    <string name="desc_logo">Logo</string>
+    <string name="desc_next">İleri</string>
+    <string name="desc_profile">Profil</string>
+    <string name="desc_toggle_password">Şifreyi Göster</string>
+    <string name="detail_title">Günlük Detayı</string>
+    <string name="developer_1">Geliştirici</string>
+    <string name="dialog_entry_font">Entry Font</string>
+    <string name="dialog_font">Font</string>
+    <string name="dialog_highlight">Highlight</string>
+    <string name="dialog_size">Size</string>
+    <string name="dialog_text_color">Text Color</string>
+    <string name="edit_entry_title">Günlüğü Düzenle</string>
+    <string name="entry_count">%d günlük</string>
+    <string name="entry_count_zero">0 günlük</string>
+    <string name="entry_deleted">Günlük silindi.</string>
+    <string name="entry_list_empty">Henüz hiç günlük yok.\nİlk günlüğünü ekle!</string>
+    <string name="entry_list_title">Günlüklerim</string>
+    <string name="entry_not_found">Günlük bulunamadı.</string>
+    <string name="entry_title_title">Günlük Başlığı</string>
+    <string name="error_a11y_label">Hata: geçersiz</string>
+    <string name="error_content_empty">İçerik boş olamaz.</string>
+    <string name="error_icon_content_description">Hata</string>
+    <string name="error_title_empty">Başlık boş olamaz.</string>
+    <string name="exposed_dropdown_menu_content_description">Açılır menüyü göster</string>
+    <string name="hint_content_main">Bugün ne hissediyorsun? Neler yaşandı?</string>
+    <string name="hint_content_preview">İçerik önizlemesi…</string>
+    <string name="hint_email">ornek@eposta.com</string>
+    <string name="hint_empty_content">Günlük içeriği burada görüntülenecek…</string>
+    <string name="hint_password">Şifre oluşturun…</string>
+    <string name="hint_password_confirm">Şifreyi tekrar girin…</string>
+    <string name="hint_title">Başlık…</string>
+    <string name="history">History</string>
+    <string name="icon_content_description">İletişim kutusu simgesi</string>
+    <string name="icon_locked">🔒</string>
+    <string name="icon_unlocked">🔓</string>
+    <string name="item_view_role_description">Sekme</string>
+    <string name="label_content">İçerik</string>
+    <string name="label_email">E-POSTA (opsiyonel)</string>
+    <string name="label_location_found">Location found</string>
+    <string name="label_location_unavailable">Location unavailable</string>
+    <string name="label_password">ŞİFRE (opsiyonel)</string>
+    <string name="label_password_confirm">ŞİFRE TEKRAR</string>
+    <string name="label_photos">Fotoğraflar</string>
+    <string name="label_steps_count">%1$d steps today</string>
+    <string name="label_steps_unavailable">Steps unavailable</string>
+    <string name="label_title">Başlık</string>
+    <string name="label_voice">Ses kaydı</string>
+    <string name="label_weather_unavailable">Weather unavailable</string>
+    <string name="login_already_have_account">Zaten hesabın var mı? </string>
+    <string name="login_bottom_note">Kendi hikâyenin yazarı sensin.</string>
+    <string name="login_button">Giriş Yap</string>
+    <string name="login_error_empty_username">Lütfen kullanıcı adınızı girin.</string>
+    <string name="login_error_user_not_found">Bu kullanıcı adı kayıtlı değil. Lütfen kayıt olun.</string>
+    <string name="login_no_account">Hesabın yok mu? </string>
+    <string name="login_register_link">Kayıt Ol</string>
+    <string name="login_subtitle">Kendi hikâyeni yaz.</string>
+    <string name="login_title">Günlük</string>
+    <string name="login_username_hint">Adınız nedir?</string>
+    <string name="login_username_label">KULLANICI ADI</string>
+    <string name="logout_confirm_message">Oturumunuzu kapatmak istediğinize emin misiniz?</string>
+    <string name="logout_confirm_no">Hayır</string>
+    <string name="logout_confirm_title">Çıkış Yap</string>
+    <string name="logout_confirm_yes">Evet</string>
+    <string name="main_all_entries">Tüm Yazılar</string>
+    <string name="main_date_today">Bugün</string>
+    <string name="main_date_today_placeholder">Bugün, %1$s</string>
+    <string name="main_divider_star">✦</string>
+    <string name="main_footer_quote">Bir günlük, zamanı donduran aynalardır.</string>
+    <string name="main_new_entry_subtitle">Bugünü kaleme al</string>
+    <string name="main_subtitle">Bugün neler yaşadın?</string>
+    <string name="main_username_placeholder">Kullanıcı</string>
+    <string name="main_view_entries_subtitle">Geçmiş yazılarına bak</string>
+    <string name="main_welcome">Hoş geldin,</string>
+    <string name="material_clock_toggle_content_description">ÖÖ veya ÖS\'yi seçin</string>
+    <string name="material_hour_24h_suffix">%1$s saat</string>
+    <string name="material_hour_selection">Saat seçin</string>
+    <string name="material_hour_suffix">Saat %1$s</string>
+    <string name="material_minute_selection">Dakikayı seçin</string>
+    <string name="material_minute_suffix">%1$s dakika</string>
+    <string name="material_timepicker_am">AM</string>
+    <string name="material_timepicker_clock_mode_description">Zaman girişi için saat moduna geçin.</string>
+    <string name="material_timepicker_hour">Saat</string>
+    <string name="material_timepicker_minute">Dakika</string>
+    <string name="material_timepicker_pm">PM</string>
+    <string name="material_timepicker_select_time">Zamanı seçin</string>
+    <string name="material_timepicker_text_input_mode_description">Zaman girişi için metin girişi moduna geçin.</string>
+    <string name="mtrl_badge_numberless_content_description">Yeni bildirim</string>
+    <string name="mtrl_checkbox_state_description_checked">İşaretlendi</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">Kısmi olarak işaretlendi</string>
+    <string name="mtrl_checkbox_state_description_unchecked">İşaretlenmedi</string>
+    <string name="mtrl_chip_close_icon_content_description">%1$s içeriğini kaldır</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">%1$d adetten fazla yeni bildirim</string>
+    <string name="mtrl_picker_a11y_next_month">Sonraki aya değiştir</string>
+    <string name="mtrl_picker_a11y_prev_month">Önceki aya değiştir</string>
+    <string name="mtrl_picker_announce_current_range_selection">Başlangıç tarihi seçimi: %1$s – Bitiş tarihi seçimi: %2$s</string>
+    <string name="mtrl_picker_announce_current_selection">Geçerli seçim: %1$s</string>
+    <string name="mtrl_picker_announce_current_selection_none">yok</string>
+    <string name="mtrl_picker_cancel">İptal</string>
+    <string name="mtrl_picker_confirm">Tamam</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">Tarih Seçin</string>
+    <string name="mtrl_picker_date_header_unselected">Seçilen tarih</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
+    <string name="mtrl_picker_end_date_description">Bitiş tarihi: %1$s</string>
+    <string name="mtrl_picker_invalid_format">Geçersiz biçim.</string>
+    <string name="mtrl_picker_invalid_format_example">Örnek: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">Tarih biçimi: %1$s</string>
+    <string name="mtrl_picker_invalid_range">Geçersiz aralık.</string>
+    <string name="mtrl_picker_navigate_to_current_year_description">Geçerli yıla (%1$d) git</string>
+    <string name="mtrl_picker_navigate_to_year_description">%1$d yılına git</string>
+    <string name="mtrl_picker_out_of_range">İzin verilen aralığın dışında: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">Başlangıç tarihi – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – Bitiş tarihi</string>
+    <string name="mtrl_picker_range_header_selected">%1$s-%2$s</string>
+    <string name="mtrl_picker_range_header_title">Aralık Seçin</string>
+    <string name="mtrl_picker_range_header_unselected">Başlangıç tarihi - Bitiş tarihi</string>
+    <string name="mtrl_picker_save">Kaydet</string>
+    <string name="mtrl_picker_start_date_description">Başlangıç tarihi: %1$s</string>
+    <string name="mtrl_picker_text_input_date_hint">Tarih</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">Bitiş tarihi</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">Başlangıç tarihi</string>
+    <string name="mtrl_picker_text_input_day_abbr">g</string>
+    <string name="mtrl_picker_text_input_month_abbr">a</string>
+    <string name="mtrl_picker_text_input_year_abbr">y</string>
+    <string name="mtrl_picker_today_description">Bugün, %1$s</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">Takvim giriş moduna geç</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Takvim görünümüne geçmek için dokunun</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">Metin giriş moduna geç</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Yıl görünümüne geçmek için dokunun</string>
+    <string name="mtrl_timepicker_cancel">İptal</string>
+    <string name="mtrl_timepicker_confirm">Tamam</string>
+    <string name="new_entry_title">Yeni Günlük</string>
+    <string name="password_toggle_content_description">Şifreyi göster</string>
+    <string name="photo_cover_desc">Fotoğraf</string>
+    <string name="profile_entry_count_label">Toplam Günlük</string>
+    <string name="profile_member_since">Üyelik Tarihi</string>
+    <string name="profile_tagline">Hikâyemi yazan ben.</string>
+    <string name="profile_title">Profil</string>
+    <string name="quote_start">\u201C</string>
+    <string name="register_already_have_account">Zaten hesabın varmı? </string>
+    <string name="register_button">Hesabı Oluştur</string>
+    <string name="register_error_email_invalid">Geçerli bir e-posta adresi girin.</string>
+    <string name="register_error_password_mismatch">Şifreler eşleşmiyor.</string>
+    <string name="register_error_password_short">Şifre en az 4 karakter olmalıdır.</string>
+    <string name="register_error_username_empty">Kullanıcı adı boş bırakılamaz.</string>
+    <string name="register_error_username_no_spaces">Kullanıcı adı boşluk içeremez.</string>
+    <string name="register_error_username_short">Kullanıcı adı en az 3 karakter olmalıdır.</string>
+    <string name="register_error_username_taken">Bu kullanıcı adı zaten alınmış. Başka bir ad deneyin.</string>
+    <string name="register_hint_username">Kullanıcı adınızı seçin…</string>
+    <string name="register_subtitle">Günlüğüne adını yaz.</string>
+    <string name="register_title">Hesap Oluştur</string>
+    <string name="sample_avatar_initial">A</string>
+    <string name="sample_count_zero">0</string>
+    <string name="sample_day_number">01</string>
+    <string name="sample_full_date">1 Ocak 2025, Çarşamba</string>
+    <string name="sample_month_short">OCA</string>
+    <string name="sample_year">2025</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Ara"</string>
+    <string name="searchview_clear_text_content_description">Metni temizle</string>
+    <string name="searchview_navigation_content_description">Geri</string>
+    <string name="set_as_cover">Kapak Yap</string>
+    <string name="side_sheet_accessibility_pane_title">Yan Sayfa</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="those_were_days">Her yazı, bir iz bırakır.</string>
+    <string name="toast_entry_saved">Günlük kaydedildi.</string>
+    <string name="toast_entry_updated">Günlük güncellendi.</string>
+    <string name="toast_max_links">Max 100 links</string>
+    <string name="toast_max_photos">En fazla %d fotoğraf ekleyebilirsiniz.</string>
+    <string name="toast_max_videos">Max %1$d videos</string>
+    <string name="toast_no_audio">Ses kaydı yok.</string>
+    <string name="toast_photo_copy_failed">Fotoğraflar kopyalanamadı.</string>
+    <string name="toast_play_failed">Ses oynatılamadı.</string>
+    <string name="toast_record_failed">Ses kaydı başlatılamadı.</string>
+    <string name="toast_register_success">Hesabın oluşturuldu! Şimdi giriş yapabilirsin.</string>
+    <string name="toast_video_added">Video added (%1$d/%2$d)</string>
+    <string name="toast_welcome">Hoş geldin, %1$s!</string>
+</resources>

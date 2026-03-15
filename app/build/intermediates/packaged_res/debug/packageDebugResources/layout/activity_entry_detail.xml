@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream_bg"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="4dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Gunluk.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/detail_title"
+            app:navigationIcon="@android:drawable/ic_media_previous" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="40dp">
+
+            <!-- ── Cover photo ─────────────────────────────── -->
+            <ImageView
+                android:id="@+id/iv_detail_cover"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                android:contentDescription="@string/desc_cover_photo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingTop="24dp">
+
+                <!-- ── Date tag ────────────────────────────── -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/shape_tag_bg"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@android:drawable/ic_menu_my_calendar"
+                        app:tint="@color/accent_terracotta"
+                        android:layout_marginEnd="6dp"
+                        android:contentDescription="@string/history" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/main_date_today_placeholder"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/ink_medium" />
+                </LinearLayout>
+
+                <!-- ── Title ──────────────────────────────── -->
+                <TextView
+                    android:id="@+id/tv_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entry_title_title"
+                    android:textSize="28sp"
+                    android:fontFamily="serif"
+                    android:textColor="@color/ink_black"
+                    android:lineSpacingMultiplier="1.2"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- ── Context chip row (steps / location / weather) ── -->
+                <LinearLayout
+                    android:id="@+id/row_context"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/chip_steps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_tag_bg"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/ink_brown"
+                        android:layout_marginEnd="8dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/chip_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_tag_bg"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/ink_brown"
+                        android:layout_marginEnd="8dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/chip_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_tag_bg"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/ink_brown"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <!-- ── Photos strip ───────────────────────── -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_detail_photos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- ── Voice button ───────────────────────── -->
+                <Button
+                    android:id="@+id/btn_play_voice_detail"
+                    style="@style/Gunluk.Button.Secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_play"
+                    android:visibility="gone"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- divider line -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <View
+                        android:layout_width="32dp"
+                        android:layout_height="2dp"
+                        android:background="@color/accent_terracotta" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/divider" />
+                </LinearLayout>
+
+                <!-- ── Rich content (WebView) ─────────────── -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_content"
+                    style="@style/Gunluk.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quote_start"
+                            android:textSize="48sp"
+                            android:fontFamily="serif"
+                            android:textColor="@color/parchment_dark"
+                            android:lineSpacingMultiplier="0.5"
+                            android:layout_marginBottom="-8dp" />
+
+                        <!--
+                            WebView renders the saved HTML with all
+                            inline formatting (bold, color, font, etc.)
+                        -->
+                        <WebView
+                            android:id="@+id/wv_detail_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- ── Handwriting ──────────────────────────── -->
+                <LinearLayout
+                    android:id="@+id/section_handwriting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_marginBottom="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HANDWRITING"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_terracotta"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <ImageView
+                        android:id="@+id/iv_detail_handwriting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:background="@color/divider" />
+                </LinearLayout>
+
+                <!-- ── Links ──────────────────────────────── -->
+                <LinearLayout
+                    android:id="@+id/section_links"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_marginBottom="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LINKS"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_terracotta"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_detail_links"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+
+                </LinearLayout>
+
+                <!-- ── Videos ─────────────────────────────── -->
+                <LinearLayout
+                    android:id="@+id/section_videos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_marginBottom="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VIDEOS"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_terracotta"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <VideoView
+                        android:id="@+id/video_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp" />
+
+                    <!-- Thumbnail strip for multiple videos -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_detail_videos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clipToPadding="false"
+                        android:layout_marginTop="8dp" />
+
+                </LinearLayout>
+
+                <!-- ── Action buttons ─────────────────────── -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <Button
+                        android:id="@+id/btn_delete"
+                        style="@style/Gunluk.Button.Danger"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/btn_delete"
+                        android:textAllCaps="false"
+                        android:drawableStart="@android:drawable/ic_menu_delete"
+                        app:iconGravity="textStart" />
+
+                    <Button
+                        android:id="@+id/btn_edit"
+                        style="@style/Gunluk.Button.Secondary"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/btn_edit"
+                        android:textAllCaps="false"
+                        android:drawableStart="@android:drawable/ic_menu_edit"
+                        app:iconGravity="textStart" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_home"
+                    style="@style/Gunluk.Button.Home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/btn_home"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

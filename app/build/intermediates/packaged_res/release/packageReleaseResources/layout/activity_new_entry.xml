@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream_bg"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="4dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Gunluk.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/new_entry_title"
+            app:navigationIcon="@android:drawable/ic_media_previous"
+            app:navigationContentDescription="@string/desc_back" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- ═══════════════════════════════════════════════════════
+             SCROLLABLE BODY
+             ═══════════════════════════════════════════════════════ -->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingTop="24dp"
+                android:paddingBottom="24dp">
+
+                <!-- ── Date row ───────────────────────────────── -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="36dp"
+                        android:background="@color/accent_terracotta"
+                        android:layout_marginEnd="12dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_entry_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_date_today"
+                            android:textSize="13sp"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/ink_light"
+                            android:textAllCaps="true"
+                            android:letterSpacing="0.08" />
+
+                        <TextView
+                            android:id="@+id/tv_entry_date_full"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sample_full_date"
+                            android:textSize="16sp"
+                            android:fontFamily="serif"
+                            android:textColor="@color/ink_brown"
+                            android:layout_marginTop="1dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ── Title card ─────────────────────────────── -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_title"
+                    style="@style/Gunluk.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="18dp"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_title"
+                            android:textSize="11sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/accent_terracotta"
+                            android:letterSpacing="0.14"
+                            android:textAllCaps="true"
+                            android:layout_marginBottom="4dp" />
+
+                        <EditText
+                            android:id="@+id/et_entry_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints=""
+                            android:hint="@string/hint_title"
+                            android:textColorHint="@color/hint_text"
+                            android:textColor="@color/ink_black"
+                            android:textSize="20sp"
+                            android:fontFamily="serif"
+                            android:background="@null"
+                            android:inputType="textCapSentences"
+                            android:imeOptions="actionNext"
+                            android:maxLines="2"
+                            android:paddingBottom="4dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/divider" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- ── Content card (RichEditor) ──────────────── -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_content"
+                    style="@style/Gunluk.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="18dp"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_content"
+                            android:textSize="11sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/accent_terracotta"
+                            android:letterSpacing="0.14"
+                            android:textAllCaps="true"
+                            android:layout_marginBottom="8dp" />
+
+                        <jp.wasabeef.richeditor.RichEditor
+                            android:id="@+id/rich_editor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="240dp"
+                            android:nestedScrollingEnabled="false"
+                            android:scrollbars="none" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/divider"
+                            android:layout_marginTop="8dp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- ══════════════════════════════════════════════
+                     COVER PHOTO — always visible, no gate
+                     ══════════════════════════════════════════════ -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="COVER PHOTO"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/accent_terracotta"
+                    android:letterSpacing="0.14"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="8dp" />
+
+                <!--
+                    Cover photo preview — hidden until one is chosen.
+                    Tapping it again lets the user replace it.
+                -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/iv_cover_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        android:background="@color/divider"
+                        android:contentDescription="Cover photo" />
+
+                    <!-- Shown when no cover is selected -->
+                    <LinearLayout
+                        android:id="@+id/cover_empty_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@color/divider">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🖼"
+                            android:textSize="32sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No cover photo"
+                            android:textSize="13sp"
+                            android:textColor="@color/ink_light"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+
+                    <!-- Overlay button to pick/replace -->
+                    <Button
+                        android:id="@+id/btn_cover_photo"
+                        style="@style/Gunluk.Button.Secondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="10dp"
+                        android:text="Set Cover"
+                        android:textAllCaps="false" />
+
+                </FrameLayout>
+
+                <!-- ══════════════════════════════════════════════
+                     "MORE DETAILS" TOGGLE BUTTON
+                     ══════════════════════════════════════════════ -->
+                <Button
+                    android:id="@+id/btn_more_details"
+                    style="@style/Gunluk.Button.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="＋  More details"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+
+                <!-- ══════════════════════════════════════════════
+                     EXPANDABLE "MORE DETAILS" PANEL
+                     visibility toggled in Java: GONE ↔ VISIBLE
+                     ══════════════════════════════════════════════ -->
+                <LinearLayout
+                    android:id="@+id/panel_more_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <!-- thin accent line at top of panel -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/accent_terracotta"
+                        android:alpha="0.25"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="8dp" />
+
+                    <!-- ── Additional photos ─────────────────── -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_photos"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_terracotta"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <Button
+                        android:id="@+id/btn_add_photos"
+                        style="@style/Gunluk.Button.Secondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_add_photos"
+                        android:textAllCaps="false"
+                        android:layout_marginBottom="8dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_photos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clipToPadding="false"
+                        android:visibility="gone"
+                        android:layout_marginBottom="20dp" />
+
+                    <!-- ── Videos ────────────────────────────── -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VIDEOS"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_terracotta"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <Button
+                        android:id="@+id/btn_add_video"
+                        style="@style/Gunluk.Button.Secondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Video"
+                        android:textAllCaps="false"
+                        android:layout_marginBottom="8dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_videos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clipToPadding="false"
+                        android:visibility="gone"
+                        android:layout_marginBottom="20dp" />
+
+                    <!-- ── Voice recording ───────────────────── -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_voice"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_terracotta"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="20dp">
+
+                        <Button
+                            android:id="@+id/btn_record"
+                            style="@style/Gunluk.Button.Secondary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/btn_record"
+                            android:textAllCaps="false" />
+
+                        <Button
+                            android:id="@+id/btn_play_voice"
+                            style="@style/Gunluk.Button.Secondary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/btn_play"
+                            android:textAllCaps="false" />
+                    </LinearLayout>
+
+                    <!-- ── Links ─────────────────────────────── -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LINKS"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_terracotta"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="4dp">
+
+                        <EditText
+                            android:id="@+id/et_link_input"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            android:hint="https://..."
+                            android:textColorHint="@color/hint_text"
+                            android:textColor="@color/ink_brown"
+                            android:textSize="14sp"
+                            android:inputType="textUri"
+                            android:background="@null"
+                            android:paddingBottom="4dp" />
+
+                        <Button
+                            android:id="@+id/btn_add_link"
+                            style="@style/Gunluk.Button.Secondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add"
+                            android:textAllCaps="false" />
+                    </LinearLayout>
+
+                    <!-- Links list — populated dynamically -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_links"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:visibility="gone"
+                        android:layout_marginBottom="20dp" />
+
+                    <!-- ── Context: Steps / Location / Weather ──
+                         Shown as a single compact chip row.
+                         Tapping "Fetch" populates all three.    -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CONTEXT"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_terracotta"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <!--
+                        Context info card: shows fetched data.
+                        Hidden until at least one value is fetched.
+                    -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_context"
+                        style="@style/Gunluk.Card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="12dp">
+
+                            <!-- Steps row -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="6dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="👟"
+                                    android:textSize="16sp"
+                                    android:layout_marginEnd="8dp" />
+
+                                <TextView
+                                    android:id="@+id/tv_steps"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="— steps"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/ink_brown" />
+                            </LinearLayout>
+
+                            <!-- Location row -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="6dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="📍"
+                                    android:textSize="16sp"
+                                    android:layout_marginEnd="8dp" />
+
+                                <TextView
+                                    android:id="@+id/tv_location"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="—"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/ink_brown" />
+                            </LinearLayout>
+
+                            <!-- Weather row -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="🌤"
+                                    android:textSize="16sp"
+                                    android:layout_marginEnd="8dp" />
+
+                                <TextView
+                                    android:id="@+id/tv_weather"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="—"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/ink_brown" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <Button
+                        android:id="@+id/btn_fetch_context"
+                        style="@style/Gunluk.Button.Secondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fetch steps, location &amp; weather"
+                        android:textAllCaps="false"
+                        android:layout_marginBottom="20dp" />
+
+                    <!-- ── Font family ───────────────────────── -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FONT"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_terracotta"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <Button
+                        android:id="@+id/btn_choose_font"
+                        style="@style/Gunluk.Button.Secondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Choose font…"
+                        android:textAllCaps="false"
+                        android:layout_marginBottom="20dp" />
+
+                    <!-- ── Entry lock ────────────────────────── -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ENTRY LOCK"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_terracotta"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <EditText
+                            android:id="@+id/et_entry_password"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            android:hint="Set password (optional)"
+                            android:textColorHint="@color/hint_text"
+                            android:textColor="@color/ink_brown"
+                            android:textSize="14sp"
+                            android:inputType="textPassword"
+                            android:background="@null"
+                            android:paddingBottom="4dp" />
+
+                        <!-- Lock indicator — shows 🔒 if password is set -->
+                        <TextView
+                            android:id="@+id/tv_lock_indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🔓"
+                            android:textSize="22sp"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Leave blank for no lock. Password is hashed — cannot be recovered."
+                        android:textSize="11sp"
+                        android:textColor="@color/ink_light"
+                        android:fontFamily="sans-serif"
+                        android:layout_marginBottom="20dp" />
+
+                    <!-- ── Handwriting ────────────────────────── -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HANDWRITING"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_terracotta"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <Button
+                        android:id="@+id/btn_handwriting"
+                        style="@style/Gunluk.Button.Secondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✍ Open Canvas"
+                        android:textAllCaps="false"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- Thumbnail shown after drawing -->
+                    <ImageView
+                        android:id="@+id/iv_handwriting_thumb"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:scaleType="centerInside"
+                        android:visibility="gone"
+                        android:layout_marginBottom="20dp"
+                        android:background="@color/divider" />
+
+                    <!-- thin closing accent line -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/accent_terracotta"
+                        android:alpha="0.25"
+                        android:layout_marginBottom="20dp" />
+
+                </LinearLayout>
+                <!-- end panel_more_details -->
+
+                <!-- ── Save / Home ───────────────────────────── -->
+                <Button
+                    android:id="@+id/btn_save"
+                    style="@style/Gunluk.Button.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_save"
+                    android:textAllCaps="false"
+                    android:drawableEnd="@android:drawable/ic_menu_save"
+                    app:iconGravity="end" />
+
+                <Button
+                    android:id="@+id/btn_home"
+                    style="@style/Gunluk.Button.Home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/btn_home"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- ═══════════════════════════════════════════════════════
+             STICKY FORMATTING TOOLBAR (bottom)
+             ═══════════════════════════════════════════════════════ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/cream_bg"
+            android:elevation="8dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:paddingVertical="4dp">
+
+                <LinearLayout
+                    android:id="@+id/formattingToolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="8dp"
+                    android:gravity="center_vertical">
+
+                    <ImageButton
+                        android:id="@+id/btn_fmt_bold"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@android:drawable/ic_menu_edit"
+                        android:contentDescription="Bold"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="8dp" />
+
+                    <ImageButton
+                        android:id="@+id/btn_fmt_italic"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@android:drawable/ic_menu_edit"
+                        android:contentDescription="Italic"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="8dp" />
+
+                    <ImageButton
+                        android:id="@+id/btn_fmt_underline"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@android:drawable/ic_menu_edit"
+                        android:contentDescription="Underline"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="8dp" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="24dp"
+                        android:background="@color/divider"
+                        android:layout_marginHorizontal="4dp" />
+
+                    <Button
+                        android:id="@+id/btn_fmt_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="A"
+                        android:textColor="@color/accent_terracotta"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:paddingHorizontal="10dp"
+                        android:contentDescription="Text color" />
+
+                    <Button
+                        android:id="@+id/btn_fmt_bg_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="■"
+                        android:textColor="@color/ink_brown"
+                        android:textSize="16sp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:paddingHorizontal="10dp"
+                        android:contentDescription="Highlight color" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="24dp"
+                        android:background="@color/divider"
+                        android:layout_marginHorizontal="4dp" />
+
+                    <Button
+                        android:id="@+id/btn_fmt_font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Ff"
+                        android:textColor="@color/ink_brown"
+                        android:textSize="14sp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:paddingHorizontal="10dp"
+                        android:contentDescription="Font family" />
+
+                    <Button
+                        android:id="@+id/btn_fmt_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="T↕"
+                        android:textColor="@color/ink_brown"
+                        android:textSize="14sp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:paddingHorizontal="10dp"
+                        android:contentDescription="Font size" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="24dp"
+                        android:background="@color/divider"
+                        android:layout_marginHorizontal="4dp" />
+
+                    <Button
+                        android:id="@+id/btn_fmt_bullet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="• —"
+                        android:textColor="@color/ink_brown"
+                        android:textSize="14sp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:paddingHorizontal="10dp"
+                        android:contentDescription="Bullet list" />
+
+                    <Button
+                        android:id="@+id/btn_fmt_quote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="❝"
+                        android:textColor="@color/ink_brown"
+                        android:textSize="16sp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:paddingHorizontal="10dp"
+                        android:contentDescription="Blockquote" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
