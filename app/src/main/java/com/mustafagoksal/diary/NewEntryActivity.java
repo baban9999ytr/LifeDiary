@@ -46,6 +46,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import com.mustafagoksal.diary.location.LocationCallback;
+import com.mustafagoksal.diary.location.LocationFetcher;
+
 import jp.wasabeef.richeditor.RichEditor;
 
 public class NewEntryActivity extends AppCompatActivity {
@@ -527,76 +530,77 @@ public class NewEntryActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) return;
 
-        com.google.android.gms.location.FusedLocationProviderClient fusedClient =
-                com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(this);
+        LocationFetcher.fetchLocation(this, new LocationCallback() {
+            @Override
+            public void onLocationFetched(double latitude, double longitude) {
+                pendingLatitude  = latitude;
+                pendingLongitude = longitude;
 
-        //noinspection MissingPermission
-        fusedClient.getLastLocation().addOnSuccessListener(location -> {
-            if (location == null) {
-                tvLocation.setText(R.string.label_location_unavailable);
-                cardContext.setVisibility(View.VISIBLE);
-                return;
+                new Thread(() -> {
+                    try {
+                        android.location.Geocoder geocoder =
+                                new android.location.Geocoder(NewEntryActivity.this, Locale.getDefault());
+                        List<android.location.Address> addresses =
+                                geocoder.getFromLocation(pendingLatitude, pendingLongitude, 1);
+
+                        String city = null;
+                        String neighbourhood = null;
+                        if (addresses != null && !addresses.isEmpty()) {
+                            android.location.Address addr = addresses.get(0);
+                            city = addr.getLocality();
+                            if (city == null) city = addr.getAdminArea();
+                            neighbourhood = addr.getSubLocality();
+                        }
+
+                        final String finalCity  = city;
+                        final String finalNeigh = neighbourhood;
+
+                        runOnUiThread(() -> {
+                            if (isFinishing() || isDestroyed()) return;
+
+                            pendingLocationCity  = finalCity;
+                            pendingLocationNeigh = finalNeigh;
+
+                            String loc = (finalNeigh != null ? finalNeigh + ", " : "")
+                                    + (finalCity != null ? finalCity : "");
+                            tvLocation.setText(loc.isEmpty()
+                                    ? getString(R.string.label_location_found)
+                                    : loc);
+                            cardContext.setVisibility(View.VISIBLE);
+
+                            WeatherHelper.fetch(pendingLatitude, pendingLongitude,
+                                    new WeatherHelper.WeatherCallback() {
+                                        @Override
+                                        public void onWeather(String description, String iconCode) {
+                                            if (isFinishing() || isDestroyed()) return;
+                                            pendingWeatherDesc = description;
+                                            pendingWeatherIcon = iconCode;
+                                            tvLocation.setText(loc); // Setting again just in case
+                                            tvWeather.setText(description);
+                                            cardContext.setVisibility(View.VISIBLE);
+                                        }
+                                        @Override
+                                        public void onFailed(String reason) {
+                                            if (isFinishing() || isDestroyed()) return;
+                                            tvWeather.setText(R.string.label_weather_unavailable);
+                                        }
+                                    });
+                        });
+                    } catch (Exception e) {
+                        runOnUiThread(() -> {
+                            if (isFinishing() || isDestroyed()) return;
+                            tvLocation.setText(R.string.label_location_unavailable);
+                            cardContext.setVisibility(View.VISIBLE);
+                        });
+                    }
+                }).start();
             }
 
-            pendingLatitude  = location.getLatitude();
-            pendingLongitude = location.getLongitude();
-
-            new Thread(() -> {
-                try {
-                    android.location.Geocoder geocoder =
-                            new android.location.Geocoder(this, Locale.getDefault());
-                    List<android.location.Address> addresses =
-                            geocoder.getFromLocation(pendingLatitude, pendingLongitude, 1);
-
-                    String city = null;
-                    String neighbourhood = null;
-                    if (addresses != null && !addresses.isEmpty()) {
-                        android.location.Address addr = addresses.get(0);
-                        city = addr.getLocality();
-                        if (city == null) city = addr.getAdminArea();
-                        neighbourhood = addr.getSubLocality();
-                    }
-
-                    final String finalCity  = city;
-                    final String finalNeigh = neighbourhood;
-
-                    runOnUiThread(() -> {
-                        pendingLocationCity  = finalCity;
-                        pendingLocationNeigh = finalNeigh;
-
-                        String loc = (finalNeigh != null ? finalNeigh + ", " : "")
-                                + (finalCity != null ? finalCity : "");
-                        tvLocation.setText(loc.isEmpty()
-                                ? getString(R.string.label_location_found)
-                                : loc);
-                        cardContext.setVisibility(View.VISIBLE);
-
-                        WeatherHelper.fetch(pendingLatitude, pendingLongitude,
-                                new WeatherHelper.WeatherCallback() {
-                                    @Override
-                                    public void onWeather(String description, String iconCode) {
-                                        pendingWeatherDesc = description;
-                                        pendingWeatherIcon = iconCode;
-                                        tvWeather.setText(description);
-                                        cardContext.setVisibility(View.VISIBLE);
-                                    }
-                                    @Override
-                                    public void onFailed(String reason) {
-                                        tvWeather.setText(R.string.label_weather_unavailable);
-                                    }
-                                });
-                    });
-                } catch (Exception e) {
-                    runOnUiThread(() -> {
-                        tvLocation.setText(R.string.label_location_unavailable);
-                        cardContext.setVisibility(View.VISIBLE);
-                    });
-                }
-            }).start();
-
-        }).addOnFailureListener(e -> {
-            tvLocation.setText(R.string.label_location_unavailable);
-            cardContext.setVisibility(View.VISIBLE);
+            @Override
+            public void onLocationFailed() {
+                tvLocation.setText(R.string.label_location_unavailable);
+                cardContext.setVisibility(View.VISIBLE);
+            }
         });
     }
 
@@ -656,7 +660,7 @@ public class NewEntryActivity extends AppCompatActivity {
             recyclerPhotos.setVisibility(View.VISIBLE);
             String cover = editingEntry.getCoverPhotoUri();
             int idx = cover != null ? uris.indexOf(cover) : 0;
-            photoAdapter.setCoverIndex(idx >= 0 ? idx : 0);
+            photoAdapter.setCoverIndex(Math.max(idx, 0));
         }
 
         String coverUri = editingEntry.getCoverPhotoUri();
@@ -937,17 +941,23 @@ public class NewEntryActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull VH h, int pos) {
             h.tv.setText(data.get(pos));
+
             h.tv.setOnLongClickListener(v -> {
-                int p = h.getAdapterPosition();
-                if (p != RecyclerView.NO_ID) {
+                // Use getBindingAdapterPosition()
+                int p = h.getBindingAdapterPosition();
+                if (p != RecyclerView.NO_POSITION) {
                     data.remove(p);
                     notifyItemRemoved(p);
                 }
                 return true;
             });
+
             h.tv.setOnClickListener(v -> {
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(data.get(h.getAdapterPosition())));
-                v.getContext().startActivity(i);
+                int p = h.getBindingAdapterPosition();
+                if (p != RecyclerView.NO_POSITION) {
+                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(data.get(p)));
+                    v.getContext().startActivity(i);
+                }
             });
         }
 
