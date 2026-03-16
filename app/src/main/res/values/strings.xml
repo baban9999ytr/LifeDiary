@@ -136,7 +136,7 @@
 
     <string name="about_title">About</string>
     <string name="about_app_name">Diary — Your Digital Journal</string>
-    <string name="about_version">Version 1.0</string>
+    <string name="about_version">Version 1.1.1</string>
     <string name="about_description">Diary is a personal journal app that allows you to easily record your daily experiences, thoughts, and memories.\n\nWriting down your daily experiences allows you to know yourself better and look back at the past.\n\nYour story is in your hands.</string>
     <string name="about_developer">Developer: Mustafa Göksal</string>
     <string name="about_ornament_stars">✦ ✦ ✦</string>
