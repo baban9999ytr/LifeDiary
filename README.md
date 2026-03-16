@@ -47,5 +47,5 @@ No ads. Just yours.
 Download the latest APK from the Releases section.
 
 ## Status
-Active development — v1.0  
+Active development — v1.1.1
 Built by a 16-year-old developer from Bursa, Turkey.
