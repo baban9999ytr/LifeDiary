@@ -8,7 +8,7 @@
     android:foreground="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    app:cardBackgroundColor="@color/card_bg"
+    app:cardBackgroundColor="?attr/colorSurface"
     app:cardCornerRadius="10dp"
     app:cardElevation="2dp">
 
@@ -71,7 +71,7 @@
                 android:text="@string/label_title"
                 android:textSize="16sp"
                 android:fontFamily="serif"
-                android:textColor="@color/ink_black"
+                android:textColor="?attr/colorOnSurface"
                 android:maxLines="1"
                 android:ellipsize="end" />
 
@@ -84,7 +84,7 @@
                 android:textSize="13sp"
                 android:fontFamily="serif"
                 android:textStyle="italic"
-                android:textColor="@color/ink_light"
+                android:textColor="?android:attr/textColorSecondary"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:lineSpacingMultiplier="1.3" />

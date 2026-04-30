@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cream_bg"
+    android:background="?android:attr/windowBackground"
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -56,7 +56,7 @@
                     <View
                         android:layout_width="3dp"
                         android:layout_height="36dp"
-                        android:background="@color/accent_terracotta"
+                        android:background="?attr/colorSecondary"
                         android:layout_marginEnd="12dp" />
 
                     <LinearLayout
@@ -72,7 +72,7 @@
                             android:text="@string/main_date_today"
                             android:textSize="13sp"
                             android:fontFamily="sans-serif"
-                            android:textColor="@color/ink_light"
+                            android:textColor="?android:attr/textColorSecondary"
                             android:textAllCaps="true"
                             android:letterSpacing="0.08" />
 
@@ -110,7 +110,7 @@
                             android:text="@string/label_title"
                             android:textSize="11sp"
                             android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/accent_terracotta"
+                            android:textColor="?attr/colorSecondary"
                             android:letterSpacing="0.14"
                             android:textAllCaps="true"
                             android:layout_marginBottom="4dp" />
@@ -122,7 +122,7 @@
                             android:autofillHints=""
                             android:hint="@string/hint_title"
                             android:textColorHint="@color/hint_text"
-                            android:textColor="@color/ink_black"
+                            android:textColor="?attr/colorOnSurface"
                             android:textSize="20sp"
                             android:fontFamily="serif"
                             android:background="@null"
@@ -161,7 +161,7 @@
                             android:text="@string/label_content"
                             android:textSize="11sp"
                             android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/accent_terracotta"
+                            android:textColor="?attr/colorSecondary"
                             android:letterSpacing="0.14"
                             android:textAllCaps="true"
                             android:layout_marginBottom="8dp" />
@@ -190,7 +190,7 @@
                     android:text="COVER PHOTO"
                     android:textSize="11sp"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/accent_terracotta"
+                    android:textColor="?attr/colorSecondary"
                     android:letterSpacing="0.14"
                     android:textAllCaps="true"
                     android:layout_marginBottom="8dp" />
@@ -230,7 +230,7 @@
                             android:layout_height="wrap_content"
                             android:text="No cover photo"
                             android:textSize="13sp"
-                            android:textColor="@color/ink_light"
+                            android:textColor="?android:attr/textColorSecondary"
                             android:layout_marginTop="4dp" />
                     </LinearLayout>
 
@@ -251,28 +251,197 @@
                 <Button
                     android:id="@+id/btn_more_details"
                     style="@style/Gunluk.Button.Secondary"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/btn_more_details"
+                    android:textAllCaps="false" />
+
+                <!-- Context Snapshot Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_context"
+                    style="@style/Gunluk.Card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="＋  More details"
-                    android:textAllCaps="false"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📋 CONTEXT SNAPSHOT"
+                            android:textSize="11sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="?attr/colorSecondary"
+                            android:letterSpacing="0.14"
+                            android:textAllCaps="true"
+                            android:layout_marginBottom="12dp" />
+
+                        <!-- Location Row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="📍"
+                                android:textSize="18sp"
+                                android:layout_marginEnd="10dp" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Location"
+                                    android:textSize="10sp"
+                                    android:textColor="?android:attr/textColorSecondary"
+                                    android:textAllCaps="true"
+                                    android:letterSpacing="0.08" />
+
+                                <TextView
+                                    android:id="@+id/tv_context_location"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Not set"
+                                    android:textSize="14sp"
+                                    android:textColor="?attr/colorOnSurface" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Weather Row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🌤"
+                                android:textSize="18sp"
+                                android:layout_marginEnd="10dp" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Weather"
+                                    android:textSize="10sp"
+                                    android:textColor="?android:attr/textColorSecondary"
+                                    android:textAllCaps="true"
+                                    android:letterSpacing="0.08" />
+
+                                <TextView
+                                    android:id="@+id/tv_context_weather"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Fetching…"
+                                    android:textSize="14sp"
+                                    android:textColor="?attr/colorOnSurface" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Steps Row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🚶"
+                                android:textSize="18sp"
+                                android:layout_marginEnd="10dp" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Steps Today"
+                                    android:textSize="10sp"
+                                    android:textColor="?android:attr/textColorSecondary"
+                                    android:textAllCaps="true"
+                                    android:letterSpacing="0.08" />
+
+                                <TextView
+                                    android:id="@+id/tv_context_steps"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textSize="14sp"
+                                    android:textColor="?attr/colorOnSurface" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/divider"
+                            android:layout_marginVertical="8dp" />
+
+                        <!-- Log Money Button -->
+                        <Button
+                            android:id="@+id/btn_log_money"
+                            style="@style/Gunluk.Button.Primary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="💰 Log Transaction"
+                            android:textAllCaps="false"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Daily Tasks Section -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✅ TODAY'S TASKS"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="?attr/colorSecondary"
+                    android:letterSpacing="0.14"
+                    android:textAllCaps="true"
                     android:layout_marginBottom="4dp" />
 
                 <LinearLayout
-                    android:id="@+id/panel_more_details"
+                    android:id="@+id/container_daily_tasks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone">
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/accent_terracotta"
-                        android:alpha="0.25"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginTop="8dp" />
+                    android:layout_marginBottom="16dp" />
 
 
                     <TextView
@@ -281,7 +450,7 @@
                         android:text="@string/label_photos"
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="8dp" />
@@ -311,7 +480,7 @@
                         android:text="VIDEOS"
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="8dp" />
@@ -341,7 +510,7 @@
                         android:text="@string/label_voice"
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="8dp" />
@@ -379,7 +548,7 @@
                         android:text="LINKS"
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="8dp" />
@@ -428,109 +597,10 @@
                         android:text="CONTEXT"
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="8dp" />
-
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/card_context"
-                        style="@style/Gunluk.Card"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="12dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                android:layout_marginBottom="6dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="👟"
-                                    android:textSize="16sp"
-                                    android:layout_marginEnd="8dp" />
-
-                                <TextView
-                                    android:id="@+id/tv_steps"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="— steps"
-                                    android:textSize="14sp"
-                                    android:textColor="@color/ink_brown" />
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                android:layout_marginBottom="6dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="📍"
-                                    android:textSize="16sp"
-                                    android:layout_marginEnd="8dp" />
-
-                                <TextView
-                                    android:id="@+id/tv_location"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="—"
-                                    android:textSize="14sp"
-                                    android:textColor="@color/ink_brown" />
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="🌤"
-                                    android:textSize="16sp"
-                                    android:layout_marginEnd="8dp" />
-
-                                <TextView
-                                    android:id="@+id/tv_weather"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="—"
-                                    android:textSize="14sp"
-                                    android:textColor="@color/ink_brown" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <Button
-                        android:id="@+id/btn_fetch_context"
-                        style="@style/Gunluk.Button.Secondary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fetch steps, location &amp; weather"
-                        android:textAllCaps="false"
-                        android:layout_marginBottom="20dp" />
-
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -538,7 +608,7 @@
                         android:text="FONT"
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="8dp" />
@@ -559,7 +629,7 @@
                         android:text="ENTRY LOCK"
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="8dp" />
@@ -600,7 +670,7 @@
                         android:layout_height="wrap_content"
                         android:text="Leave blank for no lock. Password is hashed — cannot be recovered."
                         android:textSize="11sp"
-                        android:textColor="@color/ink_light"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:fontFamily="sans-serif"
                         android:layout_marginBottom="20dp" />
 
@@ -611,7 +681,7 @@
                         android:text="HANDWRITING"
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="8dp" />
@@ -639,11 +709,10 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:background="@color/accent_terracotta"
+                        android:background="?attr/colorSecondary"
                         android:alpha="0.25"
                         android:layout_marginBottom="20dp" />
 
-                </LinearLayout>
 
                 <Button
                     android:id="@+id/btn_save"
@@ -673,7 +742,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/cream_bg"
+            android:background="?android:attr/windowBackground"
             android:elevation="8dp">
 
             <View
@@ -733,7 +802,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="36dp"
                         android:text="A"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:background="?attr/selectableItemBackgroundBorderless"

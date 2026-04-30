@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cream_bg"
+    android:background="?android:attr/windowBackground"
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -67,7 +67,7 @@
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         android:src="@android:drawable/ic_menu_my_calendar"
-                        app:tint="@color/accent_terracotta"
+                        app:tint="?attr/colorSecondary"
                         android:layout_marginEnd="6dp"
                         android:contentDescription="@string/history" />
 
@@ -89,7 +89,7 @@
                     android:text="@string/entry_title_title"
                     android:textSize="28sp"
                     android:fontFamily="serif"
-                    android:textColor="@color/ink_black"
+                    android:textColor="?attr/colorOnSurface"
                     android:lineSpacingMultiplier="1.2"
                     android:layout_marginBottom="16dp" />
 
@@ -140,6 +140,32 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/section_tasks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DAILY TASKS"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="?attr/colorSecondary"
+                        android:letterSpacing="0.14"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:id="@+id/container_detail_tasks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                </LinearLayout>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_detail_photos"
@@ -170,7 +196,7 @@
                     <View
                         android:layout_width="32dp"
                         android:layout_height="2dp"
-                        android:background="@color/accent_terracotta" />
+                        android:background="?attr/colorSecondary" />
 
                     <View
                         android:layout_width="0dp"
@@ -229,7 +255,7 @@
                         android:text="HANDWRITING"
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="8dp" />
@@ -258,7 +284,7 @@
                         android:text="LINKS"
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="8dp" />
@@ -285,7 +311,7 @@
                         android:text="VIDEOS"
                         android:textSize="11sp"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/accent_terracotta"
+                        android:textColor="?attr/colorSecondary"
                         android:letterSpacing="0.14"
                         android:textAllCaps="true"
                         android:layout_marginBottom="8dp" />

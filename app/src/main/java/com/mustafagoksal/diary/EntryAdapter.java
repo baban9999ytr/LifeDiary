@@ -29,7 +29,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.EntryViewHol
     private final List<DiaryEntry>     entries;
     private final OnEntryClickListener listener;
 
-    // Shared thread pool for background image decoding
     private static final ExecutorService executor  = Executors.newFixedThreadPool(3);
     private static final Handler         mainHandler = new Handler(Looper.getMainLooper());
 
@@ -55,8 +54,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.EntryViewHol
     public int getItemCount() {
         return entries.size();
     }
-
-    // ── ViewHolder ────────────────────────────────────────────────────────────
 
     class EntryViewHolder extends RecyclerView.ViewHolder {
 

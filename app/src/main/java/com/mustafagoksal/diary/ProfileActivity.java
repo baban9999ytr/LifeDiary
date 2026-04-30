@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.mustafagoksal.diary.CurrentUser;
 import com.mustafagoksal.diary.database.RoomDB;
 import com.mustafagoksal.diary.models.Users;
+import com.mustafagoksal.diary.models.UserStats;
 
 import java.util.Calendar;
 
@@ -24,8 +25,9 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView tvEntryCount;
     private TextView tvMemberSinceDate;
     private View layoutGamificationPanel;
-    private TextView tvStreak, tvDaysThisYear, tvLocations;
+    private TextView tvStreak, tvDaysThisYear;
     private TextView tvWordsThisWeek, tvCharsThisWeek;
+    private TextView tvWalletBalance;
     private Button   btnLogout;
     private Button   btnHome;
     private GamificationManager gm;
@@ -34,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeHelper.applyTheme(this);
 
         if (!CurrentUser.isLoggedIn()) {
             startActivity(new Intent(this, LoginActivity.class));
@@ -43,17 +46,16 @@ public class ProfileActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_profile);
 
-        // 1. Initialize Objects
         db = RoomDB.getInstance(this);
         gm = new GamificationManager(this, CurrentUser.getUser().getUsername()); // Initialize your manager
 
-        // 2. Setup Toolbar
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
 
-        // 3. Bind Views (Standard)
+
         tvAvatarInitial     = findViewById(R.id.tv_avatar_initial);
         tvProfileUsername   = findViewById(R.id.tv_profile_username);
         tvEntryCount        = findViewById(R.id.tv_entry_count);
@@ -62,13 +64,18 @@ public class ProfileActivity extends AppCompatActivity {
         btnHome             = findViewById(R.id.btn_home);
         Button btnSettings  = findViewById(R.id.btn_settings); // NEW
 
-        // 4. Bind Views (Gamification) - Ensure these IDs exist in your XML!
+
         layoutGamificationPanel = findViewById(R.id.layout_gamification_panel);
         tvStreak                = findViewById(R.id.tv_streak);
         tvDaysThisYear          = findViewById(R.id.tv_days_this_year);
-        tvLocations             = findViewById(R.id.tv_locations);
         tvWordsThisWeek         = findViewById(R.id.tv_words_this_week);
         tvCharsThisWeek         = findViewById(R.id.tv_chars_this_week);
+        tvWalletBalance         = findViewById(R.id.tv_wallet_balance);
+
+        Button btnOpenWallet = findViewById(R.id.btn_open_wallet);
+        if (btnOpenWallet != null) {
+            btnOpenWallet.setOnClickListener(v -> startActivity(new Intent(this, WalletActivity.class)));
+        }
 
         loadProfile();
 
@@ -82,21 +89,19 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadProfile(); // Refresh stats when returning from Settings
+        loadProfile();
     }
 
     private void loadProfile() {
         Users user = CurrentUser.getUser();
         if (user == null) return;
 
-        // Basic Profile Info
         String username = user.getUsername();
         tvProfileUsername.setText(username);
         if (!username.isEmpty()) {
             tvAvatarInitial.setText(String.valueOf(Character.toUpperCase(username.charAt(0))));
         }
 
-        // Database Stats
         java.util.List<com.mustafagoksal.diary.models.DiaryEntry> entries = db.mainDAO().getEntriesByAuthor(username);
         int count = entries.size();
         tvEntryCount.setText(String.valueOf(count));
@@ -113,9 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
         tvMemberSinceDate.setText(String.valueOf(year));
 
-        // Gamification Logic
-        // (Assuming getOrCreateStats() is a method in your GamificationManager)
-        RoomDB.UserStats stats = gm.getOrCreateStats();
+        UserStats stats = gm.getOrCreateStats();
 
         if (stats != null && stats.gamificationEnabled) {
             layoutGamificationPanel.setVisibility(View.VISIBLE);
@@ -125,14 +128,22 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
             tvDaysThisYear.setText(String.valueOf(stats.daysWrittenThisYear));
-            tvWordsThisWeek.setText(String.valueOf(stats.wordsThisWeek));
-            tvCharsThisWeek.setText(String.valueOf(stats.charsThisWeek));
 
-            if (stats.locationsEnabled) {
-                tvLocations.setText(String.valueOf(gm.getVisitedLocations().size()));
+            if (tvWordsThisWeek != null) {
+                tvWordsThisWeek.setText(String.valueOf(stats.wordsThisWeek));
             }
+            if (tvCharsThisWeek != null) {
+                tvCharsThisWeek.setText(String.valueOf(stats.charsThisWeek));
+            }
+
         } else {
             layoutGamificationPanel.setVisibility(View.GONE);
+        }
+
+        // Wallet balance on profile
+        if (tvWalletBalance != null) {
+            double balance = db.mainDAO().getWalletBalanceForUser(username);
+            tvWalletBalance.setText(CurrencyHelper.format(this, balance));
         }
     }
 

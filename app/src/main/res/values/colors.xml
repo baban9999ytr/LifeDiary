@@ -25,4 +25,42 @@
     <color name="hint_text">#BBA080</color>
     <color name="surface">#FFF8EE</color>
     <color name="toolbar_bg">#3D2B1F</color>
+
+    <!-- Solarpunk Theme Colors -->
+    <color name="sp_bg">#F2F5F0</color>
+    <color name="sp_surface_glass">#CCFFFFFF</color>
+    <color name="sp_primary">#2E8B57</color>
+    <color name="sp_secondary">#E07A5F</color>
+    <color name="sp_text_main">#2F3E46</color>
+    <color name="sp_text_muted">#52796F</color>
+
+    <!-- Deep Forest Theme Colors -->
+    <color name="df_bg">#1B2D1B</color>
+    <color name="df_surface">#2D4A2D</color>
+    <color name="df_surface_glass">#6634613E</color>
+    <color name="df_primary">#4A7A4A</color>
+    <color name="df_secondary">#8FBC8F</color>
+    <color name="df_accent">#A3D9A3</color>
+    <color name="df_text_main">#E0F0E0</color>
+    <color name="df_text_muted">#8FBC8F</color>
+
+    <!-- Neon Dawn Theme Colors -->
+    <color name="nd_bg">#0D1B2A</color>
+    <color name="nd_surface">#1B2838</color>
+    <color name="nd_surface_glass">#6600D4FF</color>
+    <color name="nd_primary">#00D4FF</color>
+    <color name="nd_secondary">#FF6B9D</color>
+    <color name="nd_accent">#FFD93D</color>
+    <color name="nd_text_main">#E0F7FF</color>
+    <color name="nd_text_muted">#7EC8E3</color>
+
+    <!-- Arid Clay Theme Colors -->
+    <color name="ac_bg">#F5E6D3</color>
+    <color name="ac_surface">#EDD8C4</color>
+    <color name="ac_surface_glass">#88FFFFFF</color>
+    <color name="ac_primary">#C85A3A</color>
+    <color name="ac_secondary">#8B7355</color>
+    <color name="ac_accent">#D4956A</color>
+    <color name="ac_text_main">#3D2B1F</color>
+    <color name="ac_text_muted">#8B7355</color>
 </resources>

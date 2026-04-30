@@ -3,6 +3,7 @@ package com.mustafagoksal.diary;
 import android.content.Context;
 
 import com.mustafagoksal.diary.database.RoomDB;
+import com.mustafagoksal.diary.models.UserStats;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,13 +19,13 @@ public class GamificationManager {
 
     public GamificationManager(Context ctx, String username) {
         this.db       = RoomDB.getInstance(ctx);
-        this.username = username;
+        this.username = username != null ? username : "";
     }
 
-    public RoomDB.UserStats getOrCreateStats() {
-        RoomDB.UserStats stats = db.mainDAO().getStatsByUsername(username);
+    public UserStats getOrCreateStats() {
+        UserStats stats = db.mainDAO().getStatsByUsername(username);
         if (stats == null) {
-            stats = new RoomDB.UserStats();
+            stats = new UserStats();
             stats.username = username;
             db.mainDAO().insertOrUpdateStats(stats);
         }
@@ -33,10 +34,9 @@ public class GamificationManager {
 
 
     public void onEntryAddedWithStats(String plainText) {
-        RoomDB.UserStats stats = getOrCreateStats();
+        UserStats stats = getOrCreateStats();
         if (!stats.gamificationEnabled) return;
 
-        // Process Weekly Word/Char logic
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int week = cal.get(Calendar.WEEK_OF_YEAR);
@@ -80,9 +80,7 @@ public class GamificationManager {
         db.mainDAO().insertOrUpdateStats(stats);
     }
 
-    public List<String> getVisitedLocations() {
-        return db.mainDAO().getDistinctLocations(username);
-    }
+
 
     private String shiftDay(String dateStr, int days) {
         try {

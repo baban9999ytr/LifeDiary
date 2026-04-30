@@ -45,7 +45,6 @@ public class HandwritingActivity extends AppCompatActivity {
         btnClear.setOnClickListener(v -> handwritingView.clear());
         btnDone.setOnClickListener(v -> saveAndFinish());
 
-        // Color buttons
         findViewById(R.id.btn_pen_black).setOnClickListener(v -> handwritingView.setPenColor(Color.parseColor("#000000")));
         findViewById(R.id.btn_pen_brown).setOnClickListener(v -> handwritingView.setPenColor(Color.parseColor("#5C4033")));
         findViewById(R.id.btn_pen_blue).setOnClickListener(v -> handwritingView.setPenColor(Color.parseColor("#1E88E5")));
@@ -63,14 +62,14 @@ public class HandwritingActivity extends AppCompatActivity {
 
         Bitmap bitmap = handwritingView.exportBitmap();
         if (bitmap == null) {
-            Toast.makeText(this, "Failed to capture drawing", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_handwriting_capture, Toast.LENGTH_SHORT).show();
             return;
         }
 
         try {
             File dir = new File(getFilesDir(), "handwriting");
             if (!dir.exists() && !dir.mkdirs()) {
-                Toast.makeText(this, "Failed to create directory", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.error_handwriting_dir, Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -86,7 +85,7 @@ public class HandwritingActivity extends AppCompatActivity {
             finish();
 
         } catch (Exception e) {
-            Toast.makeText(this, "Error saving handwriting", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_handwriting_save, Toast.LENGTH_SHORT).show();
         }
     }
 }

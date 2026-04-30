@@ -9,6 +9,11 @@
         <item name="colorPrimary">@color/ink_brown</item>
         <item name="colorPrimaryDark">@color/ink_black</item>
         <item name="colorAccent">@color/accent_terracotta</item>
+        <item name="colorSecondary">@color/accent_terracotta</item>
+        <item name="colorSurface">@color/card_bg</item>
+        <item name="colorOnSurface">@color/ink_black</item>
+        <item name="android:textColorPrimary">@color/ink_black</item>
+        <item name="android:textColorSecondary">@color/ink_light</item>
         <item name="android:windowBackground">@color/cream_bg</item>
         <item name="android:fontFamily">serif</item>
         <item name="android:statusBarColor">@color/ink_black</item>
@@ -58,18 +63,129 @@
     </style>
 
     <style name="Gunluk.Card" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/card_bg</item>
+        <item name="cardBackgroundColor">?attr/colorSurface</item>
         <item name="cardCornerRadius">10dp</item>
     </style>
 
     <style name="Gunluk.Text">
         <item name="android:fontFamily">serif</item>
-        <item name="android:textColor">@color/ink_black</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
     <style name="Gunluk.Text.Heading">
         <item name="android:textSize">26sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Solarpunk Theme Definition -->
+    <style name="Theme.Gunluk.Solarpunk" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/sp_primary</item>
+        <item name="colorPrimaryDark">@color/sp_text_main</item>
+        <item name="colorAccent">@color/sp_secondary</item>
+        <item name="colorSecondary">@color/sp_secondary</item>
+        <item name="colorSurface">@color/sp_surface_glass</item>
+        <item name="colorOnSurface">@color/sp_text_main</item>
+        <item name="android:textColorPrimary">@color/sp_text_main</item>
+        <item name="android:textColorSecondary">@color/sp_text_muted</item>
+        <item name="android:windowBackground">@color/sp_bg</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:statusBarColor">@color/sp_primary</item>
+        <item name="editTextStyle">@style/Gunluk.EditText.Solarpunk</item>
+    </style>
+
+    <style name="Gunluk.Toolbar.Solarpunk" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/sp_primary</item>
+        <item name="titleTextAppearance">@style/Gunluk.Text.Heading</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+
+    <style name="Gunluk.EditText.Solarpunk" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/sp_text_main</item>
+        <item name="android:textColorHint">@color/sp_text_muted</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <!-- Deep Forest Theme Definition -->
+    <style name="Theme.Gunluk.DeepForest" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/df_primary</item>
+        <item name="colorPrimaryDark">@color/df_bg</item>
+        <item name="colorAccent">@color/df_accent</item>
+        <item name="colorSecondary">@color/df_accent</item>
+        <item name="colorSurface">@color/df_surface</item>
+        <item name="colorOnSurface">@color/df_text_main</item>
+        <item name="android:textColorPrimary">@color/df_text_main</item>
+        <item name="android:textColorSecondary">@color/df_text_muted</item>
+        <item name="android:windowBackground">@color/df_bg</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:statusBarColor">@color/df_bg</item>
+        <item name="editTextStyle">@style/Gunluk.EditText.DeepForest</item>
+    </style>
+
+    <style name="Gunluk.EditText.DeepForest" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/df_text_main</item>
+        <item name="android:textColorHint">@color/df_text_muted</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <!-- Neon Dawn Theme Definition -->
+    <style name="Theme.Gunluk.NeonDawn" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/nd_primary</item>
+        <item name="colorPrimaryDark">@color/nd_bg</item>
+        <item name="colorAccent">@color/nd_secondary</item>
+        <item name="colorSecondary">@color/nd_secondary</item>
+        <item name="colorSurface">@color/nd_surface</item>
+        <item name="colorOnSurface">@color/nd_text_main</item>
+        <item name="android:textColorPrimary">@color/nd_text_main</item>
+        <item name="android:textColorSecondary">@color/nd_text_muted</item>
+        <item name="android:windowBackground">@color/nd_bg</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:statusBarColor">@color/nd_bg</item>
+        <item name="editTextStyle">@style/Gunluk.EditText.NeonDawn</item>
+    </style>
+
+    <style name="Gunluk.EditText.NeonDawn" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/nd_text_main</item>
+        <item name="android:textColorHint">@color/nd_text_muted</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <!-- Arid Clay Theme Definition -->
+    <style name="Theme.Gunluk.AridClay" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/ac_primary</item>
+        <item name="colorPrimaryDark">@color/ac_text_main</item>
+        <item name="colorAccent">@color/ac_accent</item>
+        <item name="colorSecondary">@color/ac_accent</item>
+        <item name="colorSurface">@color/ac_surface</item>
+        <item name="colorOnSurface">@color/ac_text_main</item>
+        <item name="android:textColorPrimary">@color/ac_text_main</item>
+        <item name="android:textColorSecondary">@color/ac_text_muted</item>
+        <item name="android:windowBackground">@color/ac_bg</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="android:statusBarColor">@color/ac_text_main</item>
+        <item name="editTextStyle">@style/Gunluk.EditText.AridClay</item>
+    </style>
+
+    <style name="Gunluk.EditText.AridClay" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/ac_text_main</item>
+        <item name="android:textColorHint">@color/ac_text_muted</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
     </style>
 
 </resources>

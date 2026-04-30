@@ -35,6 +35,7 @@ public class EntryListActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeHelper.applyTheme(this);
 
         if (!CurrentUser.isLoggedIn()) {
             startActivity(new Intent(this, LoginActivity.class));

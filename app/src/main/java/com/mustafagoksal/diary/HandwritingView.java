@@ -90,14 +90,12 @@ public class HandwritingView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         
-        // Draw all finished strokes
         for (Stroke stroke : strokes) {
             paint.setColor(stroke.color);
             paint.setStrokeWidth(stroke.width);
             canvas.drawPath(stroke.path, paint);
         }
 
-        // Draw current stroke
         if (currentStroke != null) {
             paint.setColor(currentStroke.color);
             paint.setStrokeWidth(currentStroke.width);
@@ -144,7 +142,6 @@ public class HandwritingView extends View {
         float dy = Math.abs(y - lastY);
         
         if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
-            // Quadratic bezier for smooth curves
             currentStroke.path.quadTo(lastX, lastY, (x + lastX) / 2, (y + lastY) / 2);
             lastX = x;
             lastY = y;

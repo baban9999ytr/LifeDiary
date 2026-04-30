@@ -34,15 +34,12 @@ public class EntryDetailActivity extends AppCompatActivity {
 
     // ── Views ────────────────────────────────────────────────────
     private ImageView    ivDetailCover;
-    private TextView     tvTitle;
+    private TextView     tvTitle, tvDetailWeather, chipSteps, chipLocation;
+    private LinearLayout rowContext, sectionTasks, containerDetailTasks;
     private TextView     tvDate;
     private WebView      wvContent;
     private RecyclerView recyclerDetailPhotos;
     private Button       btnPlayVoiceDetail;
-    private LinearLayout rowContext;
-    private TextView     chipSteps;
-    private TextView     chipLocation;
-    private TextView     chipWeather;
     private LinearLayout sectionLinks;
     private RecyclerView recyclerDetailLinks;
     private LinearLayout sectionHandwriting;
@@ -67,6 +64,19 @@ public class EntryDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        db = RoomDB.getInstance(this);
+        long entryId = getIntent().getLongExtra(EXTRA_ENTRY_ID, -1L);
+        boolean themeApplied = false;
+
+        if (entryId != -1L) {
+            DiaryEntry tempEntry = db.mainDAO().getEntryById(entryId);
+            if (tempEntry != null && "solarpunk".equals(tempEntry.getMoodTheme())) {
+                setTheme(R.style.Theme_Gunluk_Solarpunk);
+                themeApplied = true;
+            }
+        }
+        if (!themeApplied) ThemeHelper.applyTheme(this);
+
         if (!CurrentUser.isLoggedIn()) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
@@ -80,10 +90,7 @@ public class EntryDetailActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
 
-        db = RoomDB.getInstance(this);
         bindViews();
-
-        long entryId = getIntent().getLongExtra(EXTRA_ENTRY_ID, -1L);
         if (entryId == -1L) {
             Toast.makeText(this, R.string.entry_not_found, Toast.LENGTH_SHORT).show();
             finish();
@@ -104,14 +111,16 @@ public class EntryDetailActivity extends AppCompatActivity {
         ivDetailHandwriting  = findViewById(R.id.iv_detail_handwriting);
         sectionHandwriting   = findViewById(R.id.section_handwriting);
         tvTitle              = findViewById(R.id.tv_detail_title);
+        tvDetailWeather      = findViewById(R.id.chip_weather);
+        chipSteps            = findViewById(R.id.chip_steps);
+        chipLocation         = findViewById(R.id.chip_location);
+        rowContext           = findViewById(R.id.row_context);
+        sectionTasks         = findViewById(R.id.section_tasks);
+        containerDetailTasks = findViewById(R.id.container_detail_tasks);
         tvDate               = findViewById(R.id.tv_detail_date);
         wvContent            = findViewById(R.id.wv_detail_content);
         recyclerDetailPhotos = findViewById(R.id.recycler_detail_photos);
         btnPlayVoiceDetail   = findViewById(R.id.btn_play_voice_detail);
-        rowContext           = findViewById(R.id.row_context);
-        chipSteps            = findViewById(R.id.chip_steps);
-        chipLocation         = findViewById(R.id.chip_location);
-        chipWeather          = findViewById(R.id.chip_weather);
         sectionLinks         = findViewById(R.id.section_links);
         recyclerDetailLinks  = findViewById(R.id.recycler_detail_links);
         sectionVideos        = findViewById(R.id.section_videos);
@@ -124,9 +133,7 @@ public class EntryDetailActivity extends AppCompatActivity {
 
 
     private void loadEntry(long id) {
-        for (DiaryEntry e : db.mainDAO().getAllDiaryEntries()) {
-            if (e.getID() == id) { currentEntry = e; break; }
-        }
+        currentEntry = db.mainDAO().getEntryById(id);
         if (currentEntry == null) {
             Toast.makeText(this, R.string.entry_not_found, Toast.LENGTH_SHORT).show();
             finish();
@@ -169,7 +176,26 @@ public class EntryDetailActivity extends AppCompatActivity {
     private void displayEntry() {
         tvTitle.setText(currentEntry.getTitle());
         tvDate.setText(currentEntry.getDate());
-
+        
+        boolean anyContext = false;
+        if (currentEntry.getWeather() != null && !currentEntry.getWeather().isEmpty()) {
+            tvDetailWeather.setText("🌤 " + currentEntry.getWeather());
+            tvDetailWeather.setVisibility(View.VISIBLE);
+            anyContext = true;
+        }
+        if (currentEntry.getLocationInfo() != null && !currentEntry.getLocationInfo().isEmpty()) {
+            chipLocation.setText("📍 " + currentEntry.getLocationInfo());
+            chipLocation.setVisibility(View.VISIBLE);
+            anyContext = true;
+        }
+        if (currentEntry.getStepCount() > 0) {
+            chipSteps.setText("🚶 " + currentEntry.getStepCount() + " steps");
+            chipSteps.setVisibility(View.VISIBLE);
+            anyContext = true;
+        }
+        if (anyContext) {
+            rowContext.setVisibility(View.VISIBLE);
+        }
 
         String coverUri = currentEntry.getCoverPhotoUri();
         if (coverUri != null && new File(coverUri).exists()) {
@@ -216,32 +242,26 @@ public class EntryDetailActivity extends AppCompatActivity {
         }
 
 
-        boolean anyContext = false;
-
-        if (currentEntry.getStepCount() >= 0) {
-            chipSteps.setText(getString(R.string.label_steps_count, currentEntry.getStepCount()));
-            chipSteps.setVisibility(View.VISIBLE);
-            anyContext = true;
+        boolean tasksLoaded = false;
+        List<com.mustafagoksal.diary.models.TaskCompletion> completions = db.mainDAO().getTaskCompletionsByDate(currentEntry.getDate());
+        if (completions != null && !completions.isEmpty()) {
+            for (com.mustafagoksal.diary.models.TaskCompletion tc : completions) {
+                if (tc.isCompleted) {
+                    com.mustafagoksal.diary.models.DailyTask dt = db.mainDAO().getTaskById(tc.taskId);
+                    if (dt != null && dt.username.equals(currentEntry.getAuthor())) {
+                        TextView tvTask = new TextView(this);
+                        tvTask.setText("✅ " + dt.taskName);
+                        tvTask.setTextColor(Color.parseColor("#4A4A4A"));
+                        tvTask.setPadding(0, 8, 0, 8);
+                        containerDetailTasks.addView(tvTask);
+                        tasksLoaded = true;
+                    }
+                }
+            }
         }
-
-        String city  = currentEntry.getLocationCity();
-        String neigh = currentEntry.getLocationNeighbourhood();
-        if (city != null || neigh != null) {
-            String loc = (neigh != null ? neigh + ", " : "") + (city != null ? city : "");
-            chipLocation.setText("📍 " + loc);
-            chipLocation.setVisibility(View.VISIBLE);
-            anyContext = true;
+        if (tasksLoaded) {
+            sectionTasks.setVisibility(View.VISIBLE);
         }
-
-        String weather = currentEntry.getWeatherDescription();
-        if (weather != null) {
-            chipWeather.setText("🌤 " + weather);
-            chipWeather.setVisibility(View.VISIBLE);
-            anyContext = true;
-        }
-
-        if (anyContext) rowContext.setVisibility(View.VISIBLE);
-
 
         List<String> links = currentEntry.getLinks();
         if (links != null && !links.isEmpty()) {

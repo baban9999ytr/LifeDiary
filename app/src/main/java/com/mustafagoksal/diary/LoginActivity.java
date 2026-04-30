@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CurrentUser.init(getApplicationContext());
 
         if (CurrentUser.isLoggedIn()) {
             goToMain();

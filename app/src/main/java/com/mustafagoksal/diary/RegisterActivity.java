@@ -69,7 +69,6 @@ public class RegisterActivity extends AppCompatActivity {
             etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
             etPasswordConfirm.setTransformationMethod(PasswordTransformationMethod.getInstance());
         }
-        // İmleci sona taşı
         etPassword.setSelection(etPassword.getText().length());
         etPasswordConfirm.setSelection(etPasswordConfirm.getText().length());
     }
@@ -81,8 +80,6 @@ public class RegisterActivity extends AppCompatActivity {
         String email     = etEmail.getText().toString().trim();
         String password  = etPassword.getText().toString();
         String confirm   = etPasswordConfirm.getText().toString();
-
-        // ── Doğrulamalar ──────────────────────────────────────────
 
         if (TextUtils.isEmpty(username)) {
             showError(getString(R.string.register_error_username_empty));

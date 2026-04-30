@@ -13,8 +13,12 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.mustafagoksal.diary.models.DiaryEntry;
 import com.mustafagoksal.diary.models.Users;
+import com.mustafagoksal.diary.models.WalletTransaction;
+import com.mustafagoksal.diary.models.DailyTask;
+import com.mustafagoksal.diary.models.TaskCompletion;
+import com.mustafagoksal.diary.models.UserStats;
 
-@Database(entities = {DiaryEntry.class, Users.class, RoomDB.UserStats.class}, version = 7, exportSchema = false)
+@Database(entities = {DiaryEntry.class, Users.class, UserStats.class, WalletTransaction.class, DailyTask.class, TaskCompletion.class}, version = 9, exportSchema = false)
 @TypeConverters(Converters.class)
 public abstract class RoomDB extends RoomDatabase {
 
@@ -29,41 +33,18 @@ public abstract class RoomDB extends RoomDatabase {
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN audioPath TEXT");
         }
     };
-    @Entity(tableName = "user_stats")
-    public static class UserStats {
-        @PrimaryKey
-        @androidx.annotation.NonNull
-        public String username = "";
-        public int currentStreak;
-        public int longestStreak;
-        public int daysWrittenThisYear;
-        public String lastEntryDate;
-        public boolean gamificationEnabled;
-        public boolean locationsEnabled;
-        public boolean streaksEnabled;
-
-        public int wordsThisWeek;
-        public int charsThisWeek;
-        public String currentWeek;
-    }
     static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
         public void migrate(SupportSQLiteDatabase db) {
 
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN richContent TEXT");
-            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN locationCity TEXT");
-            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN locationNeighbourhood TEXT");
-            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN weatherDescription TEXT");
-            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN weatherIconCode TEXT");
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN links TEXT");
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN videoUris TEXT");
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN fontFamily TEXT");
             db.execSQL("ALTER TABLE diaryEntry ADD COLUMN entryPasswordHash TEXT");
 
 
-            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN stepCount INTEGER NOT NULL DEFAULT -1");
-            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN latitude REAL NOT NULL DEFAULT 0.0");
-            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN longitude REAL NOT NULL DEFAULT 0.0");
+
         }
     };
 
@@ -83,8 +64,7 @@ public abstract class RoomDB extends RoomDatabase {
                     "daysWrittenThisYear INTEGER NOT NULL DEFAULT 0," +
                     "lastEntryDate TEXT," +
                     "gamificationEnabled INTEGER NOT NULL DEFAULT 0," +
-                    "streaksEnabled INTEGER NOT NULL DEFAULT 0," +
-                    "locationsEnabled INTEGER NOT NULL DEFAULT 0)");
+                    "streaksEnabled INTEGER NOT NULL DEFAULT 0)");
         }
     };
 
@@ -104,6 +84,40 @@ public abstract class RoomDB extends RoomDatabase {
         }
     };
 
+    static final Migration MIGRATION_7_8 = new Migration(7, 8) {
+        @Override
+        public void migrate(SupportSQLiteDatabase db) {
+            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN stepCount INTEGER NOT NULL DEFAULT 0");
+            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN socialMentions TEXT DEFAULT ''");
+            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN moodTheme TEXT DEFAULT ''");
+            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN weather TEXT DEFAULT ''");
+            db.execSQL("CREATE TABLE IF NOT EXISTS walletTransaction (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                    "username TEXT NOT NULL DEFAULT ''," +
+                    "amount REAL NOT NULL DEFAULT 0," +
+                    "note TEXT NOT NULL DEFAULT ''," +
+                    "date TEXT NOT NULL DEFAULT ''," +
+                    "isIncome INTEGER NOT NULL DEFAULT 0)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS dailyTask (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                    "taskName TEXT NOT NULL DEFAULT ''," +
+                    "username TEXT NOT NULL DEFAULT ''," +
+                    "isActive INTEGER NOT NULL DEFAULT 1)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS taskCompletion (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                    "taskId INTEGER NOT NULL DEFAULT 0," +
+                    "date TEXT NOT NULL DEFAULT ''," +
+                    "isCompleted INTEGER NOT NULL DEFAULT 0)");
+        }
+    };
+
+    static final Migration MIGRATION_8_9 = new Migration(8, 9) {
+        @Override
+        public void migrate(SupportSQLiteDatabase db) {
+            db.execSQL("ALTER TABLE diaryEntry ADD COLUMN locationInfo TEXT DEFAULT ''");
+        }
+    };
+
     public abstract MainDAO mainDAO();
 
     public static synchronized RoomDB getInstance(Context context) {
@@ -113,8 +127,11 @@ public abstract class RoomDB extends RoomDatabase {
                             RoomDB.class,
                             DATABASE_NAME
                     )
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4,
+                            MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7,
+                            MIGRATION_7_8, MIGRATION_8_9)
                     .allowMainThreadQueries()
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return instance;

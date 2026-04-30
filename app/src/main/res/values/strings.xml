@@ -103,11 +103,7 @@
     <string name="dialog_font">Font</string>
     <string name="dialog_size">Size</string>
     <string name="dialog_entry_font">Entry Font</string>
-    <string name="label_steps_count">%1$d steps today</string>
-    <string name="label_steps_unavailable">Steps unavailable</string>
-    <string name="label_location_unavailable">Location unavailable</string>
-    <string name="label_location_found">Location found</string>
-    <string name="label_weather_unavailable">Weather unavailable</string>
+
     <string name="toast_video_added">Video added (%1$d/%2$d)</string>
     <string name="toast_max_videos">Max %1$d videos</string>
     <string name="toast_max_links">Max 100 links</string>
@@ -133,7 +129,7 @@
     <string name="logout_confirm_message">Are you sure you want to log out?</string>
     <string name="logout_confirm_yes">Yes</string>
     <string name="logout_confirm_no">No</string>
-
+    <string name="desc_handwriting">HandWriting </string>
     <string name="about_title">About</string>
     <string name="about_app_name">Diary — Your Digital Journal</string>
     <string name="about_version">Version 1.1.1</string>
@@ -179,8 +175,73 @@
     <string name="settings_gamification_header">GAMIFICATION</string>
     <string name="settings_enable_gamification">Enable Gamification</string>
     <string name="settings_streaks">Streaks 🔥</string>
-    <string name="settings_locations">Locations 📍</string>
+
     <string name="settings_language_header">LANGUAGE</string>
     <string name="settings_btn_english">🇬🇧 English</string>
     <string name="settings_btn_turkish">🇹🇷 Türkçe</string>
+    <string name="btn_done">Done</string>
+    
+    <string name="settings_location_header">LOCATION</string>
+    <string name="settings_home_city">Home City / Zip Code</string>
+    <string name="hint_home_city">E.g. London, UK</string>
+    <string name="settings_global_theme">GLOBAL THEME</string>
+    <string name="settings_theme_default">Default</string>
+    <string name="settings_theme_solarpunk">Solarpunk</string>
+    <string name="settings_daily_tasks">DAILY TASKS</string>
+    <string name="settings_hint_new_task">New Task (e.g. Read 10 Pages)</string>
+    <string name="settings_btn_add">Add</string>
+    <string name="weather_temp">%1$s°C</string>
+
+    <string name="handwriting_title">Handwriting</string>
+    <string name="desc_undo">Undo</string>
+    <string name="desc_clear_all">Clear All</string>
+    <string name="profile_day_streak">Day Streak</string>
+    <string name="profile_days_this_year">Days This Year</string>
+    <string name="btn_settings">Settings ⚙️</string>
+    <string name="label_cover_photo">COVER PHOTO</string>
+    <string name="icon_image">🖼</string>
+    <string name="label_no_cover_photo">No cover photo</string>
+    <string name="btn_set_cover">Set Cover</string>
+    <string name="label_videos">VIDEOS</string>
+    <string name="btn_add_video">Add Video</string>
+    <string name="label_links">LINKS</string>
+    <string name="hint_link">https://...</string>
+    <string name="btn_add">Add</string>
+    <string name="label_context_card">CONTEXT</string>
+    <string name="label_font">FONT</string>
+    <string name="btn_choose_font_hint">Choose font…</string>
+    <string name="label_entry_lock">ENTRY LOCK</string>
+    <string name="hint_set_password">Set password (optional)</string>
+    <string name="desc_password_info">Leave blank for no lock. Password is hashed — cannot be recovered.</string>
+    <string name="label_handwriting">HANDWRITING</string>
+    <string name="btn_open_canvas">✍ Open Canvas</string>
+    <string name="desc_fmt_bold">Bold</string>
+    <string name="desc_fmt_italic">Italic</string>
+    <string name="desc_fmt_underline">Underline</string>
+    <string name="desc_fmt_color">Text color</string>
+    <string name="desc_fmt_highlight">Highlight color</string>
+    <string name="desc_fmt_font">Font family</string>
+    <string name="desc_fmt_size">Font size</string>
+    <string name="desc_fmt_bullet">Bullet list</string>
+    <string name="desc_fmt_quote">Blockquote</string>
+    <string name="icon_text_color">A</string>
+    <string name="icon_highlight">■</string>
+    <string name="icon_font">Ff</string>
+    <string name="icon_font_size">T↕</string>
+    <string name="icon_bullet_list">• —</string>
+    <string name="icon_quote">❝</string>
+    <string name="label_cancel">Cancel</string>
+    <string name="error_handwriting_capture">Failed to capture drawing</string>
+    <string name="error_handwriting_dir">Failed to create directory</string>
+    <string name="error_handwriting_save">Error saving handwriting</string>
+
+    <string name="btn_wallet">Wallet</string>
+    <string name="main_wallet_subtitle">Track your spending</string>
+    <string name="desc_wallet">Wallet</string>
+    <string name="wallet_empty">No transactions yet.\nTap + to add your first one.</string>
+    <string name="wallet_delete_title">Delete Transaction</string>
+    <string name="wallet_delete_message">Delete this transaction? This cannot be undone.</string>
+    <string name="wallet_deleted">Transaction deleted.</string>
+    <string name="wallet_balance_label">Wallet Balance</string>
+    <string name="btn_open_wallet">Open Wallet →</string>
 </resources>

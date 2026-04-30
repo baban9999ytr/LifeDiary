@@ -20,6 +20,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.CheckBox;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
@@ -46,8 +49,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import com.mustafagoksal.diary.location.LocationCallback;
-import com.mustafagoksal.diary.location.LocationFetcher;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.content.Context;
 
 import jp.wasabeef.richeditor.RichEditor;
 
@@ -58,11 +64,12 @@ public class NewEntryActivity extends AppCompatActivity {
     private static final int MAX_VIDEOS = 10;
     private static final int REQ_RECORD_AUDIO = 100;
     private static final int REQ_ACTIVITY_RECOGNITION = 101;
-    private static final int REQ_LOCATION = 102;
+    private static final int REQ_READ_CONTACTS = 102;
 
     private EditText etTitle;
     private RichEditor richEditor;
     private TextView tvDateFull;
+    private TextView tvContextLocation, tvContextWeather, tvContextSteps;
     private Button btnSave;
     private Button btnHome;
 
@@ -70,8 +77,11 @@ public class NewEntryActivity extends AppCompatActivity {
     private View coverEmptyState;
 
     private Button btnMoreDetails;
-    private LinearLayout panelMoreDetails;
+    private Button btnLogMoney;
+    private LinearLayout containerDailyTasks;
     private boolean panelExpanded = false;
+    private java.util.List<com.mustafagoksal.diary.models.DailyTask> dailyTasks = new java.util.ArrayList<>();
+    private java.util.List<android.widget.CheckBox> taskCheckboxes = new java.util.ArrayList<>();
 
     private Button btnAddPhotos;
     private RecyclerView recyclerPhotos;
@@ -94,9 +104,6 @@ public class NewEntryActivity extends AppCompatActivity {
     private LinksAdapter linksAdapter;
 
     private CardView cardContext;
-    private TextView tvSteps;
-    private TextView tvLocation;
-    private TextView tvWeather;
 
     private Button btnChooseFont;
     private String selectedFontFamily = "default";
@@ -115,13 +122,26 @@ public class NewEntryActivity extends AppCompatActivity {
 
 
     private String pendingCoverPhotoUri = null;
-    private int    pendingStepCount     = -1;
-    private double pendingLatitude      = 0.0;
-    private double pendingLongitude     = 0.0;
-    private String pendingLocationCity  = null;
-    private String pendingLocationNeigh = null;
-    private String pendingWeatherDesc   = null;
-    private String pendingWeatherIcon   = null;
+
+    private SensorManager sensorManager;
+    private Sensor stepSensor;
+    private int stepCount = 0;
+    private boolean isSensorRegistered = false;
+    private final List<String> socialMentions = new ArrayList<>();
+
+    private final SensorEventListener stepListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+                stepCount = (int) event.values[0];
+                if (tvContextSteps != null) {
+                    tvContextSteps.setText(String.valueOf(stepCount));
+                }
+            }
+        }
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+    };
 
     private final ActivityResultLauncher<PickVisualMediaRequest> pickMultipleMedia =
             registerForActivityResult(
@@ -204,6 +224,7 @@ public class NewEntryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeHelper.applyTheme(this);
 
         if (!CurrentUser.isLoggedIn()) {
             startActivity(new Intent(this, LoginActivity.class));
@@ -223,15 +244,14 @@ public class NewEntryActivity extends AppCompatActivity {
         bindViews();
         setupRichEditor();
         setupCoverPhoto();
-        setupMoreDetailsPanel();
         setupPhotos();
         setupVideos();
         setupVoice();
         setupLinks();
-        setupContextFetch();
         setupFontPicker();
         setupHandwriting();
         setupEntryLock();
+        setupSensors();
 
         tvDateFull.setText(getFormattedDate());
 
@@ -240,6 +260,26 @@ public class NewEntryActivity extends AppCompatActivity {
 
         btnSave.setOnClickListener(v -> saveEntry());
         btnHome.setOnClickListener(v -> goHome());
+        
+        setupWeather();
+    }
+
+    private void setupWeather() {
+        android.content.SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
+        String city = prefs.getString("home_city", "");
+        if (!city.isEmpty()) {
+            if (tvContextLocation != null) tvContextLocation.setText(city);
+            com.mustafagoksal.diary.network.WeatherService.fetchWeather(city, new com.mustafagoksal.diary.network.WeatherService.WeatherCallback() {
+                @Override
+                public void onSuccess(String weatherStr) {
+                    if (tvContextWeather != null) tvContextWeather.setText(weatherStr);
+                }
+                @Override
+                public void onError(Exception e) {
+                    if (tvContextWeather != null) tvContextWeather.setText("N/A");
+                }
+            });
+        }
     }
 
     private void bindViews() {
@@ -253,7 +293,11 @@ public class NewEntryActivity extends AppCompatActivity {
         coverEmptyState = findViewById(R.id.cover_empty_state);
 
         btnMoreDetails   = findViewById(R.id.btn_more_details);
-        panelMoreDetails = findViewById(R.id.panel_more_details);
+        containerDailyTasks = findViewById(R.id.container_daily_tasks);
+        btnLogMoney      = findViewById(R.id.btn_log_money);
+        tvContextLocation = findViewById(R.id.tv_context_location);
+        tvContextWeather  = findViewById(R.id.tv_context_weather);
+        tvContextSteps    = findViewById(R.id.tv_context_steps);
 
         btnAddPhotos   = findViewById(R.id.btn_add_photos);
         recyclerPhotos = findViewById(R.id.recycler_photos);
@@ -268,10 +312,6 @@ public class NewEntryActivity extends AppCompatActivity {
         btnAddLink    = findViewById(R.id.btn_add_link);
         recyclerLinks = findViewById(R.id.recycler_links);
 
-        cardContext = findViewById(R.id.card_context);
-        tvSteps     = findViewById(R.id.tv_steps);
-        tvLocation  = findViewById(R.id.tv_location);
-        tvWeather   = findViewById(R.id.tv_weather);
 
         btnChooseFont = findViewById(R.id.btn_choose_font);
 
@@ -280,11 +320,34 @@ public class NewEntryActivity extends AppCompatActivity {
 
         etEntryPassword = findViewById(R.id.et_entry_password);
         tvLockIndicator = findViewById(R.id.tv_lock_indicator);
+
+        btnLogMoney.setOnClickListener(v -> showLogTransactionDialog());
+        btnMoreDetails.setOnClickListener(v -> {
+            panelExpanded = !panelExpanded;
+            int vis = panelExpanded ? View.VISIBLE : View.GONE;
+            findViewById(R.id.card_context).setVisibility(vis);
+            containerDailyTasks.setVisibility(vis);
+            btnMoreDetails.setText(panelExpanded ? "－  Less details" : "＋  More details");
+        });
+        
+        // Start visible as requested
+        panelExpanded = true;
+        findViewById(R.id.card_context).setVisibility(View.VISIBLE);
+        containerDailyTasks.setVisibility(View.VISIBLE);
+        btnMoreDetails.setText("－  Less details");
+
+        setupContextSnapshot();
     }
 
     private void setupRichEditor() {
         richEditor.setEditorFontSize(16);
-        richEditor.setEditorFontColor(getResources().getColor(R.color.ink_brown, getTheme()));
+        
+        // Use theme-aware text color
+        android.util.TypedValue typedValue = new android.util.TypedValue();
+        getTheme().resolveAttribute(android.R.attr.textColorPrimary, typedValue, true);
+        int textColor = typedValue.data;
+        richEditor.setEditorFontColor(textColor);
+        
         richEditor.setPadding(4, 4, 4, 4);
         richEditor.setPlaceholder(getString(R.string.hint_content_main));
         richEditor.setEditorBackgroundColor(Color.TRANSPARENT);
@@ -329,6 +392,214 @@ public class NewEntryActivity extends AppCompatActivity {
                     .setItems(labels, (d, i) -> richEditor.setFontSize(sizes[i]))
                     .show();
         });
+
+        richEditor.setOnTextChangeListener(text -> {
+            if (text != null && text.endsWith("@")) {
+                checkContactsPermission();
+            }
+            // Natural Language Accounting detection
+            if (text != null) {
+                checkForSpendingPattern(text);
+            }
+        });
+    }
+
+    private boolean nlaSuggestionShown = false;
+
+    private void checkForSpendingPattern(String text) {
+        if (nlaSuggestionShown) return;
+        String lower = text.replaceAll("<[^>]+>", "").replace("&nbsp;", " ").toLowerCase().trim();
+        java.util.regex.Pattern spentPattern = java.util.regex.Pattern.compile(
+                "(?:spent|paid|bought|cost)\\s+(\\d+(?:\\.\\d{1,2})?)\\s+(?:on|for)\\s+(.+?)(?:\\.|$)",
+                java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern earnedPattern = java.util.regex.Pattern.compile(
+                "(?:earned|received|got paid)\\s+(\\d+(?:\\.\\d{1,2})?)\\s+(?:from|for)\\s+(.+?)(?:\\.|$)",
+                java.util.regex.Pattern.CASE_INSENSITIVE);
+
+        java.util.regex.Matcher sm = spentPattern.matcher(lower);
+        java.util.regex.Matcher em = earnedPattern.matcher(lower);
+
+        if (sm.find()) {
+            double amt = Double.parseDouble(sm.group(1));
+            String note = sm.group(2).trim();
+            nlaSuggestionShown = true;
+            runOnUiThread(() -> showNlaSuggestion(-amt, note));
+        } else if (em.find()) {
+            double amt = Double.parseDouble(em.group(1));
+            String note = em.group(2).trim();
+            nlaSuggestionShown = true;
+            runOnUiThread(() -> showNlaSuggestion(amt, note));
+        }
+    }
+
+    private void showNlaSuggestion(double amount, String note) {
+        String sym = CurrencyHelper.getSymbol(this);
+        String label = (amount < 0 ? "Expense" : "Income") + ": " + sym + String.format(java.util.Locale.getDefault(), "%.2f", Math.abs(amount));
+        com.google.android.material.snackbar.Snackbar.make(
+                        findViewById(android.R.id.content),
+                        "Log " + label + " to Wallet?",
+                        com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
+                .setAction("Log", v -> {
+                    com.mustafagoksal.diary.models.WalletTransaction t = new com.mustafagoksal.diary.models.WalletTransaction();
+                    t.setUsername(CurrentUser.getUser().getUsername());
+                    t.setAmount(amount);
+                    t.setNote(note);
+                    t.setDate(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.getDefault()).format(new java.util.Date()));
+                    t.isIncome = amount > 0;
+                    db.mainDAO().insertTransaction(t);
+                    Toast.makeText(this, "Logged to Wallet!", Toast.LENGTH_SHORT).show();
+                })
+                .show();
+    }
+    private void showLogTransactionDialog() {
+        android.widget.EditText etAmount = new android.widget.EditText(this);
+        etAmount.setHint("Amount (e.g. 12.50)");
+        etAmount.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        
+        android.widget.EditText etNote = new android.widget.EditText(this);
+        etNote.setHint("What for? (e.g. Coffee)");
+        
+        android.widget.LinearLayout layout = new android.widget.LinearLayout(this);
+        layout.setOrientation(android.widget.LinearLayout.VERTICAL);
+        layout.setPadding(40, 20, 40, 20);
+        layout.addView(etAmount);
+        layout.addView(etNote);
+
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Quick Log Transaction")
+                .setView(layout)
+                .setPositiveButton("Log Expense", (d, i) -> {
+                    String amtStr = etAmount.getText().toString().trim();
+                    if (!amtStr.isEmpty()) {
+                        try {
+                            double amt = Double.parseDouble(amtStr);
+                            logTransaction(-amt, etNote.getText().toString());
+                        } catch (NumberFormatException e) {
+                            Toast.makeText(this, "Invalid amount", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNegativeButton("Log Income", (d, i) -> {
+                    String amtStr = etAmount.getText().toString().trim();
+                    if (!amtStr.isEmpty()) {
+                        try {
+                            double amt = Double.parseDouble(amtStr);
+                            logTransaction(amt, etNote.getText().toString());
+                        } catch (NumberFormatException e) {
+                            Toast.makeText(this, "Invalid amount", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNeutralButton("Cancel", null)
+                .show();
+    }
+
+    private void logTransaction(double amount, String note) {
+        com.mustafagoksal.diary.models.WalletTransaction t = new com.mustafagoksal.diary.models.WalletTransaction();
+        t.setUsername(CurrentUser.getUser().getUsername());
+        t.setAmount(amount);
+        t.setNote(note);
+        t.setDate(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.getDefault()).format(new java.util.Date()));
+        t.isIncome = amount > 0;
+        db.mainDAO().insertTransaction(t);
+        
+        String sym = CurrencyHelper.getSymbol(this);
+        String bridgeTag = "&nbsp;<i>[Logged Trx: " + sym + amount + " - " + note.replace("'", "\\'") + "]</i>&nbsp;";
+        richEditor.evaluateJavascript("javascript:document.execCommand('insertHTML', false, '" + bridgeTag + "');", null);
+        
+        Toast.makeText(this, "Logged to Wallet & Diary!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void setupContextSnapshot() {
+        containerDailyTasks.removeAllViews();
+        taskCheckboxes.clear();
+        
+        Users user = CurrentUser.getUser();
+        if (user == null) return;
+
+        List<com.mustafagoksal.diary.models.DailyTask> tasks = db.mainDAO().getTasksForUser(user.getUsername());
+        String dateStr = getFormattedDate();
+
+        for (com.mustafagoksal.diary.models.DailyTask task : tasks) {
+            android.widget.CheckBox cb = new android.widget.CheckBox(this);
+            cb.setText(task.taskName);
+            cb.setTag(task.id);
+            cb.setTextColor(getResources().getColor(R.color.ink_black, getTheme()));
+            
+            // Check if already completed today
+            com.mustafagoksal.diary.models.TaskCompletion tc = db.mainDAO().getTaskCompletion(task.id, dateStr);
+            if (tc != null) {
+                cb.setChecked(tc.isCompleted);
+            }
+            
+            containerDailyTasks.addView(cb);
+            taskCheckboxes.add(cb);
+        }
+    }
+    private void setupSensors() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, REQ_ACTIVITY_RECOGNITION);
+            }
+        } else {
+            registerStepCounter();
+        }
+    }
+
+    private void registerStepCounter() {
+        if (isSensorRegistered) return;
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        if (sensorManager != null) {
+            stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+            if (stepSensor != null) {
+                sensorManager.registerListener(stepListener, stepSensor, SensorManager.SENSOR_DELAY_NORMAL);
+                isSensorRegistered = true;
+            }
+        }
+    }
+
+    private void checkContactsPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, REQ_READ_CONTACTS);
+        } else {
+            showContactsPopup();
+        }
+    }
+
+    private void showContactsPopup() {
+        List<String> contactsList = new ArrayList<>();
+        try (android.database.Cursor cursor = getContentResolver().query(
+                android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                null, null, null,
+                android.provider.ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC")) {
+            if (cursor != null) {
+                int nameIdx = cursor.getColumnIndex(android.provider.ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                while (cursor.moveToNext()) {
+                    if (nameIdx >= 0) {
+                        String name = cursor.getString(nameIdx);
+                        if (!contactsList.contains(name)) contactsList.add(name);
+                    }
+                }
+            }
+        } catch (Exception ignored) {}
+
+        String[] contactsArray = contactsList.toArray(new String[0]);
+        if (contactsArray.length == 0) {
+            Toast.makeText(this, "No contacts found", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        new AlertDialog.Builder(this)
+                .setTitle("Tag a Contact")
+                .setItems(contactsArray, (dlg, i) -> {
+                    String selected = contactsArray[i];
+                    richEditor.evaluateJavascript("javascript:document.execCommand('insertHTML', false, '" + selected + " ');", null);
+                    if (!socialMentions.contains(selected)) {
+                       socialMentions.add(selected);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     private void applyFontFamily(String fontName) {
@@ -342,15 +613,53 @@ public class NewEntryActivity extends AppCompatActivity {
         );
     }
 
-    private void setupMoreDetailsPanel() {
-        panelMoreDetails.setVisibility(View.GONE);
-        btnMoreDetails.setOnClickListener(v -> {
-            panelExpanded = !panelExpanded;
-            panelMoreDetails.setVisibility(panelExpanded ? View.VISIBLE : View.GONE);
-            btnMoreDetails.setText(panelExpanded
-                    ? R.string.btn_less_details
-                    : R.string.btn_more_details);
-        });
+    private void loadDailyTasks() {
+        dailyTasks = db.mainDAO().getAllTasks();
+        containerDailyTasks.removeAllViews();
+        taskCheckboxes.clear();
+
+        for (com.mustafagoksal.diary.models.DailyTask task : dailyTasks) {
+            if (task.username == null || !task.username.equals(CurrentUser.getUser().getUsername())) continue;
+            android.widget.CheckBox cb = new android.widget.CheckBox(this);
+            cb.setText(task.taskName);
+            cb.setTextColor(getResources().getColor(R.color.ink_black, getTheme()));
+            cb.setTag(task.id);
+            containerDailyTasks.addView(cb);
+            taskCheckboxes.add(cb);
+
+            if (editingEntry != null) {
+                com.mustafagoksal.diary.models.TaskCompletion tc = db.mainDAO().getTaskCompletion(task.id, editingEntry.getDate());
+                if (tc != null) cb.setChecked(tc.isCompleted);
+            }
+        }
+    }
+
+    private void showLogMoneyDialog() {
+        View view = getLayoutInflater().inflate(R.layout.dialog_add_transaction, null);
+        EditText etAmount = view.findViewById(R.id.et_amount);
+        EditText etNote = view.findViewById(R.id.et_note);
+        new AlertDialog.Builder(this)
+                .setTitle("Add Transaction")
+                .setView(view)
+                .setPositiveButton("Add", (dialog, which) -> {
+                    try {
+                        double amt = Double.parseDouble(etAmount.getText().toString());
+                        com.mustafagoksal.diary.models.WalletTransaction t = new com.mustafagoksal.diary.models.WalletTransaction();
+                        t.setUsername(CurrentUser.getUser().getUsername());
+                        t.setAmount(amt);
+                        t.setNote(etNote.getText().toString());
+                        t.setDate(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.getDefault()).format(new java.util.Date()));
+                        db.mainDAO().insertTransaction(t);
+                        String sym = CurrencyHelper.getSymbol(NewEntryActivity.this);
+                        String bridgeTag = "&nbsp;<i>[Logged Trx: " + sym + amt + "]</i>";
+                        richEditor.evaluateJavascript("javascript:document.execCommand('insertHTML', false, '" + bridgeTag + "');", null);
+                        Toast.makeText(this, "Logged to Wallet & Diary", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(this, "Invalid amount", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     private void setupPhotos() {
@@ -479,131 +788,6 @@ public class NewEntryActivity extends AppCompatActivity {
         });
     }
 
-    private void setupContextFetch() {
-        findViewById(R.id.btn_fetch_context).setOnClickListener(v -> fetchContext());
-    }
-
-    private void fetchContext() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(
-                        new String[]{Manifest.permission.ACTIVITY_RECOGNITION},
-                        REQ_ACTIVITY_RECOGNITION
-                );
-            } else {
-                readSteps();
-            }
-        } else {
-            readSteps();
-        }
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQ_LOCATION
-            );
-        } else {
-            fetchLocationAndWeather();
-        }
-    }
-
-    private void readSteps() {
-        new StepCountHelper(this, new StepCountHelper.StepCallback() {
-            @Override
-            public void onSteps(int steps) {
-                pendingStepCount = steps;
-                tvSteps.setText(getString(R.string.label_steps_count, steps));
-                tvSteps.setVisibility(View.VISIBLE);
-                cardContext.setVisibility(View.VISIBLE);
-            }
-            @Override
-            public void onUnavailable() {
-                tvSteps.setText(R.string.label_steps_unavailable);
-                cardContext.setVisibility(View.VISIBLE);
-            }
-        }).readOnce();
-    }
-
-    private void fetchLocationAndWeather() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) return;
-
-        LocationFetcher.fetchLocation(this, new LocationCallback() {
-            @Override
-            public void onLocationFetched(double latitude, double longitude) {
-                pendingLatitude  = latitude;
-                pendingLongitude = longitude;
-
-                new Thread(() -> {
-                    try {
-                        android.location.Geocoder geocoder =
-                                new android.location.Geocoder(NewEntryActivity.this, Locale.getDefault());
-                        List<android.location.Address> addresses =
-                                geocoder.getFromLocation(pendingLatitude, pendingLongitude, 1);
-
-                        String city = null;
-                        String neighbourhood = null;
-                        if (addresses != null && !addresses.isEmpty()) {
-                            android.location.Address addr = addresses.get(0);
-                            city = addr.getLocality();
-                            if (city == null) city = addr.getAdminArea();
-                            neighbourhood = addr.getSubLocality();
-                        }
-
-                        final String finalCity  = city;
-                        final String finalNeigh = neighbourhood;
-
-                        runOnUiThread(() -> {
-                            if (isFinishing() || isDestroyed()) return;
-
-                            pendingLocationCity  = finalCity;
-                            pendingLocationNeigh = finalNeigh;
-
-                            String loc = (finalNeigh != null ? finalNeigh + ", " : "")
-                                    + (finalCity != null ? finalCity : "");
-                            tvLocation.setText(loc.isEmpty()
-                                    ? getString(R.string.label_location_found)
-                                    : loc);
-                            cardContext.setVisibility(View.VISIBLE);
-
-                            WeatherHelper.fetch(pendingLatitude, pendingLongitude,
-                                    new WeatherHelper.WeatherCallback() {
-                                        @Override
-                                        public void onWeather(String description, String iconCode) {
-                                            if (isFinishing() || isDestroyed()) return;
-                                            pendingWeatherDesc = description;
-                                            pendingWeatherIcon = iconCode;
-                                            tvLocation.setText(loc); // Setting again just in case
-                                            tvWeather.setText(description);
-                                            cardContext.setVisibility(View.VISIBLE);
-                                        }
-                                        @Override
-                                        public void onFailed(String reason) {
-                                            if (isFinishing() || isDestroyed()) return;
-                                            tvWeather.setText(R.string.label_weather_unavailable);
-                                        }
-                                    });
-                        });
-                    } catch (Exception e) {
-                        runOnUiThread(() -> {
-                            if (isFinishing() || isDestroyed()) return;
-                            tvLocation.setText(R.string.label_location_unavailable);
-                            cardContext.setVisibility(View.VISIBLE);
-                        });
-                    }
-                }).start();
-            }
-
-            @Override
-            public void onLocationFailed() {
-                tvLocation.setText(R.string.label_location_unavailable);
-                cardContext.setVisibility(View.VISIBLE);
-            }
-        });
-    }
-
     private void setupFontPicker() {
         btnChooseFont.setOnClickListener(v -> {
             String[] labels = FontHelper.getFontLabels();
@@ -637,12 +821,11 @@ public class NewEntryActivity extends AppCompatActivity {
     }
 
     private void loadEntryForEditing(long id) {
-        for (DiaryEntry e : db.mainDAO().getAllDiaryEntries()) {
-            if (e.getID() == id) { editingEntry = e; break; }
-        }
+        editingEntry = db.mainDAO().getEntryById(id);
         if (editingEntry == null) return;
 
         etTitle.setText(editingEntry.getTitle());
+        if (tvContextWeather != null) tvContextWeather.setText(editingEntry.getWeather() != null ? editingEntry.getWeather() : "");
 
         String rich = editingEntry.getRichContent();
         if (rich != null && !rich.isEmpty()) {
@@ -696,24 +879,9 @@ public class NewEntryActivity extends AppCompatActivity {
             tvLockIndicator.setText(R.string.icon_locked);
         }
 
-        // Load existing context data into pending fields
-        pendingStepCount     = editingEntry.getStepCount();
-        pendingLatitude      = editingEntry.getLatitude();
-        pendingLongitude     = editingEntry.getLongitude();
-        pendingLocationCity  = editingEntry.getLocationCity();
-        pendingLocationNeigh = editingEntry.getLocationNeighbourhood();
-        pendingWeatherDesc   = editingEntry.getWeatherDescription();
-        pendingWeatherIcon   = editingEntry.getWeatherIconCode();
 
-        if (pendingStepCount >= 0 || pendingLocationCity != null || pendingWeatherDesc != null) {
-            cardContext.setVisibility(View.VISIBLE);
-            if (pendingStepCount >= 0)
-                tvSteps.setText(getString(R.string.label_steps_count, pendingStepCount));
-            String loc = (pendingLocationNeigh != null ? pendingLocationNeigh + ", " : "")
-                    + (pendingLocationCity != null ? pendingLocationCity : "");
-            if (!loc.isEmpty()) tvLocation.setText(loc);
-            if (pendingWeatherDesc != null) tvWeather.setText(pendingWeatherDesc);
-        }
+
+
 
         currentHandwritingPath = editingEntry.getHandwritingImagePath();
         if (currentHandwritingPath != null && new File(currentHandwritingPath).exists()) {
@@ -824,17 +992,17 @@ public class NewEntryActivity extends AppCompatActivity {
             entry.setFontFamily(selectedFontFamily);
             entry.setEntryPasswordHash(passwordHash);
             entry.setHandwritingImagePath(currentHandwritingPath);
-            entry.setStepCount(pendingStepCount);
-            entry.setLatitude(pendingLatitude);
-            entry.setLongitude(pendingLongitude);
-            entry.setLocationCity(pendingLocationCity);
-            entry.setLocationNeighbourhood(pendingLocationNeigh);
-            entry.setWeatherDescription(pendingWeatherDesc);
-            entry.setWeatherIconCode(pendingWeatherIcon);
+            entry.setWeather(tvContextWeather.getText().toString());
+            entry.setStepCount(stepCount);
+            entry.setSocialMentions(TextUtils.join(",", socialMentions));
+            entry.setMoodTheme(getSharedPreferences("settings", MODE_PRIVATE).getString("global_theme", "default"));
+            entry.setLocationInfo(tvContextLocation.getText().toString());
+
             db.mainDAO().insertDiary(entry);
             // Gamification hook
             GamificationManager gm = new GamificationManager(this, user.getUsername());
             gm.onEntryAddedWithStats(plainText);
+            saveTaskCompletions(date);
             Toast.makeText(this, R.string.toast_entry_saved, Toast.LENGTH_SHORT).show();
         } else {
             editingEntry.setTitle(title);
@@ -849,17 +1017,29 @@ public class NewEntryActivity extends AppCompatActivity {
             editingEntry.setFontFamily(selectedFontFamily);
             editingEntry.setEntryPasswordHash(passwordHash);
             editingEntry.setHandwritingImagePath(currentHandwritingPath);
-            editingEntry.setStepCount(pendingStepCount);
-            editingEntry.setLatitude(pendingLatitude);
-            editingEntry.setLongitude(pendingLongitude);
-            editingEntry.setLocationCity(pendingLocationCity);
-            editingEntry.setLocationNeighbourhood(pendingLocationNeigh);
-            editingEntry.setWeatherDescription(pendingWeatherDesc);
-            editingEntry.setWeatherIconCode(pendingWeatherIcon);
+            editingEntry.setWeather(tvContextWeather.getText().toString());
+            editingEntry.setStepCount(stepCount);
+            editingEntry.setSocialMentions(TextUtils.join(",", socialMentions));
+            editingEntry.setLocationInfo(tvContextLocation.getText().toString());
+
             db.mainDAO().updateDiary(editingEntry);
+            saveTaskCompletions(date);
             Toast.makeText(this, R.string.toast_entry_updated, Toast.LENGTH_SHORT).show();
         }
         finish();
+    }
+
+    private void saveTaskCompletions(String dateString) {
+        for (android.widget.CheckBox cb : taskCheckboxes) {
+            Object tag = cb.getTag();
+            if (!(tag instanceof Number)) continue;
+            long taskId = ((Number) tag).longValue();
+            com.mustafagoksal.diary.models.TaskCompletion tc = new com.mustafagoksal.diary.models.TaskCompletion();
+            tc.taskId = taskId;
+            tc.date = dateString;
+            tc.isCompleted = cb.isChecked();
+            db.mainDAO().insertTaskCompletion(tc);
+        }
     }
 
     @Override
@@ -867,8 +1047,8 @@ public class NewEntryActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(req, perms, results);
         boolean granted = results.length > 0 && results[0] == PackageManager.PERMISSION_GRANTED;
         if (req == REQ_RECORD_AUDIO && granted)         toggleRecord();
-        if (req == REQ_ACTIVITY_RECOGNITION && granted) readSteps();
-        if (req == REQ_LOCATION && granted)             fetchLocationAndWeather();
+        if (req == REQ_ACTIVITY_RECOGNITION && granted) registerStepCounter();
+        if (req == REQ_READ_CONTACTS && granted)        showContactsPopup();
     }
 
     private List<String> copyUrisToInternalStorage(List<Uri> uris) {
@@ -919,6 +1099,10 @@ public class NewEntryActivity extends AppCompatActivity {
         if (mediaPlayer != null) {
             try { mediaPlayer.stop(); mediaPlayer.release(); } catch (Exception ignored) {}
             mediaPlayer = null;
+        }
+        if (isSensorRegistered && sensorManager != null) {
+            sensorManager.unregisterListener(stepListener);
+            isSensorRegistered = false;
         }
     }
 

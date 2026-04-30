@@ -22,11 +22,14 @@ public class MainActivity extends AppCompatActivity {
     private CardView  cardNewEntry;
     private CardView  cardViewEntries;
     private CardView  cardProfile;
+    private CardView  cardWallet;
     private CardView  cardAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CurrentUser.init(getApplicationContext());
+        ThemeHelper.applyTheme(this);
 
 
         if (!CurrentUser.isLoggedIn()) {
@@ -40,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Initialize Views
         tvUsername      = findViewById(R.id.tv_username_display);
         tvDateToday     = findViewById(R.id.tv_date_today);
         cardNewEntry    = findViewById(R.id.card_new_entry);
         cardViewEntries = findViewById(R.id.card_view_entries);
         cardProfile     = findViewById(R.id.card_profile);
+        cardWallet      = findViewById(R.id.card_wallet);
         cardAbout       = findViewById(R.id.card_about);
 
 
@@ -67,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
 
         cardProfile.setOnClickListener(v ->
                 startActivity(new Intent(this, ProfileActivity.class)));
+
+        cardWallet.setOnClickListener(v ->
+                startActivity(new Intent(this, WalletActivity.class)));
 
         cardAbout.setOnClickListener(v ->
                 startActivity(new Intent(this, AboutActivity.class)));
